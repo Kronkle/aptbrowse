@@ -12,38 +12,71 @@ var atable = {
 
 	buildTable: function(){
 		//First, take the HTML document's add table, which has an id of "atable"
-		var add_table = document.getElementById("atable");
+		var form=document.getElementById("aform");
+		//form.action="submitPlayer.php";
 	
 		//Build table headings
 		var atable_headings = ["Name","Pos","Team","College","Age"];
 		for(var x = 0; x < 5; x++){
 	
-			//Create a new row, which will be the "tr" HTML element
+			//Declare form and table structure
 			if(x === 0){
+				var add_table=document.createElement("table");
+				add_table.className="table table-bordered";
 				var tableBody=document.createElement("tbody");
-				var tableRow=document.createElement("tr");
+				var tableHeadingRow=document.createElement("tr");
+				var tableInputRow=document.createElement("tr");
 			}
 		
-			//Create an HTML "td" element to store heading info
+			//Create an HTML "th" element to store heading info
 			var node=document.createElement("th");
+			
+			//Create an HTML "td" element to store input fields on second table row
+			var input=document.createElement("td");
 		
 			//Create an HTML text element with the appropriate heading
 			var textnode=document.createTextNode(atable_headings[x]);
+			
+			//Create HTML input field element 
+			var inputField=document.createElement("input");
+			inputField.type="text";
 		
-			//Append the HTML text element to the HTML "td" element
+			//Append the HTML text element to the HTML "th" element
 			node.appendChild(textnode);
-		
-			//Append the HTML "td" element to the table row
-			tableRow.appendChild(node);
 	
-			//Append the new table row to the table body
-			tableBody.appendChild(tableRow);
-		
+			//Append the HTML input field element to the "td" element on the second row
+			input.appendChild(inputField);
+	
+			//Append the HTML "th" element to the table row
+			tableHeadingRow.appendChild(node);
+			
+			//Append the HTML "td" element to the second table row
+			tableInputRow.appendChild(input);
+	
 			//At the end of generating the table, append the 
 			if(x === 4){
+				//Append the new table rows to the table body
+				tableBody.appendChild(tableHeadingRow);
+				tableBody.appendChild(tableInputRow);
+		
 				add_table.appendChild(tableBody);
+				
+				var submit=document.createElement("input");
+				submit.type="button";
+				//submit.onclick="submitPlayer()";
+				submit.value="Submit";
+				submit.className="center-block";
+				var pageBreaks=document.createElement("br");
+				form.appendChild(add_table);
+				form.appendChild(submit);
+				form.appendChild(pageBreaks);
+				
 			}
 		}
+	},
+	
+	takePlayer: function(){
+		
 	},
 }
 
@@ -82,6 +115,7 @@ var ftable = {
 		
 		//Create a new row, which will be the "tr" HTML element
 		var tableRow=document.createElement("tr");
+		
 
 		//Append the new table row to the table body
 		ftableBody.appendChild(tableRow);
