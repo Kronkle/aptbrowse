@@ -5,10 +5,50 @@
 "use strict";
 
 //Introduce the user to the app
-alert("Dynamic table builder - V0.1");
+//alert("Dynamic table builder - V0.1");
 
-//Create a table object for storing football player info using object literal notation
-var table = {
+//Create a table object for adding players to the final table displayed
+var atable = {
+
+	buildTable: function(){
+		//First, take the HTML document's add table, which has an id of "atable"
+		var add_table = document.getElementById("atable");
+	
+		//Build table headings
+		var atable_headings = ["Name","Pos","Team","College","Age"];
+		for(var x = 0; x < 5; x++){
+	
+			//Create a new row, which will be the "tr" HTML element
+			if(x === 0){
+				var tableBody=document.createElement("tbody");
+				var tableRow=document.createElement("tr");
+			}
+		
+			//Create an HTML "td" element to store heading info
+			var node=document.createElement("th");
+		
+			//Create an HTML text element with the appropriate heading
+			var textnode=document.createTextNode(atable_headings[x]);
+		
+			//Append the HTML text element to the HTML "td" element
+			node.appendChild(textnode);
+		
+			//Append the HTML "td" element to the table row
+			tableRow.appendChild(node);
+	
+			//Append the new table row to the table body
+			tableBody.appendChild(tableRow);
+		
+			//At the end of generating the table, append the 
+			if(x === 4){
+				add_table.appendChild(tableBody);
+			}
+		}
+	},
+}
+
+//Create a final table object for storing and displaying players
+var ftable = {
 
 	//Basic table scheme: name, dimensions, and column names
 	name: "Table 1",
@@ -23,7 +63,7 @@ var table = {
 
 	//Simply shows the table name for now - there may not be a use case for this function
 	showInfo: function(){
-		alert(table.name);
+		alert(ftable.name);
 	},
 
 	/* 
@@ -38,13 +78,14 @@ var table = {
 
 		//First, take the HTML document's table, which has an id of "ftable"
 		var ftable = document.getElementById("ftable");
-
+		var ftableBody = document.getElementById("ftablebody");
+		
 		//Create a new row, which will be the "tr" HTML element
 		var tableRow=document.createElement("tr");
 
-		//Append the new table row to the table
-		ftable.appendChild(tableRow);
-
+		//Append the new table row to the table body
+		ftableBody.appendChild(tableRow);
+		
 		//Initialize new array in the playerGroup object if undefined (should always be the case, so always using just the '[]')
 		this.playerGroup[this.index] = this.playerGroup[this.index] || []; 
 
@@ -66,47 +107,47 @@ var table = {
 			tableRow.appendChild(node);
 
 			//Debug code, so we know stuff is being fed in properly
-			alert("Placing " +  player.stats[x] + " at " + this.index + "," + x);
+			//alert("Placing " +  player.stats[x] + " at " + this.index + "," + x);
 			
 		}
 
-		//Incrementthe index so when the next player is added, we are in the correct position in playerGroup
+		//Increment the index so when the next player is added, we are in the correct position in playerGroup
 		this.index++;
 
 		this.totalPlayers++;
-		alert("Total players is now: " + this.totalPlayers);
+		//alert("Total players is now: " + this.totalPlayers);
 		
 	},
+	
+	//Debug prints for looking at the structure of the playerGroup object 
 	printTable: function(){
 		alert(this.playerGroup);
 		console.log(this.playerGroup);
-		/* Append HTML to the page here.
-		 * Make sure the HTML first includes the cols array
-		 * Then for each player that exists (i could be totalPlayers.length),
-		 * Add a row for that player with their characteristics
-		*/
 	}
 };
 
 //Show general info about table
-table.showInfo();
+//ftable.showInfo();
+
+//First, display add table
+atable.buildTable();
 
 //Manually input players into the table here:
-table.takePlayer({
+ftable.takePlayer({
 	stats: ["Kronk", "Punter", "Kronky Kongs", "UNC", 23]
 	});
 	
-table.takePlayer({
+ftable.takePlayer({
 	
 	stats: ["Kronk2", "Punter2", "Kronky Kongs2", "UNC2", 20]
 	});
 
-table.takePlayer({
+ftable.takePlayer({
 	
 	stats: ["Kronk3", "Punter3", "Kronky Kongs3", "UNC3", 28]
 	});
 
-table.printTable();
+//ftable.printTable();
 
 
 /*
@@ -117,7 +158,7 @@ table.printTable();
 * The columns will represent player names, positions, teams, colleges, and age
 * Column headers will be an array
 * 
-* There will be a table function that takes in a new playeer
+* There will be a table function that takes in a new player
 * The HTML doc will contain a form where you can input players to activate 
 * takePlayer function (you can also still manually call that here).
 */
