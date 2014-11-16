@@ -11,9 +11,12 @@
 var atable = {
 
 	buildTable: function(){
-		//First, take the HTML document's add table, which has an id of "atable"
+		//First, take the HTML document's add form, which has an id of "aform"
 		var form=document.getElementById("aform");
-		//form.action="submitPlayer.php";
+
+		//Set form attributes
+		form.method="post";
+		//form.action="<?php echo htmlspecialchars($_SERVER[\"PHP_SELF\"]);?>";
 	
 		//Build table headings
 		var atable_headings = ["Name","Pos","Team","College","Age"];
@@ -37,9 +40,15 @@ var atable = {
 			//Create an HTML text element with the appropriate heading
 			var textnode=document.createTextNode(atable_headings[x]);
 			
-			//Create HTML input field element 
+			//Create HTML input field elements for each category
 			var inputField=document.createElement("input");
 			inputField.type="text";
+			
+			//Allow room for Michael Hoomanawanui
+			inputField.maxLength="50";
+			
+			//Name each input field to collect data from later
+			inputField.id="text" + x.toString();
 		
 			//Append the HTML text element to the HTML "th" element
 			node.appendChild(textnode);
@@ -61,23 +70,59 @@ var atable = {
 		
 				add_table.appendChild(tableBody);
 				
+				//Create "Add Player" button to submit a new player entry
 				var submit=document.createElement("input");
 				submit.type="button";
 				//submit.onclick="submitPlayer()";
-				submit.value="Submit";
+				submit.value="Add Player";
 				submit.className="center-block";
+				
+				//When submit button is clicked, send out inputted data
+				submit.onclick=function(){
+					//Set up AJAX request with inputted data
+					var submitRequest = new XMLHttpRequest();
+					var text0 = document.getElementById("text0").value;
+					var text1 = document.getElementById("text1").value;
+					var text2 = document.getElementById("text2").value;
+					var text3 = document.getElementById("text3").value;
+					var text4 = document.getElementById("text4").value;
+				
+					var data = "text0=" + text0 + "&" + "text1=" + text1 + "&" + "text2=" + text2 + "&" + "text3=" + text3 + "&" + "text4=" + text4;
+					//alert("This shouldn't go off until Add Player button is clicked\n" + data);
+					//Open the request, set the header, and send the data
+					submitRequest.open('POST', 'submit.php', true);
+					submitRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+					submitRequest.send(data);
+						
+					//After the data has been sanitized, display on the HTML page within ftable
+					submitRequest.onreadystatechange = display_data;
+					function display_data() {
+						if (submitRequest.readyState == 4) {
+						 if(submitRequest.status == 200) {
+							var ftablebody=document.getElementById("ftablebody");
+							var newRow = ftablebody.insertRow(-1);
+							newRow.innerHTML = submitRequest.responseText;
+						    //alert('Success! Here is the response text:\n' + submitRequest.responseText);
+							
+							//document.getElementById("ftablebody").innerHTML = submitRequest.responseText;
+						 } else {
+							alert('Problem with request');
+							
+						 }
+						}
+						
+					}
+				
+				};
 				var pageBreaks=document.createElement("br");
 				form.appendChild(add_table);
 				form.appendChild(submit);
 				form.appendChild(pageBreaks);
 				
 			}
-		}
+		}		
 	},
 	
-	takePlayer: function(){
-		
-	},
 }
 
 //Create a final table object for storing and displaying players
@@ -111,6 +156,11 @@ var ftable = {
 
 		//First, take the HTML document's table, which has an id of "ftable"
 		var ftable = document.getElementById("ftable");
+		ftable.style.tableLayout="fixed";
+		ftable.style.overflow="hidden";
+		ftable.style.whiteSpace="nowrap";
+		//ftable.width="0px";
+		
 		var ftableBody = document.getElementById("ftablebody");
 		
 		//Create a new row, which will be the "tr" HTML element
@@ -130,6 +180,8 @@ var ftable = {
 
 			//Create an HTML "td" element to store the player's info at index,y
 			var node=document.createElement("td");
+			node.style.overflow="hidden";
+			node.style.whiteSpace="nowrap";
 
 			//Create an HTML text element with the players
 			var textnode=document.createTextNode(player.stats[x]);
