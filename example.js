@@ -7,17 +7,38 @@
 //Introduce the user to the app
 //alert("Dynamic table builder - V0.1");
 
+//Create an introductory section for the app
+var intro_section = {
+
+	build_intro_section: function(){
+	//Get the first div in the body to append introductory material to
+	var intro_div=document.getElementById("intro");
+
+	//Create text for an intro paragraph and the 'p' element to hold that text
+	var intro_paragraph_text_node=document.createTextNode("Welcome!\n Please stop by again\n");
+	var intro_paragraph_element=document.createElement("p");
+
+	//Append the intro paragraph to the intro 'p' element
+	intro_paragraph_element.appendChild(intro_paragraph_text_node);
+
+	//Append the 'p' element to the div
+	intro_div.appendChild(intro_paragraph_element);
+	},
+	
+};
+
 //Create a table object for adding players to the final table displayed
 var atable = {
 
 	buildTable: function(){
 		//First, take the HTML document's add form, which has an id of "aform"
+
 		var form=document.getElementById("aform");
 
 		//Set form attributes
 		form.method="post";
 		//form.action="<?php echo htmlspecialchars($_SERVER[\"PHP_SELF\"]);?>";
-	
+
 		//Build table headings
 		var atable_headings = ["Name","Pos","Team","College","Age"];
 		for(var x = 0; x < 5; x++){
@@ -123,7 +144,8 @@ var atable = {
 		}		
 	},
 	
-}
+};
+
 
 //Create a final table object for storing and displaying players
 var ftable = {
@@ -214,6 +236,9 @@ var ftable = {
 
 //Show general info about table
 //ftable.showInfo();
+
+//Build intro section
+intro_section.build_intro_section();
 
 //First, display add table
 atable.buildTable();
