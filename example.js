@@ -4,84 +4,83 @@
  */
 "use strict";
 
-//Introduce the user to the app
-//alert("Dynamic table builder - V0.1");
-
 //Create an introductory section for the app
-var intro_section = {
+var intro_section_setup = {
 
 	build_intro_section: function(){
-	//Get the first div in the body to append introductory material to
-	var intro_div=document.getElementById("intro");
+
+	//Get the first div in the html body to append introductory material to
+	var intro_section=document.getElementById("intro");
 
 	//Create text for an intro paragraph and the 'p' element to hold that text
-	var intro_paragraph_text_node=document.createTextNode("Welcome!\n Please stop by again\n");
+	var intro_paragraph_text_node=document.createTextNode("Manually enter player information in the table below.");
 	var intro_paragraph_element=document.createElement("p");
 
 	//Append the intro paragraph to the intro 'p' element
 	intro_paragraph_element.appendChild(intro_paragraph_text_node);
 
 	//Append the 'p' element to the div
-	intro_div.appendChild(intro_paragraph_element);
+	intro_section.appendChild(intro_paragraph_element);
+
 	},
 	
 };
 
-//Create a table object for adding players to the final table displayed
-var atable = {
+//Create an 'Add Player' section for the app
+var add_player_section_setup = {
 
-	buildTable: function(){
-		//First, take the HTML document's add form, which has an id of "aform"
+	build_add_player_section: function(){
 
-		var form=document.getElementById("aform");
+		//Get the form with id "aform" in the html body to append add player table to
+		var add_player_section=document.getElementById("aform");
 
 		//Set form attributes
-		form.method="post";
-		//form.action="<?php echo htmlspecialchars($_SERVER[\"PHP_SELF\"]);?>";
+		add_player_section.method="post";
 
 		//Build table headings
-		var atable_headings = ["Name","Pos","Team","College","Age"];
+		var atable_headings = ["Name","Position","Team","College","Age"];
 		for(var x = 0; x < 5; x++){
 	
-			//Declare form and table structure
+			//At first, create base elements for the table
 			if(x === 0){
 				var add_table=document.createElement("table");
 				add_table.className="table table-bordered";
 				var tableBody=document.createElement("tbody");
 				var tableHeadingRow=document.createElement("tr");
 				var tableInputRow=document.createElement("tr");
+
 			}
-		
-			//Create an HTML "th" element to store heading info
-			var node=document.createElement("th");
+
+			//Create a "th" element for each column
+			var instance_table_heading=document.createElement("th");
 			
 			//Create an HTML "td" element to store input fields on second table row
-			var input=document.createElement("td");
+			var instance_table_data=document.createElement("td");
 		
 			//Create an HTML text element with the appropriate heading
 			var textnode=document.createTextNode(atable_headings[x]);
 			
 			//Create HTML input field elements for each category
-			var inputField=document.createElement("input");
-			inputField.type="text";
+			var instance_input_field=document.createElement("input");
+			instance_input_field.type="text";
 			
 			//Allow room for Michael Hoomanawanui
-			inputField.maxLength="50";
+			instance_input_field.maxLength="50";
 			
 			//Name each input field to collect data from later
-			inputField.id="text" + x.toString();
+			instance_input_field.id="text" + x.toString();
 		
 			//Append the HTML text element to the HTML "th" element
-			node.appendChild(textnode);
+			instance_table_heading.appendChild(textnode);
 	
 			//Append the HTML input field element to the "td" element on the second row
-			input.appendChild(inputField);
+			instance_table_data.appendChild(instance_input_field);
 	
 			//Append the HTML "th" element to the table row
-			tableHeadingRow.appendChild(node);
+			tableHeadingRow.appendChild(instance_table_heading);
 			
 			//Append the HTML "td" element to the second table row
-			tableInputRow.appendChild(input);
+			tableInputRow.appendChild(instance_table_data);
 	
 			//At the end of generating the table, append the 
 			if(x === 4){
@@ -136,9 +135,9 @@ var atable = {
 				
 				};
 				var pageBreaks=document.createElement("br");
-				form.appendChild(add_table);
-				form.appendChild(submit);
-				form.appendChild(pageBreaks);
+				add_player_section.appendChild(add_table);
+				add_player_section.appendChild(submit);
+				add_player_section.appendChild(pageBreaks);
 				
 			}
 		}		
@@ -238,10 +237,10 @@ var ftable = {
 //ftable.showInfo();
 
 //Build intro section
-intro_section.build_intro_section();
+intro_section_setup.build_intro_section();
 
 //First, display add table
-atable.buildTable();
+add_player_section_setup.build_add_player_section();
 
 //Manually input players into the table here:
 ftable.takePlayer({
