@@ -4,6 +4,19 @@
  * 
  */
 
+var addButton = {
+
+	defaults: {
+		type="button";
+ 		value="Add Apartment";
+		className="center-block";
+	}
+
+	initialize: function() {
+		this.set({"src": this.defaults.src});
+	}
+
+};
 
  var addTableCell = {
 
