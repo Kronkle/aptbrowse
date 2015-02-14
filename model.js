@@ -1,5 +1,5 @@
 /*
- * 
+ * Models for the add button, add table cells, and display table cells
  * 
  * 
  */
@@ -30,6 +30,15 @@ var addButton = {
 
  };
 
+
+function displayCellModel (data) {
+	this.data = data;
+}
+
+displayCellModel.prototype.create = function(cell_text){
+	this.data = cell_text;
+};
+
  var displayTableCell = {
 
  	initializeValue: function(value) {
@@ -37,4 +46,5 @@ var addButton = {
  	}
 
  };
+
 
