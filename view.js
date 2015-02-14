@@ -3,33 +3,16 @@
  *
  */
 
- var createAddButtonView = function ( addButton ) {
+var displayRowView = function ( model ) {
+	this.model = model;
 
- 	var div = document.createElement("div"),
- 		buttonEl = document.createElement("input");
- 	
-	div.appendChild(buttonEl);
+	return this;
+};
 
-	var render = function () {
-		//Use handlebars template to generate rest of HTML for button
-		buttonEl.innerHTML = template({
-			src: addButton.getSrc()
-		});
-	};
- };
+displayRowView.prototype.render = function () {
 
- var createAddTableView = function ( addTableCell ) {
+	var html = '<tr><td>Data1</td><td>Data2</td><td>Data3</td></tr>';
+	document.getElementById('ftablebody').innerHTML = html;
 
- 	this.model = addTableCell;
-
- 	return this;
-
- };
-
-
- createAddTableView.prototype.output = function () {
-
- 	var tableOutput = '';
-
- };
+};
 
