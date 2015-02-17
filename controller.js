@@ -1,17 +1,29 @@
 /*
- * Handle logic for "Add Apartment" button that the view builds
- *
+ * Handle logic for page setup and "Add Apartment" 
+ * button that the view builds 
  */
 
- var displayRowController = function() {
- 	return this;
- };
+var addTableController = function() {
+	return this;
+};
 
- displayRowController.prototype.loadView = function () {
- 	var model = new displayRow();
+addTableController.prototype.loadView = function () {
+	var model = new addTable();
 
- 	var view = new displayRowView(model);
+	var view = new addTableView(model);
 
- 	view.render();
+	view.render();
+};
 
- };
+var displayRowController = function() {
+	return this;
+};
+
+displayRowController.prototype.loadView = function () {
+	var model = new displayRow();
+
+	var view = new displayRowView(model);
+
+	view.render();
+
+};
