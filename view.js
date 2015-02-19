@@ -66,11 +66,40 @@ atablebody.appendChild(add_table);
 
 };
 
-var displayRowView = function ( model ) {
+var buttonPanelView = function ( model ) {
 	this.model = model;
 
 	return this;
 };
+
+buttonPanelView.prototype.render = function () {
+	//Create "Add Apartment" button to submit a new player entry
+	var submit=document.createElement("input");
+	submit.type="button";
+				
+	submit.value="Add Apartment";
+	submit.className="center-block";
+
+	submit.onclick=function(){
+		addDisplayRow();
+	};
+
+	//Create "Add Apartment" input form for manual apartment info
+	var add_apt_section=document.getElementById("aform");
+
+	//Set form attributes
+	add_apt_section.method="post";
+
+	var ftablebody = document.getElementById("intro");
+	ftablebody.appendChild(submit);
+
+};
+
+	var displayRowView = function ( model ) {
+		this.model = model;
+
+		return this;
+	};
 
 displayRowView.prototype.render = function () {
 

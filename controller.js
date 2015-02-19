@@ -15,6 +15,18 @@ addTableController.prototype.loadView = function () {
 	view.render();
 };
 
+var buttonPanelController = function() {
+	return this;
+};
+
+buttonPanelController.prototype.loadView = function () {
+	var model = new buttonPanel();
+
+	var view = new buttonPanelView();
+
+	view.render();
+};
+
 var displayRowController = function() {
 	return this;
 };

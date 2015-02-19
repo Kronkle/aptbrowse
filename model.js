@@ -7,6 +7,10 @@ var addTable = function ( ) {
 	return this;
 };
 
+var buttonPanel = function ( ) {
+	return this;
+};
+
 var displayRow = function ( ) {
 
 	//this.rowInfo = fields.inputRowInfo;
