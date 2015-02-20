@@ -9,9 +9,7 @@ var addTableController = function() {
 
 addTableController.prototype.loadView = function () {
 	var model = new addTable();
-
 	var view = new addTableView(model);
-
 	view.render();
 };
 
@@ -21,9 +19,7 @@ var buttonPanelController = function() {
 
 buttonPanelController.prototype.loadView = function () {
 	var model = new buttonPanel();
-
 	var view = new buttonPanelView();
-
 	view.render();
 };
 
@@ -33,9 +29,6 @@ var displayRowController = function() {
 
 displayRowController.prototype.loadView = function () {
 	var model = new displayRow();
-
 	var view = new displayRowView(model);
-
 	view.render();
-
 };

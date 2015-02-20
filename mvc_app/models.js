@@ -12,9 +12,7 @@ var buttonPanel = function ( ) {
 };
 
 var displayRow = function ( ) {
-
 	//this.rowInfo = fields.inputRowInfo;
-
 	return this;
 };
 
