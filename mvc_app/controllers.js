@@ -25,6 +25,8 @@ buttonPanelController.prototype.loadView = function () {
 
 buttonPanelController.prototype.addApartment = function () {
 	
+
+
 	//Set up AJAX request with inputted data
 	var submitRequest = new XMLHttpRequest();
 	var text0 = document.getElementById("text0").value;
@@ -61,7 +63,15 @@ var displayRowController = function() {
 };
 
 displayRowController.prototype.loadView = function () {
-	var model = new displayRow();
+	//hardcode fields for now, will be user input like in basic app later
+	var fields = [
+		"Waterstone", 
+		"10700 Nelson Ct", 
+		"$1100", 
+		"Gym, Clubhouse", 
+		"True"
+	];
+	var model = new displayRow(fields);
 	var view = new displayRowView(model);
-	view.render();
+	view.render(model);
 };

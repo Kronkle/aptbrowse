@@ -11,13 +11,9 @@ var buttonPanel = function ( ) {
 	return this;
 };
 
-var displayRow = function ( ) {
+var displayRow = function ( fields ) {
 	//this.rowInfo = fields.inputRowInfo;
-	this.name;
-	this.address;
-	this.monthlyRent;
-	this.amenities;
-	this.petFriendly;
+	this.fields = fields;
 	return this;
 };
 
