@@ -13,6 +13,11 @@ var buttonPanel = function ( ) {
 
 var displayRow = function ( ) {
 	//this.rowInfo = fields.inputRowInfo;
+	this.name;
+	this.address;
+	this.monthlyRent;
+	this.amenities;
+	this.petFriendly;
 	return this;
 };
 
