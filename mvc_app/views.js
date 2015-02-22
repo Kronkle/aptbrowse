@@ -73,7 +73,7 @@ buttonPanelView.prototype.render = function () {
 	submit.type="button";
 				
 	submit.value="Add Apartment";
-	submit.className="center-block";
+	submit.className="btn btn-primary center-block";
 
 	submit.onclick=function(){
 		addDisplayRow();
@@ -88,6 +88,10 @@ buttonPanelView.prototype.render = function () {
 	var ftablebody = document.getElementById("intro");
 	ftablebody.appendChild(submit);
 
+	//Create line break for after button
+	var lineBreak=document.createElement("br");
+	ftablebody.appendChild(lineBreak);
+
 };
 
 var displayRowView = function ( model ) {
@@ -97,6 +101,7 @@ var displayRowView = function ( model ) {
 
 displayRowView.prototype.render = function ( model ) {
 	var htmlRow = document.createElement("tr");
+	htmlRow.className = "bordered";
 
 	//Will use a handlebars template here in the future
 	//var html = '<tr><td>Data1</td><td>Data2</td><td>Data3</td></tr>';
