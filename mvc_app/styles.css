@@ -1,10 +1,6 @@
 table {
 	border-collapse: collapse;
-}
-
-.bordered {
-	border-style: solid;
-	border-width: 1px;
+	border: clear;
 }
 
 /* Most recent suggested fix for highlighted clicked buttons in Mozilla. Placeholder. */

@@ -9,7 +9,7 @@ var addTableView = function(model) {
 
 addTableView.prototype.render = function () {
 	//Build table headings
-	var atable_headings = ["Name","Address","Monthly Rent","Amenities","Pet-Friendly"];
+	var atable_headings = ["Name","Address","Monthly Rent","Amenities","Pet-Friendly?"];
 	for(var x = 0; x < 5; x++){
 		//At first, create base elements for the table
 		if(x === 0){
@@ -22,10 +22,12 @@ addTableView.prototype.render = function () {
 
 		//Create a "th" element for each column
 		var instance_table_heading=document.createElement("th");
-				
+		instance_table_heading.style.textAlign="center";
+
 		//Create an HTML "td" element to store input fields on second table row
 		var instance_table_data=document.createElement("td");
-			
+		instance_table_data.style.textAlign="center";
+
 		//Create an HTML text element with the appropriate heading
 		var textnode=document.createTextNode(atable_headings[x]);
 				
@@ -73,7 +75,7 @@ buttonPanelView.prototype.render = function () {
 	submit.type="button";
 				
 	submit.value="Add Apartment";
-	submit.className="btn btn-primary center-block";
+	submit.className="btn btn-primary bg-silver black center-block";
 
 	submit.onclick=function(){
 		addDisplayRow();
@@ -112,6 +114,7 @@ displayRowView.prototype.render = function ( model ) {
 
 		//Append filler text to each row field
 		var td = document.createElement("td");
+		td.style.textAlign="center";
 		td.appendChild(textNode);
 
 		//Append row field to table row to be added
