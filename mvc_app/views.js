@@ -10,11 +10,11 @@ var addTableView = function(model) {
 addTableView.prototype.render = function () {
 	//Build table headings
 	var atable_headings = ["Name","Address","Monthly Rent","Amenities","Pet-Friendly?"];
-	for(var x = 0; x < 5; x++){
+	for(var x = 0; x < 5; x++) {
 		//At first, create base elements for the table
 		if(x === 0){
 			var add_table=document.createElement("table");
-			add_table.className="table table-bordered";
+			add_table.className="table";
 			var tableBody=document.createElement("tbody");
 			var tableHeadingRow=document.createElement("tr");
 			var tableInputRow=document.createElement("tr");
@@ -103,7 +103,7 @@ var displayRowView = function ( model ) {
 
 displayRowView.prototype.render = function ( model ) {
 	var htmlRow = document.createElement("tr");
-	htmlRow.className = "bordered";
+	//htmlRow.className = "bordered";
 
 	//Will use a handlebars template here in the future
 	//var html = '<tr><td>Data1</td><td>Data2</td><td>Data3</td></tr>';

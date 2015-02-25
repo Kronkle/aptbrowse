@@ -6,3 +6,8 @@ table {
 /* Most recent suggested fix for highlighted clicked buttons in Mozilla. Placeholder. */
 :focus {outline:none;}
 ::-moz-focus-inner {border:0;}
+
+/* Remove table borders here*/
+.table th, .table td { 
+     border: none; 
+ }
