@@ -1,13 +1,26 @@
-table {
-	border-collapse: collapse;
-	border: clear;
+/* For font on "Add Aparment" table inputs */
+#intro {
+	font-family: 'Open Sans', sans-serif;
+	font-weight:400;
+}
+
+/* For font on "Add Apartment" table heading row */
+.table th {
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 800;
+}
+
+#output {
+	font-family: 'Open Sans', sans-serif;
 }
 
 /* Most recent suggested fix for highlighted clicked buttons in Mozilla. Placeholder. */
 :focus {outline:none;}
 ::-moz-focus-inner {border:0;}
 
-/* Remove table borders here*/
-.table th, .table td { 
-     border: none; 
- }
+/* Remove borders from bootstrap table class */
+.table td,
+.table th { 
+    border: 0 !important
+}
+

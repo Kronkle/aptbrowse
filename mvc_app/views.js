@@ -87,7 +87,7 @@ buttonPanelView.prototype.render = function () {
 	//Set form attributes
 	add_apt_section.method="post";
 
-	var ftablebody = document.getElementById("intro");
+	var ftablebody = document.getElementById("buttonPanel");
 	ftablebody.appendChild(submit);
 
 	//Create line break for after button
@@ -114,6 +114,7 @@ displayRowView.prototype.render = function ( model ) {
 
 		//Append filler text to each row field
 		var td = document.createElement("td");
+		//td.className="bg-silver";
 		td.style.textAlign="center";
 		td.appendChild(textNode);
 
