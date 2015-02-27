@@ -11,10 +11,10 @@ function addButtonPanel() {
 function addDisplayRow() {
 	var controller = new displayRowController;
 	controller.addApartment();
-	//controller.loadView();
 };
 
 createAddTable();
 
 addButtonPanel();
 
+//Create a single displayRowController here, remove addDisplayRow (controllers.js)

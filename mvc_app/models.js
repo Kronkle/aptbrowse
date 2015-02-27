@@ -11,10 +11,9 @@ var buttonPanel = function ( ) {
 	return this;
 };
 
+//For now, simply keeps the field information for display rows
 var displayRow = function ( fields ) {
-	//this.rowInfo = fields.inputRowInfo;
 	this.fields = fields;
-	alert("Yo" + this.fields);
 	return this;
 };
 

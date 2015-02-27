@@ -27,6 +27,8 @@ var displayRowController = function() {
 	return this;
 };
 
+//Make this the displayRowController event listener/handler that handles the "Add Apartment" onclick
+//event passed to it by the buttonPanelView
 displayRowController.prototype.addApartment = function () {
 	//Set up AJAX request with inputted data
 	var submitRequest = new XMLHttpRequest();
@@ -53,10 +55,6 @@ displayRowController.prototype.addApartment = function () {
 				var model = new displayRow(data);
 				var view = new displayRowView(model);
 				view.render(model);
-
-				//var ftablebody=document.getElementById("ftablebody");
-				//var newRow = ftablebody.insertRow(-1);
-				//newRow.innerHTML = submitRequest.responseText;
 		 	} else {
 				alert('Problem with request');	
 		 	}
@@ -64,17 +62,9 @@ displayRowController.prototype.addApartment = function () {
 	};
 };
 
+
 displayRowController.prototype.loadView = function (data) {
-	//hardcode fields for now, will be user input like in basic app later
-	/*var fields = [
-		"Waterstone", 
-		"10700 Nelson Ct", 
-		"$1100", 
-		"Gym, Clubhouse", 
-		"True"
-	];*/
 	var fields = data;
-	alert(fields);
 	var model = new displayRow(fields);
 	var view = new displayRowView(model);
 	view.render(model);
