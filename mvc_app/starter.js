@@ -10,7 +10,8 @@ function addButtonPanel() {
 
 function addDisplayRow() {
 	var controller = new displayRowController;
-	controller.loadView();
+	controller.addApartment();
+	//controller.loadView();
 };
 
 createAddTable();

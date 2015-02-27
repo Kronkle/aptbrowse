@@ -23,10 +23,11 @@ buttonPanelController.prototype.loadView = function () {
 	view.render();
 };
 
-buttonPanelController.prototype.addApartment = function () {
-	
+var displayRowController = function() {
+	return this;
+};
 
-
+displayRowController.prototype.addApartment = function () {
 	//Set up AJAX request with inputted data
 	var submitRequest = new XMLHttpRequest();
 	var text0 = document.getElementById("text0").value;
@@ -47,30 +48,33 @@ buttonPanelController.prototype.addApartment = function () {
 	function display_data() {
 		if (submitRequest.readyState == 4) {
 			if(submitRequest.status == 200) {
-				var ftablebody=document.getElementById("ftablebody");
-				var newRow = ftablebody.insertRow(-1);
-				newRow.innerHTML = submitRequest.responseText;
+				data=submitRequest.responseText;
+				alert(data);
+				var model = new displayRow(data);
+				var view = new displayRowView(model);
+				view.render(model);
+
+				//var ftablebody=document.getElementById("ftablebody");
+				//var newRow = ftablebody.insertRow(-1);
+				//newRow.innerHTML = submitRequest.responseText;
 		 	} else {
 				alert('Problem with request');	
 		 	}
-		}
-		
+		}		
 	};
 };
 
-var displayRowController = function() {
-	return this;
-};
-
-displayRowController.prototype.loadView = function () {
+displayRowController.prototype.loadView = function (data) {
 	//hardcode fields for now, will be user input like in basic app later
-	var fields = [
+	/*var fields = [
 		"Waterstone", 
 		"10700 Nelson Ct", 
 		"$1100", 
 		"Gym, Clubhouse", 
 		"True"
-	];
+	];*/
+	var fields = data;
+	alert(fields);
 	var model = new displayRow(fields);
 	var view = new displayRowView(model);
 	view.render(model);

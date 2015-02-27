@@ -107,7 +107,7 @@ displayRowView.prototype.render = function ( model ) {
 
 	//Will use a handlebars template here in the future
 	//var html = '<tr><td>Data1</td><td>Data2</td><td>Data3</td></tr>';
-	for(var i = 0; i < 5; i++){
+	/*for(var i = 0; i < 5; i++){
 		//Create filler text for each row field
 		var text = this.model.fields[i];
 		var textNode = document.createTextNode(text);
@@ -120,9 +120,14 @@ displayRowView.prototype.render = function ( model ) {
 
 		//Append row field to table row to be added
 		htmlRow.appendChild(td);
-	}
+	}*/
 
-	var ftablebody = document.getElementById("ftablebody");
-	ftablebody.appendChild(htmlRow);
+	var ftablebody=document.getElementById("ftablebody");
+	var newRow = ftablebody.insertRow(-1);
+	alert("Ey" + this.model.fields);
+	newRow.innerHTML = this.model.fields;
+
+	//var ftablebody = document.getElementById("ftablebody");
+	ftablebody.appendChild(newRow);
 };
 

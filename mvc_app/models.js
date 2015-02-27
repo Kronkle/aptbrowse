@@ -14,6 +14,7 @@ var buttonPanel = function ( ) {
 var displayRow = function ( fields ) {
 	//this.rowInfo = fields.inputRowInfo;
 	this.fields = fields;
+	alert("Yo" + this.fields);
 	return this;
 };
 
