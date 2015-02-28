@@ -77,15 +77,16 @@ buttonPanelView.prototype.render = function () {
 	submit.value="Add Apartment";
 	submit.className="btn btn-primary bg-silver black center-block";
 
-	submit.onclick=function(){
-		addDisplayRow();
-	};
-
 	//Create "Add Apartment" input form for manual apartment info
 	var add_apt_section=document.getElementById("aform");
 
 	//Set form attributes
 	add_apt_section.method="post";
+
+	submit.onclick=function(){
+		addDisplayRow();
+		add_apt_section.reset();
+	};
 
 	var ftablebody = document.getElementById("buttonPanel");
 	ftablebody.appendChild(submit);
@@ -106,7 +107,6 @@ displayRowView.prototype.render = function ( model ) {
 
 	var ftablebody=document.getElementById("ftablebody");
 	var newRow = ftablebody.insertRow(-1);
-	alert("Ey" + this.model.fields);
 	newRow.innerHTML = this.model.fields;
 
 	ftablebody.appendChild(newRow);

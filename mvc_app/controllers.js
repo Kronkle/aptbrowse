@@ -38,6 +38,11 @@ displayRowController.prototype.addApartment = function () {
 	var text3 = document.getElementById("text3").value;
 	var text4 = document.getElementById("text4").value;
 
+	//Validate that all input fields were filled in
+	if (text0 == "" || text1 == "" || text2 == "" || text3 == "" || text4 == ""){
+		alert("Please fill in all of the information fields when adding a new apartment");
+		return;
+	}
 	var data = "text0=" + text0 + "&" + "text1=" + text1 + "&" + "text2=" + text2 + "&" + "text3=" + text3 + "&" + "text4=" + text4;
 	
 	//Open the request, set the header, and send the data
@@ -51,7 +56,6 @@ displayRowController.prototype.addApartment = function () {
 		if (submitRequest.readyState == 4) {
 			if(submitRequest.status == 200) {
 				data=submitRequest.responseText;
-				alert(data);
 				var model = new displayRow(data);
 				var view = new displayRowView(model);
 				view.render(model);
@@ -61,7 +65,6 @@ displayRowController.prototype.addApartment = function () {
 		}		
 	};
 };
-
 
 displayRowController.prototype.loadView = function (data) {
 	var fields = data;
