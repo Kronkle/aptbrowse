@@ -9,8 +9,8 @@ var addTableView = function(model) {
 
 addTableView.prototype.render = function () {
 	//Build table headings
-	var atable_headings = ["Name","Address","Monthly Rent","Amenities","Pet-Friendly?"];
-	for(var x = 0; x < 5; x++) {
+	var atable_headings = ["Name","Address","Monthly Rent","Amenities","Pet-Friendly?","URL"];
+	for(var x = 0; x < 6; x++) {
 		//At first, create base elements for the table
 		if(x === 0){
 			var add_table=document.createElement("table");
@@ -36,7 +36,7 @@ addTableView.prototype.render = function () {
 		instance_input_field.type="text";
 				
 		//Allow only 250 chars for now
-		instance_input_field.maxLength="250";
+		instance_input_field.maxLength="40";
 				
 		//Name each input field to collect data from later
 		instance_input_field.id="text" + x.toString();
@@ -70,12 +70,13 @@ var buttonPanelView = function ( model ) {
 };
 
 buttonPanelView.prototype.render = function () {
-	//Create "Add Apartment" button to submit a new player entry
+	//Create "Add Apartment" button to manually submit a new player entry
 	var submit=document.createElement("input");
 	submit.type="button";
 				
 	submit.value="Add Apartment";
-	submit.className="btn btn-primary bg-silver black center-block";
+	submit.className="btn btn-primary bg-silver black btn-block";
+	//submit.style.margin = "0 auto";
 
 	//Create "Add Apartment" input form for manual apartment info
 	var add_apt_section=document.getElementById("aform");
@@ -88,8 +89,22 @@ buttonPanelView.prototype.render = function () {
 		add_apt_section.reset();
 	};
 
+	//Create "Zip Code Search" button for auto-filling table with searches via Google Maps
+	var zipsearch=document.createElement("input");
+	zipsearch.type="button";
+
+	zipsearch.value="Zip Code Search";
+	zipsearch.className="btn btn-primary bg-silver black btn-block";
+	//zipsearch.style.margin = "0 auto";
+
+	zipsearch.onclick=function(){
+		alert("Put zipcode here");
+	};
+
+
 	var ftablebody = document.getElementById("buttonPanel");
 	ftablebody.appendChild(submit);
+	ftablebody.appendChild(zipsearch);
 
 	//Create line break for after button
 	var lineBreak=document.createElement("br");
