@@ -13,6 +13,12 @@ function addDisplayRow() {
 	controller.addApartment();
 };
 
+//When zip search is run, call this
+function addDisplayRowsThroughSearch(zip) {
+	var controller = new displayRowController;
+	controller.zipSearch(zip);
+}
+
 createAddTable();
 
 addButtonPanel();

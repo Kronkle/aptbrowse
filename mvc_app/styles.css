@@ -1,3 +1,9 @@
+/* Horizontally center buttons */
+#buttonPanel {
+	margin: 0 auto;
+	width: 15%;
+}
+
 /* For font on "Add Aparment" table inputs */
 #intro {
 	font-family: 'Open Sans', sans-serif;

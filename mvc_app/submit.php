@@ -1,13 +1,14 @@
 <?php
 // declare variables from form and set to empty strings
-$name = $position = $team = $college = $age = "";
+$name = $address = $rent = $amenities = $pets = $url = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$name = clean_input($_POST["text0"]);
-	$position = clean_input($_POST["text1"]);
-	$team = clean_input($_POST["text2"]);
-	$college = clean_input($_POST["text3"]);
-	$age = clean_input($_POST["text4"]);
+	$address = clean_input($_POST["text1"]);
+	$rent = clean_input($_POST["text2"]);
+	$amenities = clean_input($_POST["text3"]);
+	$pets = clean_input($_POST["text4"]);
+	$url = clean_input($_POST["text5"]);
 }
 
 // format and sanitize the input via htmlspecialchars
@@ -18,7 +19,15 @@ function clean_input($data) {
 	return $data;
 }
 
-echo '<tr><td style="overflow: hidden; white-space: nowrap;">'. $name. '</td><td style="overflow: hidden; white-space: nowrap;">'. $position. '</td><td style="overflow: hidden; white-space: nowrap;">'. $team. '</td><td style="overflow: hidden; white-space: nowrap;">'. $college. '</td><td style="overflow: hidden; white-space: nowrap;">'. $age. '</td></tr>';
+// return with html for a new apartment row
+echo '<tr>
+<td style="overflow: hidden; white-space: nowrap;">'. $name.
+'</td><td style="overflow: hidden; white-space: nowrap;">'. $address.
+'</td><td style="overflow: hidden; white-space: nowrap;">'. $rent.
+'</td><td style="overflow: hidden; white-space: nowrap;">'. $amenities.
+'</td><td style="overflow: hidden; white-space: nowrap;">'. $pets.
+'</td><td style="overflow: hidden; white-space: nowrap;">'. $url.
+'</td></tr>';
 
 ?>
 
