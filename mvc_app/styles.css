@@ -1,13 +1,13 @@
 /* Horizontally center buttons */
 #buttonPanel {
 	margin: 0 auto;
-	width: 15%;
+	width:  15%;
 }
 
 /* For font on "Add Aparment" table inputs */
 #intro {
 	font-family: 'Open Sans', sans-serif;
-	font-weight:400;
+	font-weight: 400;
 }
 
 /* For font on "Add Apartment" table heading row */
@@ -30,3 +30,9 @@
     border: 0 !important
 }
 
+/* Place footer, and Google logo, on bottom-right of page */
+#footer {
+	position: absolute;
+	bottom:   0px;
+	right:    0px;
+}

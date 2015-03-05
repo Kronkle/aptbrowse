@@ -67,12 +67,76 @@ displayRowController.prototype.addApartment = function () {
 	};
 };
 
+//Use this function to submit an initial Google places search for apartment names
 displayRowController.prototype.zipSearch = function (zip) {
-	//Set up AJAX request with inputted data
-	var submitRequest = new XMLHttpRequest();
-	var data = "zip=" + zip;
 
-	//submitRequest.open('POST', 'zipSearch.php', true);
+	//Convert user zipcode into location for google places request
+	//this.zip = zip;
+	var geocoder = new google.maps.Geocoder();
+	var lat = '';
+	var lng = '';
+
+	var address = zip;
+	alert("zip is " + address);
+
+	/*geocoder.geocode({ 'address': address}, function(results, status ) {
+		if (status == google.maps.GeocoderStatus.OK) {
+			lat = results[0].geometry.location.lat();
+			lng = results[0].geometry.location.lng();
+		} else {
+			alert("Geocode wasn't successful: " + status);
+		}
+	});*/
+
+	// Include callback function since geocoder method works asynchronously
+	geocoder.geocode( {'address': address},
+	    function(results_array, status) { 
+	        if (status == google.maps.GeocoderStatus.OK){
+	        	lat = results_array[0].geometry.location.lat()
+	        	lng = results_array[0].geometry.location.lng()
+	        	alert('Lat: ' + lat + ' and Long: ' + lng);
+	    	}
+	    	else {
+	    		alert("Geocode wasn't successful: " + status);
+	    	}
+	});
+
+	//Setup a google places request
+	/*
+	var GooglePlaces = require("googleplaces");
+	var googlePlaces = new GooglePlaces("AIzaSyC3UPlqEMvxkElc_Y3B6CLb_vObtHZWEcY", "json");
+	var parameters =[];
+
+
+	parameters = {
+		
+		query: "Apartments",
+
+		
+		//Include a maxprice setting for later
+		//maxprice: Answer2.GoogleID,
+
+		//Include a location and radius later (must include both together)
+		//location: [35.921937, -78.881396]
+		//radius: Answer3.GoogleID,		
+	};
+	var ourResponse = [];
+	googlePlaces.textSearch(parameters, function (error, response) {
+		if (error) throw error;
+			console.log(response.results);
+			ourResponse = response.results;
+		});
+	*/
+};
+
+/* Use this function to provide filler data (for now) for all of the other fields.
+   Later combine this with web scraper data */
+ displayRowController.prototype.prepareZipSearchViews = function () {
+
+ };
+
+//Use this function to display all display rows returned by the google search
+displayRowController.prototype.loadZipSearchViews = function () {
 
 };
 
