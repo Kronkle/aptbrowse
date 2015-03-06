@@ -71,63 +71,38 @@ displayRowController.prototype.addApartment = function () {
 displayRowController.prototype.zipSearch = function (zip) {
 
 	//Convert user zipcode into location for google places request
-	//this.zip = zip;
 	var geocoder = new google.maps.Geocoder();
+	var address = zip;
 	var lat = '';
 	var lng = '';
-
-	var address = zip;
-	//alert("zip is " + address);
-
-	/*geocoder.geocode({ 'address': address}, function(results, status ) {
-		if (status == google.maps.GeocoderStatus.OK) {
-			lat = results[0].geometry.location.lat();
-			lng = results[0].geometry.location.lng();
-		} else {
-			alert("Geocode wasn't successful: " + status);
-		}
-	});*/
-
+	
+	
 	// Include callback function since geocoder method works asynchronously
-	geocoder.geocode( {'address': address},
-	    function(results_array, status) { 
-	        if (status == google.maps.GeocoderStatus.OK){
-	        	lat = results_array[0].geometry.location.lat()
-	        	lng = results_array[0].geometry.location.lng()
-	        	alert('Lat: ' + lat + ' and Long: ' + lng);
-	        	var loc = new google.maps.LatLng(lat, lng);
-	alert(loc);
+	geocoder.geocode( {'address': address}, function(results_array, status) { 
+		if (status == google.maps.GeocoderStatus.OK){
+	        
+	        lat = results_array[0].geometry.location.lat()
+        	lng = results_array[0].geometry.location.lng()
+        	var loc = new google.maps.LatLng(lat, lng);
 
-	/*var map = new google.maps.Map(document.getElementById('map'), {
-		center: loc,
-		zoom: 15
-	});*/
+			var request = {
+				location: loc,
+				radius: '10',
+				query: "Apartment",
+			};
 
-	var request = {
-		location: loc,
-		radius: '10',
-		query: "Apartment",
-	};
-
-	var service = new google.maps.places.PlacesService(document.getElementById('map'));
-	service.textSearch(request, function (results, status) {
-		if (status == google.maps.places.PlacesServiceStatus.OK){
-		alert("Things worked out");
-		console.log(results);
-	}
-	});
-	    	}
-	    	else {
-	    		alert("Geocode wasn't successful: " + status);
-	    	}
-	});
-
-	//Setup a google places request
-	
-	//var GooglePlaces = require("googleplaces");
-	//var googlePlaces = new GooglePlaces("AIzaSyC3UPlqEMvxkElc_Y3B6CLb_vObtHZWEcY", "json");
-
-	
+			var service = new google.maps.places.PlacesService(document.getElementById('map'));
+			service.textSearch(request, function (results, status) {
+				if (status == google.maps.places.PlacesServiceStatus.OK){
+					console.log(results);
+				}
+			});
+		    	}
+		else {
+		    alert("Request to google maps wasn't successful. Please try again later.");
+		    console.log(status);
+		}
+	});	
 };
 
 /* Use this function to provide filler data (for now) for all of the other fields.
