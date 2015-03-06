@@ -77,7 +77,7 @@ displayRowController.prototype.zipSearch = function (zip) {
 	var lng = '';
 
 	var address = zip;
-	alert("zip is " + address);
+	//alert("zip is " + address);
 
 	/*geocoder.geocode({ 'address': address}, function(results, status ) {
 		if (status == google.maps.GeocoderStatus.OK) {
@@ -95,6 +95,27 @@ displayRowController.prototype.zipSearch = function (zip) {
 	        	lat = results_array[0].geometry.location.lat()
 	        	lng = results_array[0].geometry.location.lng()
 	        	alert('Lat: ' + lat + ' and Long: ' + lng);
+	        	var loc = new google.maps.LatLng(lat, lng);
+	alert(loc);
+
+	/*var map = new google.maps.Map(document.getElementById('map'), {
+		center: loc,
+		zoom: 15
+	});*/
+
+	var request = {
+		location: loc,
+		radius: '10',
+		query: "Apartment",
+	};
+
+	var service = new google.maps.places.PlacesService(document.getElementById('map'));
+	service.textSearch(request, function (results, status) {
+		if (status == google.maps.places.PlacesServiceStatus.OK){
+		alert("Things worked out");
+		console.log(results);
+	}
+	});
 	    	}
 	    	else {
 	    		alert("Geocode wasn't successful: " + status);
@@ -102,31 +123,11 @@ displayRowController.prototype.zipSearch = function (zip) {
 	});
 
 	//Setup a google places request
-	/*
-	var GooglePlaces = require("googleplaces");
-	var googlePlaces = new GooglePlaces("AIzaSyC3UPlqEMvxkElc_Y3B6CLb_vObtHZWEcY", "json");
-	var parameters =[];
+	
+	//var GooglePlaces = require("googleplaces");
+	//var googlePlaces = new GooglePlaces("AIzaSyC3UPlqEMvxkElc_Y3B6CLb_vObtHZWEcY", "json");
 
-
-	parameters = {
-		
-		query: "Apartments",
-
-		
-		//Include a maxprice setting for later
-		//maxprice: Answer2.GoogleID,
-
-		//Include a location and radius later (must include both together)
-		//location: [35.921937, -78.881396]
-		//radius: Answer3.GoogleID,		
-	};
-	var ourResponse = [];
-	googlePlaces.textSearch(parameters, function (error, response) {
-		if (error) throw error;
-			console.log(response.results);
-			ourResponse = response.results;
-		});
-	*/
+	
 };
 
 /* Use this function to provide filler data (for now) for all of the other fields.
