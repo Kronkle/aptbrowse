@@ -75,7 +75,7 @@ displayRowController.prototype.zipSearch = function (zip) {
 	var address = zip;
 	var lat = '';
 	var lng = '';
-	
+	var me = this;
 	
 	// Include callback function since geocoder method works asynchronously
 	geocoder.geocode( {'address': address}, function(results_array, status) { 
@@ -95,6 +95,9 @@ displayRowController.prototype.zipSearch = function (zip) {
 			service.textSearch(request, function (results, status) {
 				if (status == google.maps.places.PlacesServiceStatus.OK){
 					console.log(results);
+					for(var i = 0; i < results.length; i++){
+						me.prepareZipSearchViews(results[i]);
+					}
 				}
 			});
 		    	}
@@ -107,7 +110,43 @@ displayRowController.prototype.zipSearch = function (zip) {
 
 /* Use this function to provide filler data (for now) for all of the other fields.
    Later combine this with web scraper data */
- displayRowController.prototype.prepareZipSearchViews = function () {
+ displayRowController.prototype.prepareZipSearchViews = function (apartment) {
+ 	//Set up AJAX request with inputted data
+	var submitRequest = new XMLHttpRequest();
+	var text0 = apartment.name;
+	var text1 = apartment.formatted_address;
+	var text2 = "Dummy";
+	var text3 = "Dummy";
+	var text4 = "Dummy";
+	var text5 = "Dummy";
+
+	//Validate that all input fields were filled in
+	if (text0 == "" || text1 == "" || text2 == "" || text3 == "" || text4 == "" || text5 == ""){
+		alert("Please fill in all of the information fields when adding a new apartment");
+		return;
+	}
+
+	var data = "text0=" + text0 + "&" + "text1=" + text1 + "&" + "text2=" + text2 + "&" + "text3=" + text3 + "&" + "text4=" + text4 + "&" + "text5=" + text5;
+	
+	//Open the request, set the header, and send the data
+	submitRequest.open('POST', 'submit.php', true);
+	submitRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+	submitRequest.send(data);
+		
+	//After the data has been sanitized, display on the HTML page within ftable
+	submitRequest.onreadystatechange = display_data;
+	function display_data() {
+		if (submitRequest.readyState == 4) {
+			if(submitRequest.status == 200) {
+				data=submitRequest.responseText;
+				var model = new displayRow(data);
+				var view = new displayRowView(model);
+				view.render(model);
+		 	} else {
+				alert('Problem with request');	
+		 	}
+		}		
+	};
 
  };
 
