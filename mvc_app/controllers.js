@@ -96,7 +96,8 @@ displayRowController.prototype.zipSearch = function (zip) {
 				if (status == google.maps.places.PlacesServiceStatus.OK){
 					console.log(results);
 					for(var i = 0; i < results.length; i++){
-						me.prepareZipSearchViews(results[i]);
+						me.initialZipSearchViews(results[i]);
+						me.detailedZipSearchViews(results[i], service);
 					}
 				}
 			});
@@ -108,9 +109,23 @@ displayRowController.prototype.zipSearch = function (zip) {
 	});	
 };
 
+displayRowController.prototype.detailedZipSearchViews = function (apartment, googleServiceObj) {
+	var request = {
+		placeId: apartment.place_id
+	};
+	googleServiceObj.getDetails(request, function (results, status) {
+				if (status == google.maps.places.PlacesServiceStatus.OK){
+					console.log(results);
+				}
+			});
+
+};
+
 /* Use this function to provide filler data (for now) for all of the other fields.
    Later combine this with web scraper data */
- displayRowController.prototype.prepareZipSearchViews = function (apartment) {
+ displayRowController.prototype.initialZipSearchViews = function (apartment) {
+ 	
+
  	//Set up AJAX request with inputted data
 	var submitRequest = new XMLHttpRequest();
 	var text0 = apartment.name;
