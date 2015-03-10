@@ -96,34 +96,48 @@ displayRowController.prototype.zipSearch = function (zip) {
 				if (status == google.maps.places.PlacesServiceStatus.OK){
 					console.log(results);
 					for(var i = 0; i < results.length; i++){
-						me.initialZipSearchViews(results[i]);
-						me.detailedZipSearchViews(results[i], service);
+						me.detailedZipSearchViews(results[i], service);						
 					}
 				}
 			});
 		    	}
 		else {
-		    alert("Request to google maps wasn't successful. Please try again later.");
+		    alert("Request to google maps TEXT SEARCH wasn't successful. Please try again later.");
 		    console.log(status);
 		}
 	});	
 };
 
 displayRowController.prototype.detailedZipSearchViews = function (apartment, googleServiceObj) {
+	
+	var me = this; 
+
 	var request = {
 		placeId: apartment.place_id
 	};
-	googleServiceObj.getDetails(request, function (results, status) {
-				if (status == google.maps.places.PlacesServiceStatus.OK){
-					console.log(results);
-				}
-			});
+	var details = {
+		website: "a"
+	};
 
+	googleServiceObj.getDetails(request, function (results, status) {
+		if (status == google.maps.places.PlacesServiceStatus.OK){
+			console.log(results);
+			details.website = results.website;
+			me.initialZipSearchViews(apartment, details);
+		}
+		else {
+			//Hitting OVER QUERY LIMIT at the moment with these calls
+			alert("Request to google maps GET DETAILS wasn't successful. Please try again later");
+			console.log(status);
+			details.website = "Website not found";
+			me.initialZipSearchViews(apartment, details);
+		}		
+	});
 };
 
 /* Use this function to provide filler data (for now) for all of the other fields.
    Later combine this with web scraper data */
- displayRowController.prototype.initialZipSearchViews = function (apartment) {
+ displayRowController.prototype.initialZipSearchViews = function (apartment, details) {
  	
 
  	//Set up AJAX request with inputted data
@@ -133,7 +147,10 @@ displayRowController.prototype.detailedZipSearchViews = function (apartment, goo
 	var text2 = "Dummy";
 	var text3 = "Dummy";
 	var text4 = "Dummy";
-	var text5 = "Dummy";
+	if (details.website == undefined){
+		details.website = "Website not listed in Google Maps"
+	}
+	var text5 = details.website;
 
 	//Validate that all input fields were filled in
 	if (text0 == "" || text1 == "" || text2 == "" || text3 == "" || text4 == "" || text5 == ""){
