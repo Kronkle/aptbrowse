@@ -32,7 +32,8 @@
 
 /* Place footer, and Google logo, on bottom-right of page */
 #footer {
-	position: absolute;
-	bottom:   0px;
-	right:    0px;
+	display:block;
+	width:100px;
+	margin-left: auto;
+	margin-right: auto;
 }

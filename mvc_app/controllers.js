@@ -115,24 +115,28 @@ displayRowController.prototype.detailedZipSearchViews = function (apartment, goo
 	var request = {
 		placeId: apartment.place_id
 	};
+	
 	var details = {
-		website: "a"
+		website: "Website"
 	};
+	
+	getDetails();
 
-	googleServiceObj.getDetails(request, function (results, status) {
-		if (status == google.maps.places.PlacesServiceStatus.OK){
-			console.log(results);
-			details.website = results.website;
-			me.initialZipSearchViews(apartment, details);
-		}
-		else {
-			//Hitting OVER QUERY LIMIT at the moment with these calls
-			alert("Request to google maps GET DETAILS wasn't successful. Please try again later");
-			console.log(status);
-			details.website = "Website not found";
-			me.initialZipSearchViews(apartment, details);
-		}		
-	});
+	function getDetails() {
+		googleServiceObj.getDetails(request, function (results, status) {
+			if (status == google.maps.places.PlacesServiceStatus.OK){
+				console.log(results);
+				details.website = results.website;
+				me.initialZipSearchViews(apartment, details);
+			}
+			else {
+				//Hitting OVER QUERY LIMIT at the moment with these calls
+				setTimeout(function () {
+					getDetails();
+				}, 200);			
+			}		
+		});
+	};
 };
 
 /* Use this function to provide filler data (for now) for all of the other fields.
