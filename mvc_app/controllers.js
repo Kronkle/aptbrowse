@@ -96,7 +96,8 @@ displayRowController.prototype.zipSearch = function (zip) {
 				if (status == google.maps.places.PlacesServiceStatus.OK){
 					console.log(results);
 					for(var i = 0; i < results.length; i++){
-						me.detailedZipSearchViews(results[i], service);						
+						//Start passing i here to a function that can notify when results are completely recorded
+						me.detailedZipSearchViews(results[i], service);					
 					}
 				}
 			});
@@ -186,14 +187,17 @@ displayRowController.prototype.detailedZipSearchViews = function (apartment, goo
 
  };
 
-//Use this function to display all display rows returned by the google search
-displayRowController.prototype.loadZipSearchViews = function () {
-
-};
-
 displayRowController.prototype.loadView = function (data) {
 	var fields = data;
 	var model = new displayRow(fields);
 	var view = new displayRowView(model);
 	view.render(model);
+};
+
+var clearController = function() {
+	return this;
+};
+
+clearController.prototype.clearEntries = function () {
+	document.getElementById('ftablebody').innerHTML = "";
 };

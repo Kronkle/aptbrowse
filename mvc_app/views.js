@@ -107,9 +107,21 @@ buttonPanelView.prototype.render = function () {
 		addDisplayRowsThroughSearch(zip);
 	};
 
+	//Create "Clear Entries" button for clearing the table
+	var clearEntries=document.createElement("input");
+	clearEntries.type="button";
+
+	clearEntries.value="Clear Entries";
+	clearEntries.className="btn btn-primary bg-silver black btn-block";
+
+	clearEntries.onclick=function(){
+		clearDisplayRows();
+	};
+
 	var ftablebody = document.getElementById("buttonPanel");
 	ftablebody.appendChild(submit);
 	ftablebody.appendChild(zipsearch);
+	ftablebody.appendChild(clearEntries);
 
 	//Create line break for after button
 	var lineBreak=document.createElement("br");

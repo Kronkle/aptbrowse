@@ -19,6 +19,11 @@ function addDisplayRowsThroughSearch(zip) {
 	controller.zipSearch(zip);
 }
 
+function clearDisplayRows(){
+	var controller = new clearController;
+	controller.clearEntries();
+
+}
 createAddTable();
 
 addButtonPanel();
