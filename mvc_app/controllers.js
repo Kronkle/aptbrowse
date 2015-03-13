@@ -97,7 +97,14 @@ displayRowController.prototype.zipSearch = function (zip) {
 					console.log(results);
 					for(var i = 0; i < results.length; i++){
 						//Start passing i here to a function that can notify when results are completely recorded
-						me.detailedZipSearchViews(results[i], service);					
+						var done;
+						if (i == (results.length -1)){
+							done = 1;
+						}
+						else {
+							done = 0;
+						}
+						me.detailedZipSearchViews(results[i], service, done);					
 					}
 				}
 			});
@@ -109,9 +116,10 @@ displayRowController.prototype.zipSearch = function (zip) {
 	});	
 };
 
-displayRowController.prototype.detailedZipSearchViews = function (apartment, googleServiceObj) {
+displayRowController.prototype.detailedZipSearchViews = function (apartment, googleServiceObj, done) {
 	
 	var me = this; 
+	var done = done;
 
 	var request = {
 		placeId: apartment.place_id
@@ -128,7 +136,7 @@ displayRowController.prototype.detailedZipSearchViews = function (apartment, goo
 			if (status == google.maps.places.PlacesServiceStatus.OK){
 				console.log(results);
 				details.website = results.website;
-				me.initialZipSearchViews(apartment, details);
+				me.initialZipSearchViews(apartment, details, done);
 			}
 			else {
 				//Hitting OVER QUERY LIMIT at the moment with these calls
@@ -142,7 +150,7 @@ displayRowController.prototype.detailedZipSearchViews = function (apartment, goo
 
 /* Use this function to provide filler data (for now) for all of the other fields.
    Later combine this with web scraper data */
- displayRowController.prototype.initialZipSearchViews = function (apartment, details) {
+ displayRowController.prototype.initialZipSearchViews = function (apartment, details, done) {
  	
 
  	//Set up AJAX request with inputted data
@@ -184,6 +192,10 @@ displayRowController.prototype.detailedZipSearchViews = function (apartment, goo
 		 	}
 		}		
 	};
+
+	if (done == 1) {
+		alert("All results have been recorded");
+	}
 
  };
 
