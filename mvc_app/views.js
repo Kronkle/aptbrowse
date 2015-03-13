@@ -118,10 +118,36 @@ buttonPanelView.prototype.render = function () {
 		clearDisplayRows();
 	};
 
+	// "Save Entry" button for saving current table output
+
+	var saveEntry=document.createElement("input");
+	saveEntry.type="button";
+
+	saveEntry.value="Save Entry";
+	saveEntry.className="btn btn-primary bg-silver black btn-block";
+
+	saveEntry.onclick=function(){
+		alert("Save entry functionality here");
+	};
+
+	// "Load Entry" button for rendering previous table output
+
+	var loadEntry=document.createElement("input");
+	loadEntry.type="button";
+
+	loadEntry.value="Load Entry";
+	loadEntry.className="btn btn-primary bg-silver black btn-block";
+
+	loadEntry.onclick=function(){
+		alert("Load entry functionality here");
+	};
+
 	var ftablebody = document.getElementById("buttonPanel");
 	ftablebody.appendChild(submit);
 	ftablebody.appendChild(zipsearch);
 	ftablebody.appendChild(clearEntries);
+	ftablebody.appendChild(saveEntry);
+	ftablebody.appendChild(loadEntry);
 
 	//Create line break for after button
 	var lineBreak=document.createElement("br");
