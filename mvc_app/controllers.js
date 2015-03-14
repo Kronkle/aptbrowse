@@ -213,3 +213,32 @@ var clearController = function() {
 clearController.prototype.clearEntries = function () {
 	document.getElementById('ftablebody').innerHTML = "";
 };
+
+var stateController = function() {
+	return this;
+};
+
+stateController.prototype.saveResults = function () {
+
+	//Set up AJAX request with inputted data
+	var outputHTML = document.getElementById('output').innerHTML;
+	var submitRequest = new XMLHttpRequest();
+	var data = "output=" + outputHTML;
+
+	//Open the request, set the header, and send the data
+	submitRequest.open('POST', 'save.php', true);
+	submitRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+	submitRequest.send(data);
+		
+	//After the data has been sanitized, display on the HTML page within ftable
+	submitRequest.onreadystatechange = display_data;
+	function display_data() {
+		if (submitRequest.readyState == 4) {
+			if(submitRequest.status == 200) {
+				//data=submitRequest.responseText;
+		 	} else {
+				alert('Problem with request');	
+		 	}
+		}		
+	};
+};

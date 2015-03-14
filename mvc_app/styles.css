@@ -1,13 +1,18 @@
 /* Horizontally center buttons */
 #buttonPanel {
-	margin: 0 auto;
-	width:  15%;
+	display: inline-block;
+}
+
+/* Fixed width for button panel buttons */
+.btn-primary {
+	width: 150px !important;
 }
 
 /* For font on "Add Aparment" table inputs */
 #intro {
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 400;
+	text-align: center;
 }
 
 /* For font on "Add Apartment" table heading row */
@@ -16,6 +21,7 @@
 	font-weight: 800;
 }
 
+/* Font for results table */
 #output {
 	font-family: 'Open Sans', sans-serif;
 }

@@ -1,15 +1,12 @@
 <?php
 // declare variables from form and set to empty strings
-$name = $address = $rent = $amenities = $pets = $url = "";
+$output = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	$name = clean_input($_POST["text0"]);
-	$address = clean_input($_POST["text1"]);
-	$rent = clean_input($_POST["text2"]);
-	$amenities = clean_input($_POST["text3"]);
-	$pets = clean_input($_POST["text4"]);
-	$url = clean_input($_POST["text5"]);
+	$output = $_POST["output"];
 }
+
+echo $output;
 
 // format and sanitize the input via htmlspecialchars
 function clean_input($data) {

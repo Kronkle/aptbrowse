@@ -75,7 +75,7 @@ buttonPanelView.prototype.render = function () {
 	submit.type="button";
 				
 	submit.value="Add Apartment";
-	submit.className="btn btn-primary bg-silver black btn-block";
+	submit.className="btn btn-primary bg-silver black";
 
 	//Create "Add Apartment" input form for manual apartment info
 	var add_apt_section=document.getElementById("aform");
@@ -93,7 +93,7 @@ buttonPanelView.prototype.render = function () {
 	zipsearch.type="button";
 
 	zipsearch.value="Zip Code Search";
-	zipsearch.className="btn btn-primary bg-silver black btn-block";
+	zipsearch.className="btn btn-primary bg-silver black";
 
 	zipsearch.onclick=function(){
 		var zip = prompt("Zipcode:");
@@ -112,22 +112,22 @@ buttonPanelView.prototype.render = function () {
 	clearEntries.type="button";
 
 	clearEntries.value="Clear Entries";
-	clearEntries.className="btn btn-primary bg-silver black btn-block";
+	clearEntries.className="btn btn-primary bg-silver black";
 
 	clearEntries.onclick=function(){
 		clearDisplayRows();
 	};
 
 	// "Save Entry" button for saving current table output
-
 	var saveEntry=document.createElement("input");
 	saveEntry.type="button";
 
 	saveEntry.value="Save Entry";
-	saveEntry.className="btn btn-primary bg-silver black btn-block";
+	saveEntry.className="btn btn-primary bg-silver black";
 
 	saveEntry.onclick=function(){
 		alert("Save entry functionality here");
+		saveState();
 	};
 
 	// "Load Entry" button for rendering previous table output
@@ -136,7 +136,7 @@ buttonPanelView.prototype.render = function () {
 	loadEntry.type="button";
 
 	loadEntry.value="Load Entry";
-	loadEntry.className="btn btn-primary bg-silver black btn-block";
+	loadEntry.className="btn btn-primary bg-silver black";
 
 	loadEntry.onclick=function(){
 		alert("Load entry functionality here");
