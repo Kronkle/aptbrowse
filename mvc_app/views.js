@@ -126,8 +126,8 @@ buttonPanelView.prototype.render = function () {
 	saveEntry.className="btn btn-primary bg-silver black";
 
 	saveEntry.onclick=function(){
-		alert("Save entry functionality here");
-		saveState();
+		var pass = prompt("Please enter a password to access these results later");
+		saveState(pass);
 	};
 
 	// "Load Entry" button for rendering previous table output

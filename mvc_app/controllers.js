@@ -218,12 +218,13 @@ var stateController = function() {
 	return this;
 };
 
-stateController.prototype.saveResults = function () {
+stateController.prototype.saveResults = function (pass) {
 
 	//Set up AJAX request with inputted data
 	var outputHTML = document.getElementById('output').innerHTML;
+	alert("Output HTML is: " + outputHTML.length + " characters");
 	var submitRequest = new XMLHttpRequest();
-	var data = "output=" + outputHTML;
+	var data = "output=" + outputHTML + "pass=" + pass;
 
 	//Open the request, set the header, and send the data
 	submitRequest.open('POST', 'save.php', true);

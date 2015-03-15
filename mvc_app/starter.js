@@ -24,9 +24,9 @@ function clearDisplayRows() {
 	controller.clearEntries();
 }
 
-function saveState() {
+function saveState(pass) {
 	var controller = new stateController;
-	controller.saveResults();
+	controller.saveResults(pass);
 }
 
 createAddTable();
