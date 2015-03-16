@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 echo $output;
 
-/*MySQL processing will go here
+//MySQL processing will go here
 $servername = "localhost";
 $username = "username";
 $password = "password";
@@ -29,7 +29,7 @@ $sql =
 	)"
 
 $conn->close();
-*/
+
 /*Push current table output to a unique table in the database, generate a random
 key that is returned to the user for access later via the "Load Entry" button*/
 

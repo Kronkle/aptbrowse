@@ -29,6 +29,10 @@ function saveState(pass) {
 	controller.saveResults(pass);
 }
 
+function initDB() {
+	var controller = new stateController;
+	controller.initDB();
+}
 createAddTable();
 
 addButtonPanel();

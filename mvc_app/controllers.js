@@ -243,3 +243,28 @@ stateController.prototype.saveResults = function (pass) {
 		}		
 	};
 };
+
+stateController.prototype.initDB = function () {
+
+var submitRequest = new XMLHttpRequest();
+
+//Open the request, set the header, and send the data
+	submitRequest.open('POST', 'init.php', true);
+	submitRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+	submitRequest.send();
+		
+	//After the data has been sanitized, display on the HTML page within ftable
+	submitRequest.onreadystatechange = display_data;
+	function display_data() {
+		if (submitRequest.readyState == 4) {
+			if(submitRequest.status == 200) {
+				//data=submitRequest.responseText;
+				alert("Success!");
+		 	} else {
+				alert('Problem with request');	
+		 	}
+		}		
+	};
+
+
+};

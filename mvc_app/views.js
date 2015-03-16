@@ -142,12 +142,25 @@ buttonPanelView.prototype.render = function () {
 		alert("Load entry functionality here");
 	};
 
+	// "Init DB" button for temporary testing, only to be used once
+
+	var initBtn=document.createElement("input");
+	initBtn.type="button";
+
+	initBtn.value="Init Save/Load DB";
+	initBtn.className="btn btn-primary bg-silver black";
+
+	initBtn.onclick=function(){
+		initDB();
+	};
+
 	var ftablebody = document.getElementById("buttonPanel");
 	ftablebody.appendChild(submit);
 	ftablebody.appendChild(zipsearch);
 	ftablebody.appendChild(clearEntries);
 	ftablebody.appendChild(saveEntry);
 	ftablebody.appendChild(loadEntry);
+	ftablebody.appendChild(initBtn);
 
 	//Create line break for after button
 	var lineBreak=document.createElement("br");
