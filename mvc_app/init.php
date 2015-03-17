@@ -21,6 +21,6 @@ if ($connect->query($sql) === TRUE) {
 	echo "Error creating database: " . $connect->error;
 }
 
-$conn->close();
+$connect->close();
 
 ?>
