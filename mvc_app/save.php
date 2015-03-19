@@ -14,6 +14,7 @@ $output = $pass = "";
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+	//Escape special characters in output table html for MySql insertion
 	$output = $_POST["outputTable"];
 	$pass   = $_POST["pass"];
 }
@@ -74,6 +75,20 @@ foreach($dom->getElementsByTagName("tr") as $node) {
 }
 
 print_r($tableInputElements);
+
+foreach($tableInputElements as $tr){
+	$tr = $connect->real_escape_string($tr);
+	$sql = 
+		"INSERT INTO ".$pass." (results)
+			VALUES ('$tr')";
+
+	if ($connect->query($sql) === TRUE) {
+		echo "Table $pass created";
+	} else {
+		echo "Error creating table $pass: " . $connect->error;
+	}
+}
+
 $connect->close();
 
 /*Push current table output to a unique table in the database, generate a random
