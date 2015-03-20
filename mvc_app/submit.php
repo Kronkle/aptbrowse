@@ -19,15 +19,28 @@ function clean_input($data) {
 	return $data;
 }
 
-// return with html for a new apartment row
-echo '<tr>
-<td style="overflow: hidden; white-space: nowrap;">'. $name.
-'</td><td style="overflow: hidden; white-space: nowrap;">'. $address.
-'</td><td style="overflow: hidden; white-space: nowrap;">'. $rent.
-'</td><td style="overflow: hidden; white-space: nowrap;">'. $amenities.
-'</td><td style="overflow: hidden; white-space: nowrap;">'. $pets.
-'</td><td style="overflow: hidden; white-space: nowrap;">'. $url.
-'</td></tr>';
+ 
+if ($url == "Website not listed in Google Maps"){
+	// avoid outputting html with a blank url when Google doesn't find an apartment website
+	echo '<tr>
+	<td style="overflow: hidden; white-space: nowrap;">'. $name.
+	'</td><td style="overflow: hidden; white-space: nowrap;">'. $address.
+	'</td><td style="overflow: hidden; white-space: nowrap;">'. $rent.
+	'</td><td style="overflow: hidden; white-space: nowrap;">'. $amenities.
+	'</td><td style="overflow: hidden; white-space: nowrap;">'. $pets.
+	'</td><td style="overflow: hidden; white-space: nowrap;">'. $url.
+	'</td></tr>';
+} else {
+	// return with html for a new apartment row when an apartment website is found
+	echo '<tr>
+	<td style="overflow: hidden; white-space: nowrap;">'. $name.
+	'</td><td style="overflow: hidden; white-space: nowrap;">'. $address.
+	'</td><td style="overflow: hidden; white-space: nowrap;">'. $rent.
+	'</td><td style="overflow: hidden; white-space: nowrap;">'. $amenities.
+	'</td><td style="overflow: hidden; white-space: nowrap;">'. $pets.
+	'</td><td style="overflow: hidden; white-space: nowrap;">'. '<a href="'.$url.'" target="_blank">Website</a>'.
+	'</td></tr>';
+}
 
 ?>
 
