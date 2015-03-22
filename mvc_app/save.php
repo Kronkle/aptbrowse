@@ -1,6 +1,6 @@
 <?php
 
-//Include the FirePHP class
+//Include the FirePHP class for debugging
 require_once('FirePHPCore/FirePHP.class.php');
 
 //Start buffering the output. Not required if output_buffering is set on in php.ini file
@@ -85,7 +85,7 @@ foreach($tableInputElements as $tr){
 	if ($connect->query($sql) === TRUE) {
 		echo "Table $pass created";
 	} else {
-		echo "Error creating table $pass: " . $connect->error;
+		printf("Error creating table $pass: " . $connect->error);
 	}
 }
 

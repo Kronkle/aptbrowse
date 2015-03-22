@@ -29,6 +29,11 @@ function saveState(pass) {
 	controller.saveResults(pass);
 }
 
+function loadState(pass) {
+	var controller = new stateController;
+	controller.loadResults(pass);
+}
+
 function initDB() {
 	var controller = new stateController;
 	controller.initDB();

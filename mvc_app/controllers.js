@@ -244,6 +244,30 @@ stateController.prototype.saveResults = function (pass) {
 	};
 };
 
+stateController.prototype.loadResults = function (pass) {
+
+	//Set up AJAX request with inputted data
+	var submitRequest = new XMLHttpRequest();
+	var data = "pass=" + pass;
+
+	//Open the request, set the header, and send the data
+	submitRequest.open('POST', 'load.php', true);
+	submitRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+	submitRequest.send(data);
+		
+	//After the data has been sanitized, display on the HTML page within ftable
+	submitRequest.onreadystatechange = display_data;
+	function display_data() {
+		if (submitRequest.readyState == 4) {
+			if(submitRequest.status == 200) {
+				//data=submitRequest.responseText;
+		 	} else {
+				alert('Problem with request');	
+		 	}
+		}		
+	};
+};
+
 stateController.prototype.initDB = function () {
 
 var submitRequest = new XMLHttpRequest();

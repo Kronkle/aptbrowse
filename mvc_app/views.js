@@ -139,7 +139,8 @@ buttonPanelView.prototype.render = function () {
 	loadEntry.className="btn btn-primary bg-silver black";
 
 	loadEntry.onclick=function(){
-		alert("Load entry functionality here");
+		var pass = prompt("Enter your results password");
+		loadState(pass);
 	};
 
 	// "Init DB" button for temporary testing, only to be used once
