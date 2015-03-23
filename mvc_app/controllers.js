@@ -260,7 +260,11 @@ stateController.prototype.loadResults = function (pass) {
 	function display_data() {
 		if (submitRequest.readyState == 4) {
 			if(submitRequest.status == 200) {
-				//data=submitRequest.responseText;
+				data=submitRequest.responseText;
+				//Here, the display row model represents all of the rows. Will need to restructure (3/23)
+				var model = new displayRow(data);
+				var view = new displayRowView(model);
+				view.renderLoadedRows(model);
 		 	} else {
 				alert('Problem with request');	
 		 	}
@@ -272,7 +276,7 @@ stateController.prototype.initDB = function () {
 
 var submitRequest = new XMLHttpRequest();
 
-//Open the request, set the header, and send the data
+	//Open the request, set the header, and send the data
 	submitRequest.open('POST', 'init.php', true);
 	submitRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
 	submitRequest.send();
@@ -290,5 +294,29 @@ var submitRequest = new XMLHttpRequest();
 		}		
 	};
 
+
+};
+
+stateController.prototype.clearDB = function () {
+
+	var submitRequest = new XMLHttpRequest();
+
+	//Open the request, set the header, and send the data
+	submitRequest.open('POST', 'clear.php', true);
+	submitRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+	submitRequest.send();
+		
+	//After the data has been sanitized, display on the HTML page within ftable
+	submitRequest.onreadystatechange = display_data;
+	function display_data() {
+		if (submitRequest.readyState == 4) {
+			if(submitRequest.status == 200) {
+				//data=submitRequest.responseText;
+				alert("Database will be cleared!");
+		 	} else {
+				alert('Problem with request');	
+		 	}
+		}		
+	};
 
 };

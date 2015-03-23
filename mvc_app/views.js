@@ -155,6 +155,18 @@ buttonPanelView.prototype.render = function () {
 		initDB();
 	};
 
+	// "Clear DB" button for temporary testing
+
+	var clearBtn=document.createElement("input");
+	clearBtn.type="button";
+
+	clearBtn.value="Clear DB";
+	clearBtn.className="btn btn-primary bg-silver black";
+
+	clearBtn.onclick=function(){
+		alert("Database will be cleared here");
+	};
+
 	var ftablebody = document.getElementById("buttonPanel");
 	ftablebody.appendChild(submit);
 	ftablebody.appendChild(zipsearch);
@@ -162,6 +174,7 @@ buttonPanelView.prototype.render = function () {
 	ftablebody.appendChild(saveEntry);
 	ftablebody.appendChild(loadEntry);
 	ftablebody.appendChild(initBtn);
+	ftablebody.appendChild(clearBtn);
 
 	//Create line break for after button
 	var lineBreak=document.createElement("br");
@@ -183,3 +196,7 @@ displayRowView.prototype.render = function ( model ) {
 	ftablebody.appendChild(newRow);
 };
 
+displayRowView.prototype.renderLoadedRows = function ( model ) {
+	var ftablebody=document.getElementById("ftablebody");
+	ftablebody.innerHTML=(this.model.fields);
+};

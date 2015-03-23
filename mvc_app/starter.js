@@ -38,6 +38,12 @@ function initDB() {
 	var controller = new stateController;
 	controller.initDB();
 }
+
+function clearDB() {
+	var controller = new stateController;
+	controller.clearDB();
+}
+
 createAddTable();
 
 addButtonPanel();

@@ -33,16 +33,16 @@ if ($connect->connect_error) {
     die("Connection failed: " . $connect->connect_error);
 }
 
-$sql = "SELECT * FROM Mike";
-$result = $connect->query($sql);
-echo $result;
+$sql = "SELECT * FROM $pass";
+$queryResult = $connect->query($sql);
+$htmlOutput = "";
 
-/* if ($connect->query($sql) === TRUE) {
-	echo "Table $pass retrieved";
-} else {
-	echo "Error retrieving table $pass: " . $connect->error;
-} */
+while($row = mysqli_fetch_array($queryResult, MYSQLI_NUM)){
+	//The second element of each row array will contain the HTML
+	$htmlOutput .= $row[1];
+}
 
+echo $htmlOutput;
 
 $connect->close();
 
