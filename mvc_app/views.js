@@ -165,6 +165,7 @@ buttonPanelView.prototype.render = function () {
 
 	clearBtn.onclick=function(){
 		alert("Database will be cleared here");
+		clearDB();
 	};
 
 	var ftablebody = document.getElementById("buttonPanel");

@@ -312,7 +312,7 @@ stateController.prototype.clearDB = function () {
 		if (submitRequest.readyState == 4) {
 			if(submitRequest.status == 200) {
 				//data=submitRequest.responseText;
-				alert("Database will be cleared!");
+				alert("Database has been reset!");
 		 	} else {
 				alert('Problem with request');	
 		 	}
