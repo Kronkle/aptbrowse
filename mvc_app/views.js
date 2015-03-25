@@ -98,8 +98,9 @@ buttonPanelView.prototype.render = function () {
 	zipsearch.onclick=function(){
 		var zip = prompt("Zipcode:");
 
-		//Simple zipcode validation for now
-		if (zip == "" || zip.length != 5){
+		//U.S. zipcode validation - 5 digits or 5 digits followed by hyphen and 4 digits
+		var regex = new RegExp("/(^\d{5}-\d{4}$)|(^\d{5}$)/")
+		if (regex.test(zip)){
 			alert("Please enter a valid zipcode.");
 			return;
 		}
