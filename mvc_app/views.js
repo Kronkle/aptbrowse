@@ -84,6 +84,7 @@ buttonPanelView.prototype.render = function () {
 	add_apt_section.method="post";
 
 	submit.onclick=function(){
+		//Call a function that opens a bootstrap dialog box here instead of using the UI form
 		addDisplayRow();
 		add_apt_section.reset();
 	};
@@ -98,14 +99,15 @@ buttonPanelView.prototype.render = function () {
 	zipsearch.onclick=function(){
 		var zip = prompt("Zipcode:");
 
-		//U.S. zipcode validation - 5 digits or 5 digits followed by hyphen and 4 digits
-		var regex = new RegExp("/(^\d{5}-\d{4}$)|(^\d{5}$)/")
-		if (regex.test(zip)){
-			alert("Please enter a valid zipcode.");
-			return;
+		if (zip) {
+			//U.S. zipcode validation - 5 digits or 5 digits followed by hyphen and 4 digits
+			var regex = new RegExp("/(^\d{5}-\d{4}$)|(^\d{5}$)/")
+			if (regex.test(zip)){
+				alert("Please enter a valid zipcode.");
+				return;
+			}
+			addDisplayRowsThroughSearch(zip);
 		}
-
-		addDisplayRowsThroughSearch(zip);
 	};
 
 	//Create "Clear Entries" button for clearing the table
@@ -128,7 +130,14 @@ buttonPanelView.prototype.render = function () {
 
 	saveEntry.onclick=function(){
 		var pass = prompt("Please enter a password to access these results later");
-		saveState(pass);
+		
+		if(pass){
+			if(document.getElementById("ftablebody").childNodes.length){
+				saveState(pass);
+			} else {
+				alert("There's nothing here to save.");
+			}
+		}
 	};
 
 	// "Load Entry" button for rendering previous table output
@@ -141,7 +150,9 @@ buttonPanelView.prototype.render = function () {
 
 	loadEntry.onclick=function(){
 		var pass = prompt("Enter your results password");
-		loadState(pass);
+		if(pass) {
+			loadState(pass);
+		}
 	};
 
 	// "Init DB" button for temporary testing, only to be used once
