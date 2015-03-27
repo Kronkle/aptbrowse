@@ -8,10 +8,6 @@
 	width: 150px !important;
 }
 
-.btn-primary:focus, .btn-primary:active {
-	outline: 0 none;
-}
-
 /* Edit bootstrap button focus to be the same as colors.css color values */
 .btn:focus {
 	outline: none;
