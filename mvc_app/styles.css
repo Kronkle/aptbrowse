@@ -8,6 +8,18 @@
 	width: 150px !important;
 }
 
+.btn-primary:focus, .btn-primary:active {
+	outline: 0 none;
+}
+
+/* Edit bootstrap button focus to be the same as colors.css color values */
+.btn:focus {
+	outline: none;
+	box-shadow: none; 
+	color: #111111; 
+	background-color: #DDDDDD;
+}
+
 /* For font on "Add Aparment" table inputs */
 #intro {
 	font-family: 'Open Sans', sans-serif;
@@ -24,6 +36,11 @@
 /* Font for results table */
 #output {
 	font-family: 'Open Sans', sans-serif;
+}
+
+/* Bold first row of output table*/
+#topOutputRow {
+	font-weight:bold;
 }
 
 /* Most recent suggested fix for highlighted clicked buttons in Mozilla. Placeholder. */

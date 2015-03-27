@@ -157,9 +157,9 @@ displayRowController.prototype.detailedZipSearchViews = function (apartment, goo
 	var submitRequest = new XMLHttpRequest();
 	var text0 = apartment.name;
 	var text1 = apartment.formatted_address;
-	var text2 = "Dummy";
-	var text3 = "Dummy";
-	var text4 = "Dummy";
+	var text2 = "Avg. Rating";
+	var text3 = "Office Hours";
+	var text4 = "Phone #";
 	if (details.website == undefined){
 		details.website = "Website not listed in Google Maps"
 	}

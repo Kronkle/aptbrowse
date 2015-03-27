@@ -9,7 +9,7 @@ var addTableView = function(model) {
 
 addTableView.prototype.render = function () {
 	//Build table headings
-	var atable_headings = ["Name","Address","Monthly Rent","Amenities","Pet-Friendly?","URL"];
+	var atable_headings = ["Name","Address", "Average Rating", "Office Hours","Phone","Website"];
 	for(var x = 0; x < 6; x++) {
 		//At first, create base elements for the table
 		if(x === 0){

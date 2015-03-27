@@ -16,7 +16,7 @@
 		<link rel="stylesheet" href="mrmrs-colors-4703de3/css/colors.css">
 		<!-- Custom CSS -->
 		<link rel="stylesheet" href="styles.css">
-		<!-- MVC and initialization script -->
+		<!-- MVC and initialization scripts -->
 		<script type="text/javascript" src="models.js" defer></script>
 		<script type="text/javascript" src="views.js" defer></script>
 		<script type="text/javascript" src="controllers.js" defer></script>
@@ -31,11 +31,20 @@
 		</div>
 		<div id="output">
 			<table class="table" id="ftable" style="table-layout: auto">
-				<tbody id="ftablebody"></tbody>
+				<tbody id="ftablebody">
+					<tr id="topOutputRow">
+						<td style="overflow: hidden; white-space: nowrap;">Name</td>
+						<td style="overflow: hidden; white-space: nowrap;">Address</td>
+						<td style="overflow: hidden; white-space: nowrap;">Average Rating</td>
+						<td style="overflow: hidden; white-space: nowrap;">Office Hours </td>
+						<td style="overflow: hidden; white-space: nowrap;">Phone</td>
+						<td style="overflow: hidden; white-space: nowrap;">Website</td>
+					</tr>
+				</tbody>
 			</table>
 		</div>
-		<div id="map"></div>
-		<div id="footer"><img src="powered-by-google-on-white.png" /></div>
+		<div id="footer">
+			<img src="powered-by-google-on-white.png" />
+		</div>
 	</body>
-	
 </html>
