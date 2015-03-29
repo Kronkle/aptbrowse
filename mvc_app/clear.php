@@ -35,6 +35,7 @@ if ($connect->query($sql) === TRUE) {
 	echo "Error deleting aptbrowseDB: " . $connect->error . "\n";
 }
 
+//Recreate database for apartment search results
 $sql = "CREATE DATABASE aptbrowseDB";
 
 if ($connect->query($sql) === TRUE) {
@@ -47,7 +48,6 @@ $connect->close();
 
 /*Push current table output to a unique table in the database, generate a random
 key that is returned to the user for access later via the "Load Entry" button*/
-
 
 ?>
 

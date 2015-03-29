@@ -211,7 +211,16 @@ var clearController = function() {
 };
 
 clearController.prototype.clearEntries = function () {
-	document.getElementById('ftablebody').innerHTML = "";
+	//Clear out existing table rows and recreate just the heading row
+	document.getElementById('ftablebody').innerHTML = 
+			"<tr id=\"topOutputRow\">"
+			+ "<td style=\"overflow: hidden; white-space: nowrap;\">Name</td>"
+			+ "<td style=\"overflow: hidden; white-space: nowrap;\">Address</td>"
+			+ "<td style=\"overflow: hidden; white-space: nowrap;\">Average Rating</td>"
+			+ "<td style=\"overflow: hidden; white-space: nowrap;\">Office Hours </td>"
+			+ "<td style=\"overflow: hidden; white-space: nowrap;\">Phone</td>"
+			+ "<td style=\"overflow: hidden; white-space: nowrap;\">Website</td>"
+			+ "</tr>";
 };
 
 var stateController = function() {
