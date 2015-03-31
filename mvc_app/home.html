@@ -26,15 +26,23 @@
 	</head>
 	<body>
     	<nav id="navBar" role="navigation" class="navbar navbar-default">
-	        <!-- Menu button and links -->
+	        <!-- Multi level menu button and links -->
 	        <div class="navbar-header">
-	            <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
-	                <span class="sr-only">Toggle navigation</span>
-	                <span class="icon-bar"></span>
-	                <span class="icon-bar"></span>
-	                <span class="icon-bar"></span>
-	            </button>
-	            <a href="#" class="navbar-brand">Menu</a>
+	        	<div class="dropdown">
+		            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+		            Menu
+		            <span class="caret"></span>
+		            </button>
+		            <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu1">
+		            	<li role="presentation">
+		            		<li class="dropdown-submenu">
+		            			<a tabindex="-1" href="#">Admin</a>
+		            			<ul class="dropdown-menu">
+		            				<li><a tabindex="-1" href="#">Init DB</a></li>
+		            				<li><a tabindex="-1" href="#">Clear DB</a></li>
+		            	</li>
+		            </ul>       
+	            </div>
 	        </div>
 	        <!-- AptBrowse Home -->
 	        <div id="navbarCollapse" class="collapse navbar-collapse">
