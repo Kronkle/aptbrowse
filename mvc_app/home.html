@@ -42,10 +42,20 @@
 		            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		                <ul class="nav navbar-nav">
 		                    <li class="dropdown">
-		                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Menu <b class="caret"></b></a>
-		                        <ul class="dropdown-menu">
-		                            <li><a href="#">User</a></li>
-		                            <li><a href="#">Admin</a></li>
+		                        <a href="#" data-toggle="dropdown" class="dropdown-toggle" role="button" aria-expanded="false">User<b class="caret"></b></a>
+		                        <ul class="dropdown-menu" role="menu" aria-labelledby="dlabel">
+		                            <li><a href="#">Add Apartment</a></li>
+		                            <li><a href="#">Zip Search</a></li>
+		                            <li><a href="#">Save Form</a></li>
+		                            <li><a href="#">Load Form</a></li>
+		                            <li><a href="#">Clear Form</a></li>
+		                        </ul>
+		                    </li>
+		                    <li class="dropdown">
+		                        <a href="#" data-toggle="dropdown" class="dropdown-toggle" role="button" aria-expanded="false">Admin<b class="caret"></b></a>
+		                        <ul class="dropdown-menu" role="menu" aria-labelledby="dlabel">
+		                            <li><a href="#">Init DB</a></li>
+		                            <li><a href="#">Clear DB</a></li>
 		                        </ul>
 		                    </li>
 		                </ul>
