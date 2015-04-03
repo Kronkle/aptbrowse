@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Compare Apartments in Your Area | AptBrowse</title>
+		<link rel="icon" type="image/ico" href="favicon.ico">
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+		<!-- Google Fonts -->
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,800' rel='stylesheet' type='text/css'>
+		<!-- Colors CSS for a more modern color palette -->
+		<link rel="stylesheet" href="mrmrs-colors-4703de3/css/colors.css">
+		<!-- Custom CSS -->
+		<link rel="stylesheet" href="styles.css">
+		<!-- MVC and initialization scripts -->
+		<script type="text/javascript" src="models.js" defer></script>
+		<script type="text/javascript" src="views.js" defer></script>
+		<script type="text/javascript" src="controllers.js" defer></script>
+		<script type="text/javascript" src="starter.js" defer></script>
+		<!-- Google's Maps API Places Library -->
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+	</head>
+	<body>
+		<div id="navigationMenu">
+		    <nav id="topBar" class="navbar navbar-default" role="navigation">
+		        <!-- Group toggle and menu for mobile displays -->
+		        <div class="container">
+		            <div class="navbar-header">
+		                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+		                    <span class="sr-only">Toggle navigation</span>
+		                    <span class="icon-bar"></span>
+		                    <span class="icon-bar"></span>
+		                    <span class="icon-bar"></span>
+		                </button>
+		                <a class="navbar-brand" href="#">AptBrowse</a>
+		            </div>
+		            <!-- User, Admin, and Account submenus -->
+		            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		                <ul class="nav navbar-nav">
+		                    <li class="dropdown">
+		                        <a href="#" data-toggle="dropdown" class="dropdown-toggle" role="button" aria-expanded="false">User<b class="caret"></b></a>
+		                        <ul class="dropdown-menu" role="menu" aria-labelledby="dlabel">
+		                            <li><a href="#">Add Apartment</a></li>
+		                            <li><a href="#">Zip Search</a></li>
+		                            <li><a href="#">Save Form</a></li>
+		                            <li><a href="#">Load Form</a></li>
+		                            <li><a href="#">Clear Form</a></li>
+		                        </ul>
+		                    </li>
+		                    <li class="dropdown">
+		                        <a href="#" data-toggle="dropdown" class="dropdown-toggle" role="button" aria-expanded="false">Admin<b class="caret"></b></a>
+		                        <ul class="dropdown-menu" role="menu" aria-labelledby="dlabel">
+		                            <li><a href="#">Init DB</a></li>
+		                            <li><a href="#">Clear DB</a></li>
+		                        </ul>
+		                    </li>
+		                </ul>
+		                <ul class="nav navbar-nav navbar-right">
+		                    <li class="dropdown">
+		                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Account <b class="caret"></b></a>
+		                        <ul class="dropdown-menu">
+		                            <li><a href="#">Login</a></li>
+		                            <li><a href="#">Register</a></li>
+		                        </ul>
+		                    </li>
+		                </ul>
+		            </div>
+		        </div>
+		    </nav>
+		</div>
+		<!-- Large searchbar for immediate zip code searching. Will be cleared out when search is run -->
+		<div id="search"></div>
+		<!-- Section for zip search output including map and form views, which can be toggled-->
+		<div id="output"></div>
+		<!-- Required Google Maps API element -->
+		<div id="map"></div>
+		<!-- Required Google logo and general links for the site -->
+		<div id="footer">
+			<img src="powered-by-google-on-white.png" />
+		</div>
+	</body>
+</html>
