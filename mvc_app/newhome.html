@@ -73,9 +73,27 @@
 		    </nav>
 		</div>
 		<!-- Large searchbar for immediate zip code searching. Will be cleared out when search is run -->
-		<div id="search"></div>
+		<div id="search">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-3"></div>
+			        <div class="col-md-6">
+			    		<h2>Apartment Search</h2>          	
+			           		<div class="input-group">
+			                    <input type="text" class="form-control input-lg" placeholder="Enter your zipcode here" />
+			                    <span class="input-group-btn">
+			                        <button class="btn btn-info btn-lg" type="button">
+			                            <i class="glyphicon glyphicon-search"></i>
+			                        </button>
+			                    </span>
+			                </div>          
+			        </div>
+			        <div class="col-md-3"></div>
+				</div>
+			</div>
+		</div>
 		<!-- Section for zip search output including map and form views, which can be toggled-->
-		<div id="output"></div>
+		<div id="ftablebody"></div>
 		<!-- Required Google Maps API element -->
 		<div id="map"></div>
 		<!-- Required Google logo and general links for the site -->
