@@ -1,3 +1,13 @@
+<!-- TODO:
+	Migrate existing functionality from MVC App
+	Remove Add Apartment
+	Refactor MVC usage
+	Replace relevant JS with jQuery
+	Create separate form/map views that can be toggled after a zipcode search
+	User accounts for loading existing results tables
+	Keep MySQL, PHP for this iteration
+	Create Node backend for next version
+-->
 <!DOCTYPE html>
 <html>
 	<head>
@@ -72,25 +82,31 @@
 		        </div>
 		    </nav>
 		</div>
-		<div id="intro" class="bg-aqua">
-			<form id="aform" method="post"></form>	
-			<div id="buttonPanel" class="btn-group"></div>
+		<!-- Large searchbar for immediate zip code searching. Will be cleared out when search is run -->
+		<div id="search">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-3"></div>
+			        <div class="col-md-6">
+			    		<h2>Apartment Search</h2>          	
+			           		<div class="input-group">
+			                    <input type="text" class="form-control input-lg" placeholder="Enter your zipcode here" />
+			                    <span class="input-group-btn">
+			                        <button class="btn btn-info btn-lg" type="button">
+			                            <i class="glyphicon glyphicon-search"></i>
+			                        </button>
+			                    </span>
+			                </div>          
+			        </div>
+			        <div class="col-md-3"></div>
+				</div>
+			</div>
 		</div>
-		<div id="output">
-			<table class="table" id="ftable" style="table-layout: auto">
-				<tbody id="ftablebody">
-					<tr id="topOutputRow">
-						<td style="overflow: hidden; white-space: nowrap;">Name</td>
-						<td style="overflow: hidden; white-space: nowrap;">Address</td>
-						<td style="overflow: hidden; white-space: nowrap;">Average Rating</td>
-						<td style="overflow: hidden; white-space: nowrap;">Office Hours </td>
-						<td style="overflow: hidden; white-space: nowrap;">Phone</td>
-						<td style="overflow: hidden; white-space: nowrap;">Website</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+		<!-- Section for zip search output including map and form views, which can be toggled-->
+		<div id="ftablebody"></div>
+		<!-- Required Google Maps API element -->
 		<div id="map"></div>
+		<!-- Required Google logo and general links for the site -->
 		<div id="footer">
 			<img src="powered-by-google-on-white.png" />
 		</div>

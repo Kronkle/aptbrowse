@@ -1,0 +1,71 @@
+/* Style navbar */
+#navBar {
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 800;
+}
+
+#home-btn {
+  display: inline-block;
+  float: none;
+  vertical-align: top;
+  text-align: center;
+}
+
+/* Horizontally center buttons */
+#buttonPanel {
+	display: inline-block;
+}
+
+/* Fixed width for button panel buttons */
+.btn-primary {
+	width: 150px !important;
+}
+
+/* Edit bootstrap button focus to be the same as colors.css color values */
+.btn:focus {
+	outline: none;
+	box-shadow: none; 
+	color: #111111; 
+	background-color: #DDDDDD;
+}
+
+/* For font on "Add Aparment" table inputs */
+#intro {
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 400;
+	text-align: center;
+}
+
+/* For font on "Add Apartment" table heading row */
+.table th {
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 800;
+}
+
+/* Font for results table */
+#output {
+	font-family: 'Open Sans', sans-serif;
+}
+
+/* Bold first row of output table*/
+#topOutputRow {
+	font-weight:bold;
+}
+
+/* Most recent suggested fix for highlighted clicked buttons in Mozilla. Placeholder. */
+:focus {outline:none;}
+::-moz-focus-inner {border:0;}
+
+/* Remove borders from bootstrap table class */
+.table td,
+.table th { 
+    border: 0 !important
+}
+
+/* Place footer, and Google logo, on bottom-right of page */
+#footer {
+	display:block;
+	width:100px;
+	margin-left: auto;
+	margin-right: auto;
+}
