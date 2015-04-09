@@ -11,6 +11,10 @@ var zipSearchView = function ( zipSearchModel, zipSearchController ) {
 		zipSearchController.handleEvent( "click" );
 	});
 
+	zipSearch.addEventListener( "click", function() {
+		
+	});
+
 	return this;
 };
 
@@ -19,5 +23,5 @@ var apartmentListView = function () {
 };
 
 apartmentListView.render = function () {
-	
+
 };
