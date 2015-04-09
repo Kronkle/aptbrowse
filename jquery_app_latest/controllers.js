@@ -1,5 +1,4 @@
 var zipSearchController = function () {
-
 	return this;
 };
 
@@ -18,4 +17,12 @@ zipSearchController.prototype.handleEvent = function () {
 				return;
 			}
 		}
+};
+
+var apartmentListController = function ( ) {
+	return this;
+};
+
+apartmentListController.prototype.handleEvent = function ( ) {
+	alert("alc has listened");
 };

@@ -3,7 +3,7 @@
 *  for displaying the search results.
 */
 
-var zipSearchView = function ( zipSearchController ) {
+var zipSearchView = function ( zipSearchModel, zipSearchController ) {
 	
 	//Create "Zip Code Search" button for auto-filling table with searches via Google Maps
 	var zipSearch=document.getElementById("zipSearchBtn");
@@ -14,10 +14,10 @@ var zipSearchView = function ( zipSearchController ) {
 	return this;
 };
 
-var apartmentResultsView = function () {
+var apartmentListView = function () {
 	return this;
 };
 
-apartmentResultsView.render = function () {
-
+apartmentListView.render = function () {
+	
 };

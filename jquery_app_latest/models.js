@@ -1,14 +1,21 @@
 /*
- * A model will represent the data for each 
- * apartment found when a search or load is run
+ * The search bar and apartment results will
+ * each be represented by a model
  */
+
+
+var zipSearchModel = function ( ) {
+	return this;
+}
 
 /* Each apartment model accepts an info hash that contains the name, address, 
 average rating, hours, phone, and url details */
-var apartment = function ( info ) {
-	this.info = info;
+var apartmentListModel = function ( ) {
+	
+	var apartment = function(name, address, rating, hours, phone, url) {
 
-	// TODO: Include an "isOpen variable" that will return true if office is currently open
+	};
+	
 
 	return this;
 };
