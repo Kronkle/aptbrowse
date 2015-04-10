@@ -1,8 +1,7 @@
 /*
- * The search bar and apartment results will
- * each be represented by a model
+ * There will be one model to represent the search bar and one model for the resulting apartment list
+ * 
  */
-
 
 var zipSearchModel = function ( ) {
 	return this;

@@ -1,16 +1,11 @@
-function initZipSearch() {
-	var controller = new zipSearchController;
-	var model = new zipSearchModel;
-	var view = new zipSearchView( model, controller );
-	
+function init() {
+	var searchController = new zipSearchController;
+	var searchModel = new zipSearchModel;
+	var searchView = new zipSearchView( searchModel, searchController );
+
+	var resultsController = new apartmentListController;
+	var resultsModel = new apartmentListModel;
+	var resultsView = new apartmentListView( resultsModel, resultsController );
 };
 
-function initApartmentList() {
-	var controller = new apartmentListController;
-	var model = new apartmentListModel();
-	var view = new apartmentListView( model, controller, );
-};
-
-initZipSearch();
-
-initApartmentList();
+init();
