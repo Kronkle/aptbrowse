@@ -1,3 +1,5 @@
+//iPhone test comment via CodeHub
+
 function init() {
 	var searchController = new zipSearchController;
 	var searchModel = new zipSearchModel;
