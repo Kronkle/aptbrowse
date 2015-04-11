@@ -1,4 +1,7 @@
-//iPhone test comment via CodeHub
+/*
+ * Basic use case:
+ * User zip search via zip view -> zip controller -> aptModel -> aptController -> aptView
+*/
 
 function init() {
 	var searchController = new zipSearchController;
