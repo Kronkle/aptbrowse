@@ -64,7 +64,7 @@ zipSearchController.prototype.zipSearch = function (zip) {
 							done = 0;
 						}
 						//Get results details here:
-						//this.detailedZipSearchViews(results[i], service, done);					
+						//this.getApartmentDetails(results[i], service, done);					
 					}
 				}
 			});
@@ -76,8 +76,24 @@ zipSearchController.prototype.zipSearch = function (zip) {
 	});	
 };
 
+//Get details for specific apartment object
+zipSearchController.prototype.getApartmentDetails = function ( results, service, done ) {
+
+};
+
+//Add apartment with details to apartment list model
+zipSearchController.prototype.updateApartmentListModel = function ( apartment, done ) {
+
+};
+
+//Used to update UI with list of apartments
 var apartmentListController = function ( ) {
 	return this;
+};
+
+//Pass new apartment list to apartment list view 
+apartmentListController.prototype.updateApartmentListView = function ( ) {
+
 };
 
 apartmentListController.prototype.handleEvent = function ( ) {
