@@ -35,7 +35,8 @@ zipSearchController.prototype.zipSearch = function (zip) {
 	var address = zip;
 	var lat = '';
 	var lng = '';
-	
+	var me = this;
+
 	// Include callback function since geocoder method works asynchronously
 	geocoder.geocode( {'address': address}, function(results_array, status) { 
 		if (status == google.maps.GeocoderStatus.OK){
@@ -64,8 +65,9 @@ zipSearchController.prototype.zipSearch = function (zip) {
 							done = 0;
 						}
 						//Get results details here:
-						//this.getApartmentDetails(results[i], service, done);					
+						me.getApartmentDetails(results[i], service, done);				
 					}
+					//If query is successful and results are available, update ApartmentList Model below:
 				}
 			});
 		    	}
@@ -78,7 +80,34 @@ zipSearchController.prototype.zipSearch = function (zip) {
 
 //Get details for specific apartment object
 zipSearchController.prototype.getApartmentDetails = function ( results, service, done ) {
+	var me = this; 
+	var done = done;
 
+	var request = {
+		placeId: results.place_id
+	};
+	
+	var details = {
+		website: "Website"
+	};
+	
+	getDetails();
+
+	function getDetails() {
+		service.getDetails(request, function (results, status) {
+			if (status == google.maps.places.PlacesServiceStatus.OK){
+				console.log(results);
+				details.website = results.website;
+				//me.initialZipSearchViews(apartment, details, done);
+			}
+			else {
+				//Hitting OVER QUERY LIMIT at the moment with these calls
+				setTimeout(function () {
+					getDetails();
+				}, 200);			
+			}		
+		});
+	};
 };
 
 //Add apartment with details to apartment list model
