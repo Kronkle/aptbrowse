@@ -11,8 +11,10 @@ var zipSearchModel = function ( ) {
 average rating, hours, phone, and url details */
 var apartmentListModel = function ( ) {
 	
-	var apartment = function(name, address, rating, hours, phone, url) {
+	var apartmentList = {};
 
+	var addApartment = function(name, address, rating, hours, phone, url) {
+		
 	};
 	
 

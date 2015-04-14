@@ -55,6 +55,7 @@ zipSearchController.prototype.zipSearch = function (zip) {
 			service.textSearch(request, function (results, status) {
 				if (status == google.maps.places.PlacesServiceStatus.OK){
 					console.log(results);
+					//Iterate through each apartment result, get details, and update apartmentList model
 					for(var i = 0; i < results.length; i++){
 						//Start passing i here to a function that can notify when results are completely recorded
 						var done;
@@ -87,21 +88,31 @@ zipSearchController.prototype.getApartmentDetails = function ( results, service,
 		placeId: results.place_id
 	};
 	
-	var details = {
-		website: "Website"
+	//Final object to be passed to the apartmentList model
+	var aptObject = {
+				    	name: "Name",
+				    	address: "Address",
+				    	rating: "Average Rating",
+				    	hours: "Office Hours",
+				    	phone: "Phone",
+				    	url: "URL"
 	};
-	
+
+	aptObject.name = results.name;
+	aptObject.address = results.formatted_address;
+
 	getDetails();
 
 	function getDetails() {
 		service.getDetails(request, function (results, status) {
 			if (status == google.maps.places.PlacesServiceStatus.OK){
 				console.log(results);
-				details.website = results.website;
+				aptObject.url = results.website;
+				me.updateApartmentListModel(aptObject, done);
 				//me.initialZipSearchViews(apartment, details, done);
 			}
 			else {
-				//Hitting OVER QUERY LIMIT at the moment with these calls
+				//Setting timeout to avoid hitting query limit
 				setTimeout(function () {
 					getDetails();
 				}, 200);			
@@ -120,11 +131,12 @@ var apartmentListController = function ( ) {
 	return this;
 };
 
+apartmentListController.prototype.handleEvent = function ( ) {
+	alert("alc has listened");
+};
+
 //Pass new apartment list to apartment list view 
 apartmentListController.prototype.updateApartmentListView = function ( ) {
 
 };
 
-apartmentListController.prototype.handleEvent = function ( ) {
-	alert("alc has listened");
-};
