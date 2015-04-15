@@ -5,19 +5,24 @@
 
 var zipSearchModel = function ( ) {
 	return this;
-}
+};
 
 /* Each apartment model accepts an info hash that contains the name, address, 
 average rating, hours, phone, and url details */
-var apartmentListModel = function ( ) {
-	
+var apartmentListModel = function ( ) {	
 	var apartmentList = {};
-
-	var addApartment = function(name, address, rating, hours, phone, url) {
-		
-	};
-	
 
 	return this;
 };
 
+apartmentListModel.prototype.addApartment = function ( name, address, rating, hours, phone, url ) {
+	var key = name;
+
+	this.apartmentList.key = {
+		"Address": address,
+		"Rating":  rating,
+		"Hours":   hours,
+		"Phone":   phone,
+		"URL":     url
+	};
+};
