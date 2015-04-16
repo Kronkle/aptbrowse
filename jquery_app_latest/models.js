@@ -10,19 +10,20 @@ var zipSearchModel = function ( ) {
 /* Each apartment model accepts an info hash that contains the name, address, 
 average rating, hours, phone, and url details */
 var apartmentListModel = function ( ) {	
-	var apartmentList = {};
-
+	this.apartmentList = {};
 	return this;
 };
 
 apartmentListModel.prototype.addApartment = function ( name, address, rating, hours, phone, url ) {
 	var key = name;
-
-	this.apartmentList.key = {
+	
+	this.apartmentList[key] = {
 		"Address": address,
 		"Rating":  rating,
 		"Hours":   hours,
 		"Phone":   phone,
 		"URL":     url
 	};
+	console.log(this.apartmentList);
+
 };

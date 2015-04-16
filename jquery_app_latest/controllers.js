@@ -3,8 +3,6 @@
  * Corresponding controllers: resultsController, adminController
 */
 
-
-
 var zipSearchController = function () {
 	return this;
 };
@@ -21,8 +19,8 @@ zipSearchController.prototype.handleEvent = function ( resultsModel ) {
 			if (regex.test(zip)){
 				//addDisplayRowsThroughSearch(zip);
 				alert("Zip passed");
-				console.log("Yo: ", apartmentListModel);
-				//this.zipSearch(zip, resultsModel);
+				//console.log("Yo: ", apartmentListModel);
+				this.zipSearch(zip, resultsModel);
 			} else {
 				alert("Please enter a valid U.S. zipcode.");
 				return;
@@ -58,7 +56,7 @@ zipSearchController.prototype.zipSearch = function (zip, resultsModel) {
 			var service = new google.maps.places.PlacesService(document.getElementById('map'));
 			service.textSearch(request, function (results, status) {
 				if (status == google.maps.places.PlacesServiceStatus.OK){
-					console.log(results);
+					//console.log(results);
 					//Iterate through each apartment result, get details, and update apartmentList model
 					for(var i = 0; i < results.length; i++){
 						//Start passing i here to a function that can notify when results are completely recorded
@@ -70,8 +68,8 @@ zipSearchController.prototype.zipSearch = function (zip, resultsModel) {
 							done = 0;
 						}
 						//Get results details here:
-						console.log("resultsModel is: " + apartmentListModel);
-						//me.getApartmentDetails(results[i], service, done, apartmentListModel);				
+						//console.log("resultsModel is: " + apartmentListModel);
+						me.getApartmentDetails(results[i], service, done, apartmentListModel);				
 					}
 					//If query is successful and results are available, update ApartmentList Model below:
 				}
@@ -112,10 +110,10 @@ zipSearchController.prototype.getApartmentDetails = function ( results, service,
 	function getDetails() {
 		service.getDetails(request, function (results, status) {
 			if (status == google.maps.places.PlacesServiceStatus.OK){
-				console.log(results);
+				//console.log(results);
 				aptObject.url = results.website;
-				console.log("Results model is: " + apartmentListModel);
-				//me.updateApartmentListModel(aptObject, done, apartmentListModel);
+				//console.log("Results model is: " + apartmentListModel);
+				me.updateApartmentListModel(aptObject, done, apartmentListModel);
 				//me.initialZipSearchViews(apartment, details, done);
 			}
 			else {
@@ -129,10 +127,8 @@ zipSearchController.prototype.getApartmentDetails = function ( results, service,
 };
 
 //Add apartment with details to apartment list model
-zipSearchController.prototype.updateApartmentListModel = function ( apartment, done, resultsModel ) {
-	//name, address, rating, hours, phone, url
-	//resultsModel.apartmentListManager.addApartment(apartment.name, apartment.address, apartment.rating, apartment.hours, apartment.phone, apartment.url);
-	console.log("ResultsModel is: " + resultsModel);
+zipSearchController.prototype.updateApartmentListModel = function ( apartment, done, resultsModel ) {	
+	resultsModel.addApartment(apartment.name, apartment.address, apartment.rating, apartment.hours, apartment.phone, apartment.url);
 };
 
 //Used to update UI with list of apartments

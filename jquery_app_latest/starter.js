@@ -10,8 +10,6 @@ function init() {
 	var resultsController = new apartmentListController;	
 	var resultsView = new apartmentListView( resultsModel, resultsController );
 	var searchView = new zipSearchView( searchModel, searchController, resultsModel );
-
-	
 };
 
 init();
