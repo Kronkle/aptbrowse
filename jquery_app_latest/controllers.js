@@ -128,7 +128,13 @@ zipSearchController.prototype.getApartmentDetails = function ( results, service,
 
 //Add apartment with details to apartment list model
 zipSearchController.prototype.updateApartmentListModel = function ( apartment, done, resultsModel ) {	
-	resultsModel.addApartment(apartment.name, apartment.address, apartment.rating, apartment.hours, apartment.phone, apartment.url);
+	resultsModel.addApartment(apartment.name, apartment.address, apartment.rating, apartment.hours, apartment.phone, apartment.url, done);
+
+	if (done) {
+		alert("Search is complete!");
+	}
+
+
 };
 
 //Used to update UI with list of apartments
