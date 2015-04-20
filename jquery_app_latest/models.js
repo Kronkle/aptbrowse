@@ -24,7 +24,7 @@ apartmentListModel.prototype.addApartment = function ( name, address, rating, ho
 		"Phone":   phone,
 		"URL":     url
 	};
-	console.log(this.apartmentList);
+	//console.log(this.apartmentList);
 
 	//For now, only one push to the database is intended with all of the search results for one zipcode
 	if ( done ) {
@@ -36,8 +36,8 @@ apartmentListModel.prototype.updateDatabase = function ( apartmentList ) {
 
     //Set up AJAX request with inputted data
     var jsonApartmentList = JSON.stringify(apartmentList);
-
-	var request = new XMLHttpRequestObject();
+ 
+	var request = new XMLHttpRequest();
 
 	//Open the request, set the header, and send the data
 	request.open('POST', 'pushApartments.php', true);
@@ -45,7 +45,7 @@ apartmentListModel.prototype.updateDatabase = function ( apartmentList ) {
 	request.send(jsonApartmentList);
 		
 	//After the data has been sanitized, display on the HTML page within ftable
-	submitRequest.onreadystatechange = display_data;
+	request.onreadystatechange = display_data;
 	function display_data() {
 		if (request.readyState == 4) {
 			if(request.status == 200) {
