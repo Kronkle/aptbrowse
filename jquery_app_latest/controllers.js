@@ -16,10 +16,8 @@ zipSearchController.prototype.handleEvent = function ( resultsModel ) {
 		if (zip) {
 			//U.S. zipcode validation - 5 digits or 5 digits followed by hyphen and 4 digits
 			var regex = new RegExp(/(^\d{5}-\d{4}$)|(^\d{5}$)/)
-			if (regex.test(zip)){
-				//addDisplayRowsThroughSearch(zip);
-				alert("Zip passed");
-				//console.log("Yo: ", apartmentListModel);
+			if (regex.test(zip)){				
+				alert("Zip passed");				
 				this.zipSearch(zip, resultsModel);
 			} else {
 				alert("Please enter a valid U.S. zipcode.");
@@ -67,8 +65,6 @@ zipSearchController.prototype.zipSearch = function (zip, resultsModel) {
 						else {
 							done = 0;
 						}
-						//Get results details here:
-						//console.log("resultsModel is: " + apartmentListModel);
 						me.getApartmentDetails(results[i], service, done, apartmentListModel);				
 					}
 					//If query is successful and results are available, update ApartmentList Model below:
@@ -112,9 +108,7 @@ zipSearchController.prototype.getApartmentDetails = function ( results, service,
 			if (status == google.maps.places.PlacesServiceStatus.OK){
 				//console.log(results);
 				aptObject.url = results.website;
-				//console.log("Results model is: " + apartmentListModel);
 				me.updateApartmentListModel(aptObject, done, apartmentListModel);
-				//me.initialZipSearchViews(apartment, details, done);
 			}
 			else {
 				//Setting timeout to avoid hitting query limit

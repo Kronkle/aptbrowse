@@ -35,36 +35,22 @@ apartmentListModel.prototype.addApartment = function ( name, address, rating, ho
 apartmentListModel.prototype.updateDatabase = function ( apartmentList ) {
 
     //Set up AJAX request with inputted data
-	var submitRequest = new XMLHttpRequest();
-	var text0 = apartment.name;
-	var text1 = apartment.formatted_address;
-	var text2 = "Avg. Rating";
-	var text3 = "Office Hours";
-	var text4 = "Phone #";
-	if (details.website == undefined){
-		details.website = "Website not listed in Google Maps"
-	}
-	var text5 = details.website;
+    var jsonApartmentList = JSON.stringify(apartmentList);
 
-	//Validate that all input fields were filled in
-	if (text0 == "" || text1 == "" || text2 == "" || text3 == "" || text4 == "" || text5 == ""){
-		alert("Please fill in all of the information fields when adding a new apartment");
-		return;
-	}
+	var request = new XMLHttpRequestObject();
 
-	var data = "text0=" + text0 + "&" + "text1=" + text1 + "&" + "text2=" + text2 + "&" + "text3=" + text3 + "&" + "text4=" + text4 + "&" + "text5=" + text5;
-	
 	//Open the request, set the header, and send the data
-	submitRequest.open('POST', 'submit.php', true);
-	submitRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-	submitRequest.send(data);
+	request.open('POST', 'pushApartments.php', true);
+	request.setRequestHeader('Content-Type', 'application/json');
+	request.send(jsonApartmentList);
 		
 	//After the data has been sanitized, display on the HTML page within ftable
 	submitRequest.onreadystatechange = display_data;
 	function display_data() {
-		if (submitRequest.readyState == 4) {
-			if(submitRequest.status == 200) {
-				data=submitRequest.responseText;
+		if (request.readyState == 4) {
+			if(request.status == 200) {
+				var data=request.responseText;
+				alert(data);
 				//var model = new displayRow(data);
 				//var view = new displayRowView(model);
 				//view.render(model);
