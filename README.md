@@ -8,7 +8,7 @@ Current Most Functional Version: mvc_app/home.html
 Version in Development: jquery_app_latest/home.html
 
 Current Objectives: 
-Migration of all functionality from previous version (mvc_app)
-Complete refactoring of code to be more consistent with MVC principles
-Implementation of jQuery where appropriate
-Transition to a Node backend
+* Migration of all functionality from previous version (mvc_app)
+* Complete refactoring of code to be more consistent with MVC principles
+* Implementation of jQuery where appropriate
+* Transition to a Node backend
