@@ -33,6 +33,7 @@
 		<script type="text/javascript" src="starter.js" defer></script>
 		<!-- Google's Maps API Places Library -->
 		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+		<link rel="stylesheet" href="http://css-spinners.com/css/spinner/spinner.css" type="text/css">
 	</head>
 	<body>
 		<div id="navigationMenu">
@@ -46,7 +47,7 @@
 		                    <span class="icon-bar"></span>
 		                    <span class="icon-bar"></span>
 		                </button>
-		                <a class="navbar-brand" href="#">AptBrowse</a>
+		                <a class="navbar-brand" href="#" onclick='location.reload(true); return false;'>AptBrowse</a>
 		            </div>
 		            <!-- User, Admin, and Account submenus -->
 		            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -103,7 +104,13 @@
 			</div>
 		</div>
 		<!-- Section for zip search output including map and form views, which can be toggled-->
-		<div id="ftablebody"></div>
+		<div id="break"><br></div>
+		<div id="ftablebodyDiv">
+			<table class="table" id="ftable" style="table-layout: auto">
+				<tbody id="ftablebody">
+				</tbody>
+			</table>
+		</div>
 		<!-- Required Google Maps API element -->
 		<div id="map"></div>
 		<!-- Required Google logo and general links for the site -->

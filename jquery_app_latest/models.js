@@ -18,6 +18,7 @@ apartmentListModel.prototype.addApartment = function ( name, address, rating, ho
 	var key = name;
 
 	this.apartmentList[key] = {
+		"Name":    key,
 		"Address": address,
 		"Rating":  rating,
 		"Hours":   hours,
@@ -50,7 +51,12 @@ apartmentListModel.prototype.updateDatabase = function ( apartmentList ) {
 		if (request.readyState == 4) {
 			if(request.status == 200) {
 				var data=request.responseText;
-				alert(data);
+				console.log(data);	
+
+				//ViewController will handle this later
+				var ftablebody=document.getElementById("ftablebody");
+				//var newRow = ftablebody.insertRow(-1);
+				ftablebody.innerHTML = data;
 				//var model = new displayRow(data);
 				//var view = new displayRowView(model);
 				//view.render(model);

@@ -19,6 +19,8 @@ zipSearchController.prototype.handleEvent = function ( resultsModel ) {
 			if (regex.test(zip)){				
 				alert("Zip passed");				
 				this.zipSearch(zip, resultsModel);
+				var navMenu=document.getElementById("search");
+				navMenu.innerHTML = "<div id=\"spinnerCenter\" class=\"spinner\">Loading...</div>";
 			} else {
 				alert("Please enter a valid U.S. zipcode.");
 				return;
@@ -54,7 +56,7 @@ zipSearchController.prototype.zipSearch = function (zip, resultsModel) {
 			var service = new google.maps.places.PlacesService(document.getElementById('map'));
 			service.textSearch(request, function (results, status) {
 				if (status == google.maps.places.PlacesServiceStatus.OK){
-					//console.log(results);
+					console.log(results);
 					//Iterate through each apartment result, get details, and update apartmentList model
 					for(var i = 0; i < results.length; i++){
 						//Start passing i here to a function that can notify when results are completely recorded
@@ -106,7 +108,7 @@ zipSearchController.prototype.getApartmentDetails = function ( results, service,
 	function getDetails() {
 		service.getDetails(request, function (results, status) {
 			if (status == google.maps.places.PlacesServiceStatus.OK){
-				//console.log(results);
+				console.log(results);
 				aptObject.url = results.website;
 				me.updateApartmentListModel(aptObject, done, apartmentListModel);
 			}
@@ -126,9 +128,12 @@ zipSearchController.prototype.updateApartmentListModel = function ( apartment, d
 
 	if (done) {
 		alert("Search is complete!");
+		//Use apartmentView Controller to update later
+		var navMenu=document.getElementById("search");
+	    navMenu.innerHTML = "";
+	    var breakDiv=document.getElementById("break");
+	    breakDiv.innerHTML = "";
 	}
-
-
 };
 
 //Used to update UI with list of apartments

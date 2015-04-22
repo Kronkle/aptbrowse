@@ -12,20 +12,42 @@ $firephp = FirePHP::getInstance(true);
 $firephp->log("FirePHP Test Output!");
 
 // declare variables from form and set to empty strings
-$name = $address = $rent = $amenities = $pets = $url = "";
+$response = 
+		'<tr id="topOutputRow">
+		<td style="overflow: hidden; white-space: nowrap;">Name</td>
+		<td style="overflow: hidden; white-space: nowrap;">Address</td>
+		<td style="overflow: hidden; white-space: nowrap;">Average Rating</td>
+		<td style="overflow: hidden; white-space: nowrap;">Office Hours </td>
+		<td style="overflow: hidden; white-space: nowrap;">Phone</td>
+		<td style="overflow: hidden; white-space: nowrap;">Website</td>
+		</tr>';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	$str_json = json_decode(file_get_contents("php://input"));
 }
 
-// format and sanitize the input via htmlspecialchars
-function clean_input($data) {
-	$data = trim($data);
-	$data = stripslashes($data);
-	$data = htmlspecialchars($data);
-	return $data;
+foreach($str_json as $apartment) {
+	$response .= 
+			'<tr>
+			<td style="overflow: hidden; white-space: nowrap;">'. $apartment->Name.
+			'</td><td style="overflow: hidden; white-space: nowrap;">'. $apartment->Address.
+			'</td><td style="overflow: hidden; white-space: nowrap;">'. $apartment->Rating.
+			'</td><td style="overflow: hidden; white-space: nowrap;">'. $apartment->Hours.
+			'</td><td style="overflow: hidden; white-space: nowrap;">'. $apartment->Phone;
+	if(!(isset($apartment->URL))){
+		$apartment->URL = "Website not listed in Google Maps";
+		$response .=
+		'</td><td style="overflow: hidden; white-space: nowrap;">'. $apartment->URL;
+	}
+	else {
+		$response .= 
+		'</td><td style="overflow: hidden; white-space: nowrap;">'. '<a href="'.$apartment->URL.'" target="_blank">Website</a>';
+	}
+	$response .=
+			'</td></tr>';
 }
 
+echo $response;
 /*
 if ($url == "Website not listed in Google Maps"){
 	// avoid outputting html with a blank url when Google doesn't find an apartment website
