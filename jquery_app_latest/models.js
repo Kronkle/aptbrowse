@@ -3,7 +3,7 @@
  * 
  */
 
-var zipSearchModel = function ( ) {
+var zipSearchModel = function () {
 	return this;
 };
 
@@ -53,19 +53,12 @@ apartmentListModel.prototype.updateDatabase = function ( apartmentList ) {
 				var data=request.responseText;
 				console.log(data);	
 
-				//ViewController will handle this later
-				var ftablebody=document.getElementById("ftablebody");
-				//var newRow = ftablebody.insertRow(-1);
-				ftablebody.innerHTML = data;
-				//var model = new displayRow(data);
-				//var view = new displayRowView(model);
-				//view.render(model);
+				//Call controller to update view with new model details
+				apartmentListController.prototype.updateApartmentListView( data );
+				
 		 	} else {
 				alert('Problem with request');	
 		 	}
 		}		
 	};
-
-	//Call controller to update view with new model details
-	apartmentListController.prototype.updateApartmentListView();
 };

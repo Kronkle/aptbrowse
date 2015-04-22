@@ -5,7 +5,7 @@
 
 var zipSearchView = function ( zipSearchModel, zipSearchController, resultsModel ) {
 	var apartmentListModel = resultsModel;
-	//console.log("Yo: ", apartmentListModel);
+	
 	//Create "Zip Code Search" button for auto-filling table with searches via Google Maps
 	var zipSearch=document.getElementById("zipSearchBtn");
 	zipSearch.addEventListener( "click", function ( ) {

@@ -16,8 +16,7 @@ zipSearchController.prototype.handleEvent = function ( resultsModel ) {
 		if (zip) {
 			//U.S. zipcode validation - 5 digits or 5 digits followed by hyphen and 4 digits
 			var regex = new RegExp(/(^\d{5}-\d{4}$)|(^\d{5}$)/)
-			if (regex.test(zip)){				
-				alert("Zip passed");				
+			if (regex.test(zip)){							
 				this.zipSearch(zip, resultsModel);
 				var navMenu=document.getElementById("search");
 				navMenu.innerHTML = "<div id=\"spinnerCenter\" class=\"spinner\">Loading...</div>";
@@ -142,7 +141,11 @@ var apartmentListController = function ( ) {
 };
 
 //Pass new apartment list to apartment list view 
-apartmentListController.prototype.updateApartmentListView = function ( ) {
+apartmentListController.prototype.updateApartmentListView = function ( data ) {
+
+	var ftablebody=document.getElementById("ftablebody");
+				
+	ftablebody.innerHTML = data;
 
 };
 
