@@ -142,10 +142,8 @@ var apartmentListController = function ( ) {
 
 //Pass new apartment list to apartment list view 
 apartmentListController.prototype.updateApartmentListView = function ( data ) {
-
-	var ftablebody=document.getElementById("ftablebody");
-				
-	ftablebody.innerHTML = data;
-
+	$(document).ready(function(){
+		$("#ftablebody").html(data);
+	});
 };
 
