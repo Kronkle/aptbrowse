@@ -1,15 +1,20 @@
 /*
  * Basic use case:
- * User zip search via zip view -> zip controller -> aptModel -> aptController -> aptView
+ * User zip search via zipSearch view -> zipSearch controller -> aptListModel -> aptListController -> aptListView
 */
 
-function init() {
+function init() {	
+
 	var searchController = new zipSearchController;
 	var searchModel = new zipSearchModel;
+
 	var resultsModel = new apartmentListModel;
-	var resultsController = new apartmentListController;	
-	var resultsView = new apartmentListView( resultsModel, resultsController );
-	var searchView = new zipSearchView( searchModel, searchController, resultsModel );
+
+	// These aren't currently used (see TODO in models.js)
+	var resultsView = new apartmentListView;
+	var resultsController = new apartmentListController( resultsView );	
+
+	var searchView = new zipSearchView( searchModel, searchController, resultsModel, resultsController );
 };
 
 init();

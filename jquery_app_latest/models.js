@@ -4,6 +4,7 @@
  */
 
 var zipSearchModel = function () {
+	// Frequent searches list will be maintained here
 	return this;
 };
 
@@ -14,7 +15,7 @@ var apartmentListModel = function ( ) {
 	return this;
 };
 
-apartmentListModel.prototype.addApartment = function ( name, address, rating, hours, phone, url, done ) {
+apartmentListModel.prototype.addApartment = function ( name, address, rating, hours, phone, url, done, resultsController ) {
 	var key = name;
 
 	this.apartmentList[key] = {
@@ -29,11 +30,11 @@ apartmentListModel.prototype.addApartment = function ( name, address, rating, ho
 
 	//For now, only one push to the database is intended with all of the search results for one zipcode
 	if ( done ) {
-		this.updateDatabase(this.apartmentList);
+		this.updateDatabase(this.apartmentList, resultsController);
 	}
 };
 
-apartmentListModel.prototype.updateDatabase = function ( apartmentList ) {
+apartmentListModel.prototype.updateDatabase = function ( apartmentList, resultsController ) {
 
     //Set up AJAX request with inputted data
     var jsonApartmentList = JSON.stringify(apartmentList);
@@ -54,7 +55,8 @@ apartmentListModel.prototype.updateDatabase = function ( apartmentList ) {
 				console.log(data);	
 
 				//Call controller to update view with new model details
-				apartmentListController.prototype.updateApartmentListView( data );
+				//TODO: Add a handler for resultsController to pick up here
+				resultsController.updateApartmentListView( data );
 				
 		 	} else {
 				alert('Problem with request');	

@@ -7,7 +7,7 @@ var zipSearchController = function () {
 	return this;
 };
 
-zipSearchController.prototype.handleEvent = function ( resultsModel ) {
+zipSearchController.prototype.handleEvent = function ( resultsModel, resultsController ) {
 
 		var apartmentListModel = resultsModel;
 		
@@ -17,7 +17,7 @@ zipSearchController.prototype.handleEvent = function ( resultsModel ) {
 			//U.S. zipcode validation - 5 digits or 5 digits followed by hyphen and 4 digits
 			var regex = new RegExp(/(^\d{5}-\d{4}$)|(^\d{5}$)/)
 			if (regex.test(zip)){							
-				this.zipSearch(zip, resultsModel);
+				this.zipSearch(zip, resultsModel, resultsController);
 				var navMenu=document.getElementById("search");
 				navMenu.innerHTML = "<div id=\"spinnerCenter\" class=\"spinner\">Loading...</div>";
 			} else {
@@ -28,7 +28,7 @@ zipSearchController.prototype.handleEvent = function ( resultsModel ) {
 };
 
 //Use this function to submit a Google places search for apartments in the zipcode
-zipSearchController.prototype.zipSearch = function (zip, resultsModel) {
+zipSearchController.prototype.zipSearch = function (zip, resultsModel, resultsController) {
 
 	//Convert user zipcode into lat/lng coordinates for google places text search
 	var geocoder = new google.maps.Geocoder();
@@ -66,7 +66,7 @@ zipSearchController.prototype.zipSearch = function (zip, resultsModel) {
 						else {
 							done = 0;
 						}
-						me.getApartmentDetails(results[i], service, done, apartmentListModel);				
+						me.getApartmentDetails(results[i], service, done, apartmentListModel, resultsController);				
 					}
 					//If query is successful and results are available, update ApartmentList Model below:
 				}
@@ -80,7 +80,7 @@ zipSearchController.prototype.zipSearch = function (zip, resultsModel) {
 };
 
 //Get details for specific apartment object
-zipSearchController.prototype.getApartmentDetails = function ( results, service, done, resultsModel ) {
+zipSearchController.prototype.getApartmentDetails = function ( results, service, done, resultsModel, resultsController ) {
 	var me = this; 
 	var done = done;
 	var apartmentListModel = resultsModel;
@@ -109,7 +109,7 @@ zipSearchController.prototype.getApartmentDetails = function ( results, service,
 			if (status == google.maps.places.PlacesServiceStatus.OK){
 				console.log(results);
 				aptObject.url = results.website;
-				me.updateApartmentListModel(aptObject, done, apartmentListModel);
+				me.updateApartmentListModel(aptObject, done, apartmentListModel, resultsController);
 			}
 			else {
 				//Setting timeout to avoid hitting query limit
@@ -122,28 +122,18 @@ zipSearchController.prototype.getApartmentDetails = function ( results, service,
 };
 
 //Add apartment with details to apartment list model
-zipSearchController.prototype.updateApartmentListModel = function ( apartment, done, resultsModel ) {	
-	resultsModel.addApartment(apartment.name, apartment.address, apartment.rating, apartment.hours, apartment.phone, apartment.url, done);
-
-	if (done) {
-		alert("Search is complete!");
-		//Use apartmentView Controller to update later
-		var navMenu=document.getElementById("search");
-	    navMenu.innerHTML = "";
-	    var breakDiv=document.getElementById("break");
-	    breakDiv.innerHTML = "";
-	}
+zipSearchController.prototype.updateApartmentListModel = function ( apartment, done, resultsModel, resultsController ) {	
+	resultsModel.addApartment(apartment.name, apartment.address, apartment.rating, apartment.hours, apartment.phone, apartment.url, done, resultsController);
 };
 
 //Used to update UI with list of apartments
-var apartmentListController = function ( ) {
+var apartmentListController = function ( resultsView ) {
+	this.resultsView = resultsView;
 	return this;
 };
 
 //Pass new apartment list to apartment list view 
 apartmentListController.prototype.updateApartmentListView = function ( data ) {
-	$(document).ready(function(){
-		$("#ftablebody").html(data);
-	});
+	this.resultsView.render( data );
 };
 
