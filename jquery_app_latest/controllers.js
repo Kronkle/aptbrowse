@@ -18,8 +18,10 @@ zipSearchController.prototype.handleEvent = function ( resultsModel, resultsCont
 			var regex = new RegExp(/(^\d{5}-\d{4}$)|(^\d{5}$)/)
 			if (regex.test(zip)){							
 				this.zipSearch(zip, resultsModel, resultsController);
-				var navMenu=document.getElementById("search");
-				navMenu.innerHTML = "<div id=\"spinnerCenter\" class=\"spinner\">Loading...</div>";
+				
+				// Add loading spinner in place of the searchbar
+				$("#search").html("<div id=\"spinnerCenter\" class=\"spinner\">Loading...</div>");
+
 			} else {
 				alert("Please enter a valid U.S. zipcode.");
 				return;
