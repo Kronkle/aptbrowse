@@ -6,6 +6,17 @@
 var zipSearchView = function ( zipSearchModel, zipSearchController, resultsModel, resultsController ) {
 	var apartmentListModel = resultsModel;
 	
+	// For initializing the accounts and results dbs in admin mode (move this to a different view?)
+	$( "#initDB" ).on("click", function ( event ) {
+		$.ajax({
+			url: "initDB.php",
+			data: {},
+			success: function ( data ) {
+				alert("User and results databases have been created");
+			}
+		});
+	});
+
 	//Create "Zip Code Search" button for auto-filling table with searches via Google Maps
 	var zipSearch=document.getElementById("zipSearchBtn");
 	zipSearch.addEventListener( "click", function ( ) {
