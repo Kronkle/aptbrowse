@@ -17,6 +17,17 @@ var zipSearchView = function ( zipSearchModel, zipSearchController, resultsModel
 		});
 	});
 
+	// For deleting the accounts and results dbs in admin mode (move this to a different view?)
+	$( "#clearDB" ).on("click", function ( event ) {
+		$.ajax({
+			url: "clearDB.php",
+			data: {},
+			success: function ( data ) {
+				alert("User and results databases have been deleted");
+			}
+		});
+	});
+
 	//Create "Zip Code Search" button for auto-filling table with searches via Google Maps
 	var zipSearch=document.getElementById("zipSearchBtn");
 	zipSearch.addEventListener( "click", function ( ) {
