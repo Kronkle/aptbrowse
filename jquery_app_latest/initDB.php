@@ -30,7 +30,7 @@ $firephp->log("Connected successfully");
 //Create db for user accounts
 $sql = "CREATE DATABASE accounts";
 if ($connect->query($sql) === TRUE) {
-	echo "accounts db created successfully";
+	echo "accounts db created successfully\n";
 } else {
 	echo "Error creating database: " . $connect->error;
 }
@@ -38,11 +38,31 @@ if ($connect->query($sql) === TRUE) {
 //Create db for saved search results
 $sql = "CREATE DATABASE results";
 if ($connect->query($sql) === TRUE) {
-	echo "results db created successfully";
+	echo "results db created successfully\n";
 } else {
 	echo "Error creating database: " . $connect->error;
 }
 
 $connect->close();
+
+//Create table in accounts db (consolidate this into one connection)
+$db = "accounts";
+
+$connect = new mysqli($servername, $username, $password, $db);
+
+$sql = "CREATE TABLE users (
+	UserID   INT(25) NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+	Username VARCHAR(65) NOT NULL ,
+	Password VARCHAR(32) NOT NULL
+)";
+
+if ($connect->query($sql) === TRUE) {
+	echo "accounts db table created successfully\n";
+} else {
+	echo "Error creating table: " . $connect->error;
+}
+
+$connect->close();
+
 
 ?>
