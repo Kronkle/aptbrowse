@@ -68,14 +68,34 @@
 		                        </ul>
 		                    </li>
 		                </ul>
+		               
 		                <ul class="nav navbar-nav navbar-right">
-		                    <li class="dropdown">
-		                        <a href="#" data-toggle="dropdown" class="dropdown-toggle">Account <b class="caret"></b></a>
-		                        <ul class="dropdown-menu">
-		                            <li><a href="#">Login</a></li>
-		                            <li><a href="#">Register</a></li>
-		                        </ul>
-		                    </li>
+		                	<li class="dropdown">
+
+								<a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign Up <strong class="caret"></strong></a>
+								<div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
+									<div style="text-align:center"><span class="glyphicon glyphicon-heart"></span></div>
+									<br>
+									<p class="signUpInText">Register Here:</p>						
+									<form method="post" action="login" accept-charset="UTF-8">
+										<input style="margin-bottom: 15px;" type="text" placeholder="Username" id="username" name="username">
+										<input style="margin-bottom: 15px;" type="password" placeholder="Password" id="password" name="password">
+										<input style="margin-bottom: 15px;" type="password" placeholder="Confirm Password" id="password" name="password">
+									</form>
+								</div>
+							</li>
+		                	<li class="dropdown">
+								<a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign In <strong class="caret"></strong></a>
+								<div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
+									<div style="text-align:center"><span class="glyphicon glyphicon-thumbs-up"></span></div>
+									<br>
+									<p class="signUpInText">Welcome Back!</p>	
+									<form method="post" action="login" accept-charset="UTF-8">
+										<input style="margin-bottom: 15px;" type="text" placeholder="Username" id="username" name="username">
+										<input style="margin-bottom: 15px;" type="password" placeholder="Password" id="password" name="password">
+									</form>
+							</div>
+							</li>
 		                </ul>
 		            </div>
 		        </div>

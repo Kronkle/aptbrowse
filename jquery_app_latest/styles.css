@@ -75,3 +75,10 @@
 	margin-left: 50%;
 	width: 10px;
 }
+
+/* Font for Sign Up/Sign In dropdowns */
+.signUpInText {
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 400;
+	text-align: center;
+}
