@@ -1,6 +1,11 @@
 /*
- * Current app functionality:  Populate form (zip search), Save form, Load form, Clear form, Admin Init DB, Admin Clear DB
- * Corresponding controllers: resultsController, adminController
+ * zipSearchController: Use user input to search
+ * for apartments via the Google Places API,
+ * update the model with results
+ *
+ * apartmentListController: Use apartment
+ * information passed from the model to update
+ * the view
 */
 
 var zipSearchController = function () {
@@ -128,13 +133,13 @@ zipSearchController.prototype.updateApartmentListModel = function ( apartment, d
 	resultsModel.addApartment(apartment.name, apartment.address, apartment.rating, apartment.hours, apartment.phone, apartment.url, done, resultsController);
 };
 
-//Used to update UI with list of apartments
+//Accept a resultsView for displaying search results
 var apartmentListController = function ( resultsView ) {
 	this.resultsView = resultsView;
 	return this;
 };
 
-//Pass new apartment list to apartment list view 
+//Render search results via resultsView 
 apartmentListController.prototype.updateApartmentListView = function ( data ) {
 	this.resultsView.render( data );
 };
