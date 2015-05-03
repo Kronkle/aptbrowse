@@ -1,20 +1,30 @@
 /*
- * There will be one model to represent the search bar and one model for the resulting apartment list
+ * zipSearchModel will accept zip code searches
+ * into searchesList and a zip code search run at least three times
+ * will be copied into frequentSearches
+ *
+ * apartmentListModel accepts apartment 
+ * entries into the apartmentList. Each apartment
+ * entry contains the name, address, 
+average rating, 
+ * hours, phone, and url details
  * 
  */
 
-var zipSearchModel = function () {
-	// Frequent searches list will be maintained here
+// Upon creation, instantiate searchesList and frequentSearches
+var zipSearchModel = function ( ) {
+       this.searchesList = {};
+       this.frequentSearches = {};
 	return this;
 };
 
-/* Each apartment model accepts an info hash that contains the name, address, 
-average rating, hours, phone, and url details */
+// Upon creation, instantiate apartmentList
 var apartmentListModel = function ( ) {	
 	this.apartmentList = {};
 	return this;
 };
 
+// Update apartmentList with new apartment info
 apartmentListModel.prototype.addApartment = function ( name, address, rating, hours, phone, url, done, resultsController ) {
 	var key = name;
 
@@ -28,9 +38,9 @@ apartmentListModel.prototype.addApartment = function ( name, address, rating, ho
 	};
 	//console.log(this.apartmentList);
 
-	//For now, only one push to the database is intended with all of the search results for one zipcode
+	// Once all of the search results have been added to the model, push them to database
 	if ( done ) {
-		this.updateDatabase(this.apartmentList, resultsController);
+           this.updateDatabase(this.apartmentList, resultsController);
 	}
 };
 
