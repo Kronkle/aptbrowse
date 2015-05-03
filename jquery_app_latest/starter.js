@@ -10,7 +10,6 @@ function init() {
 
 	var resultsModel = new apartmentListModel;
 
-	// These aren't currently used (see TODO in models.js)
 	var resultsView = new apartmentListView;
 	var resultsController = new apartmentListController( resultsView );	
 
