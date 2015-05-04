@@ -1,4 +1,5 @@
 <?php
+// Execute code dependent on the state of session.php
 
 if ( !empty($_SESSION['LoggedIn']) && !empty($_SESSION['Username']) ) {
 	// user is logged in, allow access to saved search results
@@ -10,8 +11,7 @@ elseif ( !empty($POST['username']) && !empty($_POST['password']) ) {
 
 }
 else {
-	// user isn't logged in allow access to basic app only
+	// user isn't logged in, allow access to basic features
 }
-
 
 ?>
