@@ -1,17 +1,34 @@
 <?php
-// Execute code dependent on the state of session.php
+// Handle user registration here
 
-if ( !empty($_SESSION['LoggedIn']) && !empty($_SESSION['Username']) ) {
-	// user is logged in, allow access to saved search results
-	// Also return HTML for account name at the top right of navbar
-}
-elseif ( !empty($POST['username']) && !empty($_POST['password']) ) {
-	// user is signing up, check db for username to see if it already exists
-	// if not, place username and password in accounts db
+// Include the FirePHP class for debugging
+require_once('FirePHPCore/FirePHP.class.php');
 
+// Start buffering the output. Not required if output_buffering is set on in php.ini file
+ob_start();
+
+// Get a firePHP variable reference
+$firephp = FirePHP::getInstance(true);
+
+if (!empty($_POST['username']) && !empty($_POST['password'])) {
+
+	$username = mysqli_real_escape_string($_POST['username']);
+	$password = md5(mysqli_real_escape_string($_POST['password']));
+
+	// Check accounts db for inputted username in users table
+	$sql = mysqli_query("SELECT * FROM users WHERE Username = '".$username."'");
+
+	if ( mysqli_num_rows($sql) == 1 ) {
+		$firephp->log("Username is already taken");
+	} else {
+		$sql = mysqli_query("INSERT INTO users (Username, Password) VALUES('".$username."', '".$password."')");
+		if ( $sql ) {
+			$firephp->log("Accoutn created");
+		} else {
+			$firephp->log("Error creating account");
+		}
+	}
 }
-else {
-	// user isn't logged in, allow access to basic features
-}
+
 
 ?>

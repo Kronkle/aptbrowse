@@ -34,6 +34,10 @@ zipSearchController.prototype.handleEvent = function ( resultsModel, resultsCont
 		}
 };
 
+zipSearchController.prototype.registerUser = function ( resultsModel, resultsController ) {
+	alert("User will be registered here");
+};
+
 //Use this function to submit a Google places search for apartments in the zipcode
 zipSearchController.prototype.zipSearch = function (zip, resultsModel, resultsController) {
 

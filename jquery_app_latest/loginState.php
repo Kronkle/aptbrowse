@@ -15,6 +15,7 @@ if ( !empty($_SESSION['LoggedIn']) && !empty($_SESSION['Username']) ) {
 	// user is logged in, allow access to saved search results
 	// Also return HTML for account name at the top right of navbar
 	$firephp->log("You are logged in");
+    
 }
 elseif ( !empty($POST['username']) && !empty($_POST['password']) ) {
 	// user is logging in, confirm that their password is correct

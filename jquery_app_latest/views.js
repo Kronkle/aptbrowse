@@ -34,6 +34,12 @@ var zipSearchView = function ( zipSearchModel, zipSearchController, resultsModel
 		zipSearchController.handleEvent( apartmentListModel, resultsController );
 	});
 
+	//Either change zipSearchView into a generic homepage view or add another view later for registration/login specifically
+	var register=document.getElementById("registerBtn");
+	register.addEventListener( "click", function ( ) {
+		zipSearchController.registerUser( apartmentListModel, resultsController );
+	});
+
 	return this;
 };
 
