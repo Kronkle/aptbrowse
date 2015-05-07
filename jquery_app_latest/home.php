@@ -8,12 +8,6 @@
 	Keep MySQL, PHP for this iteration
 	Create Rails or Node backend for next version
 -->
-<?php 
-ini_set( 'error_reporting', E_ALL );
-ini_set( 'display_errors', true );
-
-include 'session.php';
-?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -99,9 +93,9 @@ include 'session.php';
 									<br>
 									<p class="signUpInText">Welcome Back!</p>	
 									<form method="post" action="login" accept-charset="UTF-8">
-										<input style="margin-bottom: 15px;" type="text" placeholder="Username" id="username" name="username">
-										<input style="margin-bottom: 15px;" type="password" placeholder="Password" id="password" name="password">
-										<div style="text-align:center"><a href="#" class="btn btn-info">Sign In</a></div>
+										<input style="margin-bottom: 15px;" type="text" placeholder="Username" id="usernameL" name="username">
+										<input style="margin-bottom: 15px;" type="password" placeholder="Password" id="passwordL" name="password">
+										<div style="text-align:center"><a id="loginBtn" href="#" class="btn btn-info">Sign In</a></div>
 									</form>
 									<br>
 							</div>

@@ -64,6 +64,35 @@ zipSearchController.prototype.registerUser = function ( resultsModel, resultsCon
 	};
 };
 
+zipSearchController.prototype.loginUser = function ( resultsModel, resultsController, username, password ) {
+	alert("User will be login here");
+	alert(username);
+	alert(password);
+
+	//Set up AJAX request with inputted data
+    var request = new XMLHttpRequest();
+
+    var data = "username=" + username + "&" + "password=" + password;
+
+	//Open the request, set the header, and send the data
+	request.open('POST', 'login.php', true);
+	request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+	request.send(data);
+		
+	//After the data has been sanitized, display on the HTML page within ftable
+	request.onreadystatechange = display_data;
+	function display_data() {
+		if (request.readyState == 4) {
+			if(request.status == 200) {
+				var data=request.responseText;
+				console.log(data);				
+		 	} else {
+				alert('Problem with login request');	
+		 	}
+		}		
+	};
+};
+
 //Use this function to submit a Google places search for apartments in the zipcode
 zipSearchController.prototype.zipSearch = function (zip, resultsModel, resultsController) {
 

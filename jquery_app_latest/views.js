@@ -43,6 +43,14 @@ var zipSearchView = function ( zipSearchModel, zipSearchController, resultsModel
 		zipSearchController.registerUser( apartmentListModel, resultsController, username, password );
 	});
 
+	var login=document.getElementById("loginBtn");
+	login.addEventListener( "click", function ( ) {
+		var username = document.getElementById("usernameL").value;
+		//Password validation here
+		var password = document.getElementById("passwordL").value;
+		zipSearchController.loginUser( apartmentListModel, resultsController, username, password );
+	});
+
 	return this;
 };
 
