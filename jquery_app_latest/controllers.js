@@ -35,11 +35,6 @@ zipSearchController.prototype.handleEvent = function ( resultsModel, resultsCont
 };
 
 zipSearchController.prototype.registerUser = function ( resultsModel, resultsController, username, password ) {
-	alert("User will be registered here");
-	alert(username);
-	alert(password);
-
-
 	//Set up AJAX request with inputted data
     var request = new XMLHttpRequest();
 
@@ -56,7 +51,12 @@ zipSearchController.prototype.registerUser = function ( resultsModel, resultsCon
 		if (request.readyState == 4) {
 			if(request.status == 200) {
 				var data=request.responseText;
-				console.log(data);				
+				if ( data ){
+					alert("Username is already taken");
+				} else {
+					alert("Account created!");
+					$( "#registerMenu, #loginMenu" ).hide();
+				}
 		 	} else {
 				alert('Problem with registration request');	
 		 	}
@@ -85,6 +85,7 @@ zipSearchController.prototype.loginUser = function ( resultsModel, resultsContro
 		if (request.readyState == 4) {
 			if(request.status == 200) {
 				var data=request.responseText;
+				$( "#registerMenu, #loginMenu" ).hide();
 				console.log(data);				
 		 	} else {
 				alert('Problem with login request');	

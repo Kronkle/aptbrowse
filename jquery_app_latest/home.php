@@ -67,11 +67,9 @@
 		                            <li><a id="clearDB" href="#">Clear DB</a></li>
 		                        </ul>
 		                    </li>
-		                </ul>
-		               
+		                </ul>  
 		                <ul class="nav navbar-nav navbar-right">
-		                	<li class="dropdown">
-
+		                	<li id="registerMenu" class="dropdown">
 								<a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign Up <strong class="caret"></strong></a>
 								<div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
 									<div style="text-align:center"><span class="glyphicon glyphicon-heart"></span></div>
@@ -86,7 +84,7 @@
 									<br>
 								</div>
 							</li>
-		                	<li class="dropdown">
+		                	<li id="loginMenu" class="dropdown">
 								<a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign In <strong class="caret"></strong></a>
 								<div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
 									<div style="text-align:center"><span class="glyphicon glyphicon-thumbs-up"></span></div>

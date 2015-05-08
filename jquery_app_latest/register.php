@@ -27,7 +27,7 @@ if (!empty($_POST['username']) && !empty($_POST['password'])) {
 	$sql = $connect->query("SELECT * FROM users WHERE Username = '".$username."'");
 
 	if ( $sql->num_rows == 1 ) {
-		$firephp->log("Username is already taken");
+		echo "Username is already taken";
 	} else {
 		$sql = $connect->query("INSERT INTO users (Username, Password) VALUES('".$username."', '".$password."')");
 		if ( $sql ) {

@@ -38,9 +38,16 @@ var zipSearchView = function ( zipSearchModel, zipSearchController, resultsModel
 	var register=document.getElementById("registerBtn");
 	register.addEventListener( "click", function ( ) {
 		var username = document.getElementById("usernameR").value;
+		
 		//Password validation here
 		var password = document.getElementById("passwordR").value;
-		zipSearchController.registerUser( apartmentListModel, resultsController, username, password );
+		var confirmPassword = document.getElementById("passwordR2").value;
+
+		if ( password == confirmPassword ) {
+			zipSearchController.registerUser( apartmentListModel, resultsController, username, password );
+	    } else {
+        	alert("Two different passwords entered");   
+	    }
 	});
 
 	var login=document.getElementById("loginBtn");
