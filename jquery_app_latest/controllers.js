@@ -38,6 +38,9 @@ zipSearchController.prototype.registerUser = function ( resultsModel, resultsCon
 	//Set up AJAX request with inputted data
     var request = new XMLHttpRequest();
 
+    //For use with greeting upon registering
+    var username = username;
+
     var data = "username=" + username + "&" + "password=" + password;
 
 	//Open the request, set the header, and send the data
@@ -55,7 +58,9 @@ zipSearchController.prototype.registerUser = function ( resultsModel, resultsCon
 					alert("Username is already taken");
 				} else {
 					alert("Account created!");
-					$( "#registerMenu, #loginMenu" ).hide();
+					$( "#registerMenu" ).hide();
+					$( "#loginMenu" ).html("<li>Welcome, " + username + "</li>");
+					
 				}
 		 	} else {
 				alert('Problem with registration request');	
@@ -65,13 +70,13 @@ zipSearchController.prototype.registerUser = function ( resultsModel, resultsCon
 };
 
 zipSearchController.prototype.loginUser = function ( resultsModel, resultsController, username, password ) {
-	alert("User will be login here");
-	alert(username);
-	alert(password);
 
 	//Set up AJAX request with inputted data
     var request = new XMLHttpRequest();
 
+    //For use with greeting upon login
+    var username = username;
+    
     var data = "username=" + username + "&" + "password=" + password;
 
 	//Open the request, set the header, and send the data
@@ -85,7 +90,8 @@ zipSearchController.prototype.loginUser = function ( resultsModel, resultsContro
 		if (request.readyState == 4) {
 			if(request.status == 200) {
 				var data=request.responseText;
-				$( "#registerMenu, #loginMenu" ).hide();
+				$( "#registerMenu" ).hide();
+				$( "#loginMenu" ).html("<li>Welcome, " + username + "</li>");
 				console.log(data);				
 		 	} else {
 				alert('Problem with login request');	

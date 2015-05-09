@@ -47,7 +47,7 @@
 		                    <span class="icon-bar"></span>
 		                    <span class="icon-bar"></span>
 		                </button>
-		                <a class="navbar-brand" href="#" onclick='location.reload(true); return false;'>AptBrowse</a>
+		                <a id="home" class="navbar-brand" href="#">AptBrowse</a>
 		            </div>
 		            <!-- User, Admin, and Account submenus -->
 		            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -104,38 +104,40 @@
 		    </nav>
 		</div>
 		<!-- Large searchbar for immediate zip code searching. Will be cleared out when search is run -->
-		<div id="search">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-3"></div>
-			        <div class="col-md-6">
-			    		<h2>Apartment Search</h2>          	
-			           		<div class="input-group">
-			                    <input id="zipSearch" type="text" class="form-control input-lg" placeholder="Enter your zipcode here" />
-			                    <span class="input-group-btn">
-			                        <button id="zipSearchBtn" class="btn btn-info btn-lg" type="button">
-			                            <i class="glyphicon glyphicon-search"></i>
-			                        </button>
-			                    </span>
-			                </div>          
-			        </div>
-			        <div class="col-md-3"></div>
+		<div id="content">
+			<div id="search">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-3"></div>
+				        <div class="col-md-6">
+				    		<h2>Apartment Search</h2>          	
+				           		<div class="input-group">
+				                    <input id="zipSearch" type="text" class="form-control input-lg" placeholder="Enter your zipcode here" />
+				                    <span class="input-group-btn">
+				                        <button id="zipSearchBtn" class="btn btn-info btn-lg" type="button">
+				                            <i class="glyphicon glyphicon-search"></i>
+				                        </button>
+				                    </span>
+				                </div>          
+				        </div>
+				        <div class="col-md-3"></div>
+					</div>
 				</div>
 			</div>
-		</div>
-		<!-- Section for zip search output including map and form views, which can be toggled-->
-		<div id="break"><br></div>
-		<div id="ftablebodyDiv">
-			<table class="table" id="ftable" style="table-layout: auto">
-				<tbody id="ftablebody">
-				</tbody>
-			</table>
-		</div>
-		<!-- Required Google Maps API element -->
-		<div id="map"></div>
-		<!-- Required Google logo and general links for the site -->
-		<div id="footer">
-			<img src="powered-by-google-on-white.png" />
+			<!-- Section for zip search output including map and form views, which can be toggled-->
+			<div id="break"><br></div>
+			<div id="ftablebodyDiv">
+				<table class="table" id="ftable" style="table-layout: auto">
+					<tbody id="ftablebody">
+					</tbody>
+				</table>
+			</div>
+			<!-- Required Google Maps API element -->
+			<div id="map"></div>
+			<!-- Required Google logo and general links for the site -->
+			<div id="footer">
+				<img src="powered-by-google-on-white.png" />
+			</div>
 		</div>
 	</body>
 </html>
