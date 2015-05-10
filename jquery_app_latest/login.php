@@ -30,9 +30,11 @@ if (!empty($_POST['username']) && !empty($_POST['password'])) {
 		$firephp->log("You've logged in, $username");
 	} else {
 			$firephp->log("Login credentials failed");
+			http_response_code(400);
 	}
 } else {
 	$firephp->log("Error receiving login username/password from browser");
+	http_response_code(400);
 }
 
 

@@ -28,16 +28,19 @@ if (!empty($_POST['username']) && !empty($_POST['password'])) {
 
 	if ( $sql->num_rows == 1 ) {
 		echo "Username is already taken";
+		http_response_code(400);
 	} else {
 		$sql = $connect->query("INSERT INTO users (Username, Password) VALUES('".$username."', '".$password."')");
 		if ( $sql ) {
 			$firephp->log("Account created");
 		} else {
 			$firephp->log("Error creating account");
+			http_response_code(400);
 		}
 	}
 } else {
 	$firephp->log("Error receiving username/password from browser");
+	http_response_code(400);
 }
 
 

@@ -15,17 +15,18 @@ var zipSearchController = function () {
 zipSearchController.prototype.handleEvent = function ( resultsModel, resultsController ) {
 
 		var apartmentListModel = resultsModel;
-		
-		var zip = document.getElementById("zipSearch").value;
 
-		if (zip) {
+		var zip = $( ".zipSearch" ).val();
+
+		if ( zip ) {
 			//U.S. zipcode validation - 5 digits or 5 digits followed by hyphen and 4 digits
 			var regex = new RegExp(/(^\d{5}-\d{4}$)|(^\d{5}$)/)
 			if (regex.test(zip)){							
 				this.zipSearch(zip, resultsModel, resultsController);
 				
-				// Add loading spinner in place of the searchbar
-				$("#search").html("<div id=\"spinnerCenter\" class=\"spinner\">Loading...</div>");
+				// Hide searchbar and add loading spinner in place of the searchbar
+				$(".search").hide();
+				$(".spinner").show();
 
 			} else {
 				alert("Please enter a valid U.S. zipcode.");

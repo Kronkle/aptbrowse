@@ -36,7 +36,7 @@
 		<link rel="stylesheet" href="http://css-spinners.com/css/spinner/spinner.css" type="text/css">
 	</head>
 	<body>
-		<div id="navigationMenu">
+		<div class="navigationMenu">
 		    <nav id="topBar" class="navbar navbar-default" role="navigation">
 		        <!-- Group toggle and menu for mobile displays -->
 		        <div class="container">
@@ -104,39 +104,42 @@
 		    </nav>
 		</div>
 		<!-- Large searchbar for immediate zip code searching. Will be cleared out when search is run -->
-		<div id="content">
-			<div id="search">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-3"></div>
-				        <div class="col-md-6">
-				    		<h2>Apartment Search</h2>          	
-				           		<div class="input-group">
-				                    <input id="zipSearch" type="text" class="form-control input-lg" placeholder="Enter your zipcode here" />
-				                    <span class="input-group-btn">
-				                        <button id="zipSearchBtn" class="btn btn-info btn-lg" type="button">
-				                            <i class="glyphicon glyphicon-search"></i>
-				                        </button>
-				                    </span>
-				                </div>          
-				        </div>
-				        <div class="col-md-3"></div>
+		<div class="content">
+			<div class="searchContent">
+				<div id="spinnerCenter" class="spinner" style="display: none;">Loading...</div>
+				<div class="search">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-3"></div>
+					        <div class="col-md-6">
+					    		<h2>Apartment Search</h2>          	
+					           		<div class="input-group">
+					                    <input type="text" class="form-control input-lg zipSearch" placeholder="Enter your zipcode here" />
+					                    <span class="input-group-btn">
+					                        <button class="btn btn-info btn-lg zipSearchBtn" type="button">
+					                            <i class="glyphicon glyphicon-search"></i>
+					                        </button>
+					                    </span>
+					                </div>          
+					        </div>
+					        <div class="col-md-3"></div>
+						</div>
 					</div>
 				</div>
-			</div>
-			<!-- Section for zip search output including map and form views, which can be toggled-->
-			<div id="break"><br></div>
-			<div id="ftablebodyDiv">
-				<table class="table" id="ftable" style="table-layout: auto">
-					<tbody id="ftablebody">
-					</tbody>
-				</table>
-			</div>
-			<!-- Required Google Maps API element -->
-			<div id="map"></div>
-			<!-- Required Google logo and general links for the site -->
-			<div id="footer">
-				<img src="powered-by-google-on-white.png" />
+				<!-- Section for zip search output including map and form views, which can be toggled-->
+				<div class="break"><br></div>
+				<div class="ftablebodyDiv">
+					<table class="table" id="ftable" style="table-layout: auto">
+						<tbody class="ftablebody">
+						</tbody>
+					</table>
+				</div>
+				<!-- Required Google Maps API element -->
+				<div id="map"></div>
+				<!-- Required Google logo and general links for the site -->
+				<div id="footer">
+					<img src="powered-by-google-on-white.png" />
+				</div>
 			</div>
 		</div>
 	</body>

@@ -6,9 +6,6 @@
 var zipSearchView = function ( zipSearchModel, zipSearchController, resultsModel, resultsController ) {
 	$( document ).ready(function() {
 		var apartmentListModel = resultsModel;
-		
-		//For resetting homepage when AptBrowse logo is clicked
-		var homeClone = $("#content").clone();
 
 		//For initializing the accounts and results dbs in admin mode (move this to a different view?)
 		$( "#initDB" ).on("click", function ( event ) {
@@ -33,17 +30,9 @@ var zipSearchView = function ( zipSearchModel, zipSearchController, resultsModel
 		});
 
 		//Create "Zip Code Search" button for auto-filling table with searches via Google Maps
-		var zipSearch=document.getElementById("zipSearchBtn");
-		zipSearch.addEventListener( "click", function ( ) {
+		$(".content").on('click', '.zipSearchBtn', function () {
 			zipSearchController.handleEvent( apartmentListModel, resultsController );
 		});
-
-		//Either change zipSearchView into a generic homepage view or add another view later for registration/login specifically
-		/*var home=document.getElementById("home");
-		home.addEventListener( "click", function ( ) {
-			$("#content").replaceWith(homeClone);
-			init();
-		});*/
 
 		var register=document.getElementById("registerBtn");
 		register.addEventListener( "click", function ( ) {
@@ -52,6 +41,10 @@ var zipSearchView = function ( zipSearchModel, zipSearchController, resultsModel
 			//Password validation here
 			var password = document.getElementById("passwordR").value;
 			var confirmPassword = document.getElementById("passwordR2").value;
+
+			if ( username == "" || password == "" || confirmPassword == "" ) {
+				alert("Please fill out all fields");
+			}
 
 			if ( password == confirmPassword ) {
 				zipSearchController.registerUser( apartmentListModel, resultsController, username, password );
@@ -65,7 +58,22 @@ var zipSearchView = function ( zipSearchModel, zipSearchController, resultsModel
 			var username = document.getElementById("usernameL").value;
 			//Password validation here
 			var password = document.getElementById("passwordL").value;
-			zipSearchController.loginUser( apartmentListModel, resultsController, username, password );
+
+			if ( username == "" || password == "" ) {
+				alert("Please fill out all fields");
+			} else {
+				zipSearchController.loginUser( apartmentListModel, resultsController, username, password );
+			}
+		});
+
+		//For resetting homepage when AptBrowse logo is clicked - clone both div and attached event handlers
+		//var homeClone = $(".searchContent").clone(true, true);
+
+		//Either change zipSearchView into a generic homepage view or add another view later for registration/login specifically
+		$(".navigationMenu").on('click', '#home', function () {
+			$(".search").show();
+			$(".break").show();
+			$(".ftablebody").html("");
 		});
 	});
 	return this;
@@ -78,11 +86,11 @@ var apartmentListView = function () {
 apartmentListView.prototype.render = function ( data ) {
 	$(document).ready(function(){
 
-		// Remove searchbar and the break element below
-		$("#search").html("");
-		$("#break").html("");
+		// Remove spinner and the break element below
+		$(".spinner").hide();
+		$(".break").hide();
 
 		// Populate search results table
-		$("#ftablebody").html(data);
+		$(".ftablebody").html(data);
 	});
 };
