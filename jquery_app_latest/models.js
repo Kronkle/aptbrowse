@@ -1,34 +1,18 @@
-/*
- * zipSearchModel will accept zip code searches
- * into searchesList and a zip code search run at least three times
- * will be copied into frequentSearches
- *
- * apartmentListModel accepts apartment 
- * entries into the apartmentList. Each apartment
- * entry contains the name, address, 
-average rating, 
- * hours, phone, and url details
- * 
- */
+ /* 
+  *  apartmentListModel - Accepts apartment entries from search results and generates relevant HTML to pass to apartmentListView
+  *  zipSearchModel     - Will store zipcode searches and place zipcodes used frequently into a special list  
+  */
 
-// Upon creation, instantiate searchesList and frequentSearches
-var zipSearchModel = function ( ) {
-       this.searchesList = {};
-       this.frequentSearches = {};
-	return this;
-};
-
-// Upon creation, instantiate apartmentList
-var apartmentListModel = function ( ) {	
+var apartmentListModel = function () {	
 	this.apartmentList = {};
 	return this;
 };
 
-// Update apartmentList with new apartment info
 apartmentListModel.prototype.addApartment = function ( name, address, rating, hours, phone, url, done, resultsController ) {
 	var key = name;
 
-	this.apartmentList[key] = {
+	// Create new entry for apartment from search results
+	this.apartmentList[ key ] = {
 		"Name":    key,
 		"Address": address,
 		"Rating":  rating,
@@ -36,41 +20,35 @@ apartmentListModel.prototype.addApartment = function ( name, address, rating, ho
 		"Phone":   phone,
 		"URL":     url
 	};
-	//console.log(this.apartmentList);
 
-	// Once all of the search results have been added to the model, push them to database
+	// Once all of the apartments from the search results have been added to apartmentList, generate HTML and update database (TODO)
 	if ( done ) {
-           this.updateDatabase(this.apartmentList, resultsController);
+           this.updateDatabase( this.apartmentList, resultsController );
 	}
 };
 
 apartmentListModel.prototype.updateDatabase = function ( apartmentList, resultsController ) {
 
-    //Set up AJAX request with inputted data
-    var jsonApartmentList = JSON.stringify(apartmentList);
+    // Convert apartmentList to a JSON string for AJAX call
+    var jsonApartmentList = JSON.stringify( apartmentList ) ;
  
 	var request = new XMLHttpRequest();
 
-	//Open the request, set the header, and send the data
-	request.open('POST', 'pushApartments.php', true);
-	request.setRequestHeader('Content-Type', 'application/json');
-	request.send(jsonApartmentList);
-		
-	//After the data has been sanitized, display on the HTML page within ftable
-	request.onreadystatechange = display_data;
-	function display_data() {
-		if (request.readyState == 4) {
-			if(request.status == 200) {
-				var data=request.responseText;
-				console.log(data);	
+	$.ajax({
+		url: "pushApartments.php",
+		data: { jsonApartmentList },
+		success: function ( data ) {
+			// Call controller to update view with generated HTML
+			resultsController.updateApartmentListView( data );
+		},
+		error: function () {
+			alert( "Problem with request" );
+		}
+	});
+};
 
-				//Call controller to update view with new model details
-				//TODO: Add a handler for resultsController to pick up here
-				resultsController.updateApartmentListView( data );
-				
-		 	} else {
-				alert('Problem with request');	
-		 	}
-		}		
-	};
+var zipSearchModel = function ( ) {
+    this.searchesList = {};
+    this.frequentSearches = {};
+	return this;
 };
