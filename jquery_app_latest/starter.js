@@ -1,7 +1,7 @@
 /*
- * Basic use case:
- * User zip search via zipSearch view -> zipSearch controller -> aptListModel -> aptListController -> aptListView
-*/
+ *  Zipcode search workflow:
+ *  User search via zipSearchView -> zipSearchController -> apartmentListModel -> apartmentListController -> apartmentListView
+ */
 
 function init() {	
 
