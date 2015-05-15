@@ -16,7 +16,7 @@ zipSearchController.prototype.registerUser = function ( resultsModel, resultsCon
 
     $.ajax({
     	url: "register.php",
-    	data: { data };
+    	data: data,
     	success: function ( data ) {
     		if ( data ) {
     			alert( "Username is already taken" );
@@ -41,7 +41,7 @@ zipSearchController.prototype.loginUser = function ( resultsModel, resultsContro
 
     $.ajax({
     	url: "login.php",
-    	data: { data };
+    	data: data,
     	success: function ( data ) {
  			$( "#registerMenu" ).hide();
  			$( "#loginMenu" ).html( "<li>Welcome, " + username + "</li>" );
@@ -72,6 +72,8 @@ zipSearchController.prototype.handleEvent = function ( resultsModel, resultsCont
 			} else {
 				alert( "Please enter a valid U.S. zipcode." );
 			}
+		} else {
+			alert( "Please enter a valid U.S. zipcode." );
 		}
 };
 

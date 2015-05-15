@@ -33,7 +33,7 @@
 		<script type="text/javascript" src="starter.js" defer></script>
 		<!-- Google's Maps API Places Library -->
 		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
-		<link rel="stylesheet" href="http://css-spinners.com/css/spinner/spinner.css" type="text/css">
+		<link rel="stylesheet" href="http://css-spinners.com/css/spinners.css" type="text/css">
 	</head>
 	<body>
 		<div class="navigationMenu">
@@ -106,7 +106,7 @@
 		<!-- Large searchbar for immediate zip code searching. Will be cleared out when search is run -->
 		<div class="content">
 			<div class="searchContent">
-				<div id="spinnerCenter" class="spinner" style="display: none;">Loading...</div>
+				<div id="spinnerCenter" class="dots-loader" style="display: none;">Loading...</div>
 				<div class="search">
 					<div class="container">
 						<div class="row">

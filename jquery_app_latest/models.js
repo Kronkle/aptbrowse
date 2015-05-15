@@ -35,8 +35,9 @@ apartmentListModel.prototype.updateDatabase = function ( apartmentList, resultsC
 	var request = new XMLHttpRequest();
 
 	$.ajax({
+		method: "POST",
 		url: "pushApartments.php",
-		data: { jsonApartmentList },
+		data: jsonApartmentList,
 		success: function ( data ) {
 			// Call controller to update view with generated HTML
 			resultsController.updateApartmentListView( data );

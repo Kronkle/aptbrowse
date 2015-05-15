@@ -43,7 +43,7 @@
 }
 
 /* Font for results table */
-#ftablebody {
+.ftablebody {
 	font-family: 'Open Sans', sans-serif;
 }
 
