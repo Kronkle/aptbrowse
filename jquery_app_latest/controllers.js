@@ -68,7 +68,7 @@ zipSearchController.prototype.handleEvent = function ( resultsModel, resultsCont
 				
 				// Hide searchbar and show loading spinner
 				$( ".search" ).hide();
-				$( ".spinner" ).show();
+				$( "#spinner" ).show();
 			} else {
 				alert( "Please enter a valid U.S. zipcode." );
 			}

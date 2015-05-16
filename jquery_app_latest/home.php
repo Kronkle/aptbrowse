@@ -106,7 +106,10 @@
 		<!-- Large searchbar for immediate zip code searching. Will be cleared out when search is run -->
 		<div class="content">
 			<div class="searchContent">
-				<div id="spinnerCenter" class="dots-loader" style="display: none;">Loading...</div>
+				<div id="spinner"  style="display: none;">
+					<br>
+					<div id="spinnerCenter" class="dots-loader">Loading...</div>
+				</div>
 				<div class="search">
 					<div class="container">
 						<div class="row">

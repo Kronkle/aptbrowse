@@ -7,6 +7,15 @@ var zipSearchView = function ( zipSearchModel, zipSearchController, resultsModel
 	$( document ).ready( function () {
 		var apartmentListModel = resultsModel;
 
+		// Call to loginState.php for user sessions (this will be moved)
+		$.ajax({
+			method: "POST",
+			url: "loginState.php",
+			success: function ( data ) {
+			},
+			error: function () {
+			}
+		});
 
 		// ***************************************************************************************
 		// ---------------------------------------NAVBAR------------------------------------------
@@ -98,7 +107,7 @@ apartmentListView.prototype.render = function ( data ) {
 	$( document ).ready( function() {
 
 		// Hide spinner and the break element below it
-		$( ".spinner" ).hide();
+		$( "#spinner" ).hide();
 		$( ".break" ).hide();
 
 		// Populate search results table with apartment data
