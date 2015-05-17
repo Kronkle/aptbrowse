@@ -6,11 +6,13 @@
  *  2) Validate username/password input
  */
 
+session_start();
+
 // ***************************************************************************************
 // ---------------------------------------FirePHP-----------------------------------------
 // ***************************************************************************************
 
-require_once('FirePHPCore/FirePHP.class.php');
+require_once( "FirePHPCore/FirePHP.class.php" );
 
 // Start buffering the output - not required if output_buffering is set on in php.ini file
 ob_start();
@@ -22,21 +24,24 @@ $firephp = FirePHP::getInstance( true );
 // ---------------------------------Validate login state----------------------------------
 // ***************************************************************************************
 
-if ( !empty( $_SESSION[ 'LoggedIn' ] ) && !empty( $_SESSION[ 'Username' ] ) ) {
+if ( !empty( $_SESSION[ "LoggedIn" ] ) && !empty( $_SESSION[ "Username" ] ) ) {
 
-	// user is logged in, allow access to saved search results
+	// User is logged in, allow access to saved search results
 	// Also return HTML for account name at the top right of navbar
 	$firephp->log( "You are logged in" );
+    $firephp->log( $_SESSION[ "LoggedIn" ] );
+    $firephp->log( $_SESSION[ "Username" ] );
     
 }
-elseif ( !empty( $POST[ 'username' ] ) && !empty( $_POST[ 'password' ] ) ) {
+elseif ( !empty( $POST[ "username" ] ) && !empty( $_POST[ "password" ] ) ) {
 
-    // user is logging in, confirm that their password is correct (merge with login.php)
+    // User is logging in, confirm that their password is correct (merge with login.php)
     $firephp->log( "You are logging in" );
 
 
-	$username = mysqli_real_escape_string( $_POST[ 'username' ] );
-	$password = md5( mysqli_real_escape_string( $_POST[ 'password' ] ) );
+	/*
+    $username = mysqli_real_escape_string( $_POST[ "username" ] );
+	$password = md5( mysqli_real_escape_string( $_POST[ "password" ] ) );
 
 	$sql = mysqli_query( "SELECT * FROM users WHERE Username = '".$username."' AND Password = '".$password."'" );
 
@@ -44,18 +49,19 @@ elseif ( !empty( $POST[ 'username' ] ) && !empty( $_POST[ 'password' ] ) ) {
     {
         $row = mysqli_fetch_array( $sql );
          
-        $_SESSION[ 'Username' ] = $username;
-        $_SESSION[ 'LoggedIn' ] = 1;
+        $_SESSION[ "Username" ] = $username;
+        $_SESSION[ "LoggedIn" ] = 1;
 
         $firephp->log( "You are successfully logged in!" );
     }
     else {
     	$firephp->log( "User/Password combination is incorrect" );
     }
+    */
 
 }
 else {
-	// user isn't logged in, allow access to basic features
+	// User isn't logged in, allow access to basic features
     $firephp->log( "You aren't logged in yet" );
 }
 

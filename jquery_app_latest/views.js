@@ -7,20 +7,21 @@ var zipSearchView = function ( zipSearchModel, zipSearchController, resultsModel
 	$( document ).ready( function () {
 		var apartmentListModel = resultsModel;
 
-		// Call to loginState.php for user sessions (this will be moved)
-		$.ajax({
-			method: "POST",
-			url: "loginState.php",
-			success: function ( data ) {
-			},
-			error: function () {
-			}
-		});
+	    // Call to loginState.php for user sessions (this will be moved)
+		checkLoginState = function() {
+			$.ajax({
+				method: "POST",
+				url: "loginState.php",
+				success: function ( data ) {
+				},
+				error: function () {
+				}
+			});
+		};
 
 		// ***************************************************************************************
 		// ---------------------------------------NAVBAR------------------------------------------
 		// ***************************************************************************************
-
 
 		// For creating the MySQL "accounts" and "results" dbs in ADMIN mode - for testing
 		$( "#initDB" ).on( "click", function ( event ) {
@@ -31,6 +32,7 @@ var zipSearchView = function ( zipSearchModel, zipSearchController, resultsModel
 					alert( "Accounts and results databases have been created" );
 				}
 			});
+			checkLoginState();
 		});
 
 		// For deleting the MySQL "accounts" and "results" dbs in ADMIN mode - for testing
@@ -42,6 +44,7 @@ var zipSearchView = function ( zipSearchModel, zipSearchController, resultsModel
 					alert( "Accounts and results databases have been deleted" );
 				}
 			});
+			checkLoginState();
 		});
 
 		// For registering a new user when "Register" button is clicked
@@ -62,6 +65,7 @@ var zipSearchView = function ( zipSearchModel, zipSearchController, resultsModel
 		    } else {
 	        	alert( "Two different passwords entered" );   
 		    }
+		    checkLoginState();
 		});
 
 		// For logging in an existing user when "Sign In" button is clicked
@@ -76,6 +80,7 @@ var zipSearchView = function ( zipSearchModel, zipSearchController, resultsModel
 			} else {
 				zipSearchController.loginUser( apartmentListModel, resultsController, username, password );
 			}
+			checkLoginState();
 		});
 
 		// For refreshing the homepage when "AptBrowse" is clicked
@@ -83,6 +88,7 @@ var zipSearchView = function ( zipSearchModel, zipSearchController, resultsModel
 			$( ".search" ).show();
 			$( ".break" ).show();
 			$( ".ftablebody" ).html( "" );
+			checkLoginState();
 		});
 
 
@@ -97,6 +103,10 @@ var zipSearchView = function ( zipSearchModel, zipSearchController, resultsModel
 		});	
 	});		
 	return this;
+};
+
+zipSearchView.prototype.checkLoginState = function () {
+
 };
 
 var apartmentListView = function () {

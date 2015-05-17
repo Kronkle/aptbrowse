@@ -44,6 +44,8 @@ if ( !empty( $_POST[ "username" ] ) && !empty( $_POST[ "password" ] ) ) {
 
 	if ( $sql->num_rows == 1 ) {
 		$firephp->log( "You've logged in, $username" );
+		$_SESSION[ "LoggedIn" ] = 1;
+		$_SESSION[ "Username" ] = $username;
 	} else {
 			$firephp->log( "Login credentials failed" );
 			http_response_code( 400 );

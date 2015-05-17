@@ -15,6 +15,7 @@ zipSearchController.prototype.registerUser = function ( resultsModel, resultsCon
     var data = "username=" + username + "&" + "password=" + password;
 
     $.ajax({
+    	method: "POST", 
     	url: "register.php",
     	data: data,
     	success: function ( data ) {
@@ -30,6 +31,7 @@ zipSearchController.prototype.registerUser = function ( resultsModel, resultsCon
     		alert( "Problem with registration request" );	
     	}
     });
+    
 };
 
 zipSearchController.prototype.loginUser = function ( resultsModel, resultsController, username, password ) {
@@ -40,6 +42,7 @@ zipSearchController.prototype.loginUser = function ( resultsModel, resultsContro
     var data = "username=" + username + "&" + "password=" + password;
 
     $.ajax({
+    	method: "POST",
     	url: "login.php",
     	data: data,
     	success: function ( data ) {
