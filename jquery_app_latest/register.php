@@ -46,7 +46,7 @@ if ( !empty( $_POST[ "username" ] ) && !empty( $_POST[ "password" ] ) ) {
 		echo "Username is already taken";
 		http_response_code( 400 );
 	} else {
-		$sql = $connect->query( "INSERT INTO users (Username, Password) VALUES('".$username."', '".$password."')" );
+		$sql = $connect->query( "INSERTo INTO users (Username, Password) VALUES('".$username."', '".$password."')" );
 		if ( $sql ) {
 			$firephp->log( "Account created" );
 		} else {

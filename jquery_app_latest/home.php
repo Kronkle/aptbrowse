@@ -55,7 +55,7 @@
 		                    <li class="dropdown">
 		                        <a href="#" data-toggle="dropdown" class="dropdown-toggle" role="button" aria-expanded="false">User<b class="caret"></b></a>
 		                        <ul class="dropdown-menu" role="menu" aria-labelledby="dlabel">
-		                            <li><a href="#">Save Form</a></li>
+		                            <li><a id="save" href="#">Save Form</a></li>
 		                            <li><a href="#">Load Form</a></li>
 		                            <li><a href="#">Clear Form</a></li>
 		                        </ul>

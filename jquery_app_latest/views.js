@@ -23,6 +23,26 @@ var zipSearchView = function ( zipSearchModel, zipSearchController, resultsModel
 		// ---------------------------------------NAVBAR------------------------------------------
 		// ***************************************************************************************
 
+		// For saving current search results to database table associated with username
+		$( "#save" ).on( "click", function ( event ) {
+			// Check that a search has been run
+
+			// Alert user if they aren't logged in
+
+			// Encapsulate search output into an object
+
+			// Send array to save.php for transmitting into database
+
+			$.ajax({
+				url: "save.php",
+				data: {},
+				success: function ( data ) {
+					alert( "Entry has been saved in the table" );
+				}
+			});
+			//checkLoginState();
+		});
+
 		// For creating the MySQL "accounts" and "results" dbs in ADMIN mode - for testing
 		$( "#initDB" ).on( "click", function ( event ) {
 			$.ajax({
