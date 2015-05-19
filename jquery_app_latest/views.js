@@ -30,10 +30,14 @@ var zipSearchView = function ( zipSearchModel, zipSearchController, resultsModel
 			// Alert user if they aren't logged in
 
 			// Encapsulate search output into an object
+			var data = $( "#ftablebodyDiv" ).html;
+			
+			var data = "outputTable=" + data;
 
 			// Send array to save.php for transmitting into database
 
 			$.ajax({
+				method: "POST",
 				url: "save.php",
 				data: {},
 				success: function ( data ) {

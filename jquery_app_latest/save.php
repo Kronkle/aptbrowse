@@ -23,30 +23,49 @@ $firephp->log("FirePHP Test Output!");
 
 if ( $_SESSION[ "LoggedIn" ] && $_SESSION[ "Username" ] ) {
 
+	if ($_SERVER["REQUEST_METHOD"] == "POST") {
+		//Escape special characters in output table html for MySql insertion
+		$output = $_POST["outputTable"];
+		//$pass   = $_POST["pass"];
+	}
+
+	// Login to database
+	$servername = "localhost";
+	$username = "root";
+	$password = "password";
+	$db = "results";
+
+	// Connect to the aptbrowse db
+	$connect = new mysqli($servername, $username, $password, $db);
+
+	if ($connect->connect_error) {
+		die("Connection failed: " . $connect->connect_error);
+	}
+
+	echo "Connected successfully\n";
+
+	// Put filler zip code as table name (for now)
+	$zip = "28027";
+
+	$sql = "CREATE TABLE ".$zip."(
+			id int not null auto_increment,
+			PRIMARY KEY(id),
+			results VARCHAR(10000) 
+		)";
+
+	if ( $connect->query( $sql ) === TRUE ) {
+		echo "Table $pass created";
+	} else {
+		echo "Error creating table $pass: " . $connect->error;
+	}
+
+
 }
 		
 
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	//Escape special characters in output table html for MySql insertion
-	//$output = $_POST["outputTable"];
-	//$pass   = $_POST["pass"];
-}
 
-//MySQL processing will go here
-$servername = "localhost";
-$username = "root";
-$password = "password";
-$db = "results";
 
-//Connect to the aptbrowse db
-$connect = new mysqli($servername, $username, $password, $db);
-
-if ($connect->connect_error) {
-	die("Connection failed: " . $connect->connect_error);
-}
-
-echo "Connected successfully\n";
 
 /*
 //Need protection against SQL injection here
