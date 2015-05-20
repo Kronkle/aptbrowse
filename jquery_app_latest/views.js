@@ -6,6 +6,7 @@
 var zipSearchView = function ( zipSearchModel, zipSearchController, resultsModel, resultsController ) {
 	$( document ).ready( function () {
 		var apartmentListModel = resultsModel;
+		var searchZip;
 
 	    // Call to loginState.php for user sessions (this will be moved)
 		checkLoginState = function() {
@@ -42,6 +43,9 @@ var zipSearchView = function ( zipSearchModel, zipSearchController, resultsModel
 				data: {},
 				success: function ( data ) {
 					alert( "Entry has been saved in the table" );
+				},
+				error: function () {
+					alert( "User not logged in" );
 				}
 			});
 			//checkLoginState();

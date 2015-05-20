@@ -1,4 +1,5 @@
 <?php
+session_start();
 /* 
  *  save.php Functionality:
  *  1) Start FirePHP logging for testing and debugging
@@ -19,13 +20,17 @@ ob_start();
 // Get a firePHP variable reference
 $firephp = FirePHP::getInstance( true );
 
-$firephp->log("FirePHP Test Output!");
+$firephp->log( "FirePHP Test Output!" );
+
+// ***************************************************************************************
+// ---------------------------------Create Results Table----------------------------------
+// ***************************************************************************************
 
 if ( $_SESSION[ "LoggedIn" ] && $_SESSION[ "Username" ] ) {
 
-	if ($_SERVER["REQUEST_METHOD"] == "POST") {
+	if ($_SERVER[ "REQUEST_METHOD" ] == "POST") {
 		//Escape special characters in output table html for MySql insertion
-		$output = $_POST["outputTable"];
+		//$output = $_POST[ "outputTable" ];
 		//$pass   = $_POST["pass"];
 	}
 
@@ -36,10 +41,10 @@ if ( $_SESSION[ "LoggedIn" ] && $_SESSION[ "Username" ] ) {
 	$db = "results";
 
 	// Connect to the aptbrowse db
-	$connect = new mysqli($servername, $username, $password, $db);
+	$connect = new mysqli( $servername, $username, $password, $db );
 
-	if ($connect->connect_error) {
-		die("Connection failed: " . $connect->connect_error);
+	if ( $connect->connect_error ) {
+		die( "Connection failed: " . $connect->connect_error );
 	}
 
 	echo "Connected successfully\n";
@@ -47,19 +52,24 @@ if ( $_SESSION[ "LoggedIn" ] && $_SESSION[ "Username" ] ) {
 	// Put filler zip code as table name (for now)
 	$zip = "28027";
 
-	$sql = "CREATE TABLE ".$zip."(
-			id int not null auto_increment,
-			PRIMARY KEY(id),
-			results VARCHAR(10000) 
-		)";
+	$sql = 
+	"CREATE TABLE ".'$zip'."(
+		id int not null auto_increment,
+		PRIMARY KEY(id),
+		results VARCHAR(10000) 
+	)";
 
 	if ( $connect->query( $sql ) === TRUE ) {
-		echo "Table $pass created";
+		echo "Table $zip created";
 	} else {
-		echo "Error creating table $pass: " . $connect->error;
+		echo "Error creating table: " . $connect->error;
 	}
 
+	$connect->close();
 
+} else {
+	$firephp->log( "User not logged in" );
+	http_response_code( 400 );
 }
 		
 
@@ -121,7 +131,7 @@ foreach($tableInputElements as $tr){
 	}
 }
 */
-$connect->close();
+
 
 ?>
 
