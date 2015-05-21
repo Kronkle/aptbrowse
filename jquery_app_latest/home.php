@@ -117,7 +117,7 @@
 					        <div class="col-md-6">
 					    		<h2>Apartment Search</h2>          	
 					           		<div class="input-group">
-					                    <input type="text" class="form-control input-lg zipSearch" placeholder="Enter your zipcode here" />
+					                    <input id = "searchInput" type="text" class="form-control input-lg zipSearch" placeholder="Enter your zipcode here" />
 					                    <span class="input-group-btn">
 					                        <button class="btn btn-info btn-lg zipSearchBtn" type="button">
 					                            <i class="glyphicon glyphicon-search"></i>

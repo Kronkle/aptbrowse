@@ -30,9 +30,12 @@ if ( $_SESSION[ "LoggedIn" ] && $_SESSION[ "Username" ] ) {
 
 	if ($_SERVER[ "REQUEST_METHOD" ] == "POST") {
 		//Escape special characters in output table html for MySql insertion
-		//$output = $_POST[ "outputTable" ];
-		//$pass   = $_POST["pass"];
+		$output = $_POST["outputTable"];
+		$zip   = $_POST["zipCode"];
 	}
+
+	$firephp->log( "$zip" );
+	$firephp->log( "$output" );
 
 	// Login to database
 	$servername = "localhost";
@@ -72,10 +75,6 @@ if ( $_SESSION[ "LoggedIn" ] && $_SESSION[ "Username" ] ) {
 	http_response_code( 400 );
 }
 		
-
-
-
-
 
 /*
 //Need protection against SQL injection here

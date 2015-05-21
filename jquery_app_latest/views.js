@@ -26,21 +26,28 @@ var zipSearchView = function ( zipSearchModel, zipSearchController, resultsModel
 
 		// For saving current search results to database table associated with username
 		$( "#save" ).on( "click", function ( event ) {
+
 			// Check that a search has been run
+			if ( !searchZip ) {
+				alert( "Please run a zip code search first" );
+				return;
+			}
 
 			// Alert user if they aren't logged in
 
 			// Encapsulate search output into an object
-			var data = $( "#ftablebodyDiv" ).html;
-			
-			var data = "outputTable=" + data;
+			var data = $( ".ftablebodyDiv" ).html();
+			alert(data);
 
 			// Send array to save.php for transmitting into database
 
 			$.ajax({
 				method: "POST",
 				url: "save.php",
-				data: {},
+				data: {
+					outputTable: data,
+					zipCode: searchZip
+				},
 				success: function ( data ) {
 					alert( "Entry has been saved in the table" );
 				},
@@ -127,6 +134,7 @@ var zipSearchView = function ( zipSearchModel, zipSearchController, resultsModel
 
 		// For initial processing of searchbar input
 		$( ".content" ).on( "click", ".zipSearchBtn", function () {
+			searchZip = $("#searchInput").val();
 			zipSearchController.handleEvent( apartmentListModel, resultsController );
 		});	
 	});		
