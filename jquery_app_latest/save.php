@@ -30,8 +30,8 @@ if ( $_SESSION[ "LoggedIn" ] && $_SESSION[ "Username" ] ) {
 
 	if ($_SERVER[ "REQUEST_METHOD" ] == "POST") {
 		//Escape special characters in output table html for MySql insertion
-		$output = $_POST["outputTable"];
-		$zip   = $_POST["zipCode"];
+		$output = $_POST[ "outputTable" ];
+		$zip   = $_POST[ "zipCode" ];
 	}
 
 	$firephp->log( "$zip" );
