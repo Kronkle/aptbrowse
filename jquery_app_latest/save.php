@@ -5,7 +5,7 @@ session_start();
  *  1) Start FirePHP logging for testing and debugging
  *  2) Verify that user is logged in via Session variables
  *  3) Create a table in results database
- *		3a) Username = key -> zip code = key -> search results  table
+ *	4) Populate table with search results
  */
 
 // ***************************************************************************************
@@ -52,20 +52,66 @@ if ( $_SESSION[ "LoggedIn" ] && $_SESSION[ "Username" ] ) {
 
 	echo "Connected successfully\n";
 
-	// Put filler zip code as table name (for now)
-	$zip = "28027";
+	// Table name will be current username appended to the search zip code
+	$tableName = $_SESSION[ "Username" ] . $zip;
+	$firephp->log( "$tableName" );
 
+	// Create results table 
 	$sql = 
-	"CREATE TABLE ".'$zip'."(
+	"CREATE TABLE ".$tableName."(
 		id int not null auto_increment,
 		PRIMARY KEY(id),
 		results VARCHAR(10000) 
 	)";
 
 	if ( $connect->query( $sql ) === TRUE ) {
-		echo "Table $zip created";
+		echo "Table $tableName created";
 	} else {
 		echo "Error creating table: " . $connect->error;
+	}
+
+// ***************************************************************************************
+// ------------------------------Populate Results Table-----------------------------------
+// ***************************************************************************************
+
+	// Iterate through html in output and pass into newly created table
+	$dom = new DOMDocument;
+	$dom->loadHTML( $output );
+
+	// Clean out top-level dom elements
+	$dom->removeChild( $dom->doctype );
+	$dom->replaceChild( $dom->firstChild->firstChild->firstChild, $dom->firstChild );
+
+	// Declare variables to hold html elements in output table
+	$tableTags = $tableBodyTags = $tableRowTags = "";
+
+	// Sort each tag type into a different variable
+	$tableTags = $dom->getElementsByTagName( "table" );
+	$tableBodyTags = $dom->getElementsByTagName( "tbody" );
+	$tableRowTags = $dom->getElementsByTagName( "tr" );
+	
+	$tableInputElements = array();
+
+	// Append every table row of apartment information to array
+	foreach( $tableRowTags as $node ) {
+		$tableInputElements[] = $dom->saveHTML( $node );
+	}
+
+	// Print array for debugging
+	print_r( $tableInputElements );
+
+	// Insert each tr element into created results table
+	foreach( $tableInputElements as $tr ) {
+		$tr = $connect->real_escape_string( $tr );
+		$sql = 
+			"INSERT INTO ".$tableName." (results)
+			VALUES ('$tr')";
+
+		if ($connect->query( $sql ) === TRUE) {
+			echo "Table $tableName populated";
+		} else {
+			echo "Error populating table $tableName: " . $connect->error;
+		}
 	}
 
 	$connect->close();
@@ -75,62 +121,5 @@ if ( $_SESSION[ "LoggedIn" ] && $_SESSION[ "Username" ] ) {
 	http_response_code( 400 );
 }
 		
-
-/*
-//Need protection against SQL injection here
-$sql = 
-	"CREATE TABLE ".$pass."(
-		id int not null auto_increment,
-		PRIMARY KEY(id),
-		results VARCHAR(10000) 
-	)";
-
-if ($connect->query($sql) === TRUE) {
-	echo "Table $pass created";
-} else {
-	echo "Error creating table $pass: " . $connect->error;
-}
-
-//Iterate through html in output and pass into newly created table
-$dom = new DOMDocument;
-$dom->loadHTML($output);
-
-//Clean out top-level dom elements
-$dom->removeChild($dom->doctype);
-$dom->replaceChild($dom->firstChild->firstChild->firstChild, $dom->firstChild);
-
-//Declare variables to hold html elements in output table
-$tableTags = $tableBodyTags = $tableRowTags = "";
-
-//Sort each tag type into a different variable
-$tableTags = $dom->getElementsByTagName("table");
-
-//Extras for debugging
-$tableBodyTags = $dom->getElementsByTagName('tbody');
-$tableRowTags = $dom->getElementsByTagName('tr');
-
-$tableInputElements = array();
-
-foreach($dom->getElementsByTagName("tr") as $node) {
-		$tableInputElements[] = $dom->saveHTML($node);
-}
-
-print_r($tableInputElements);
-
-foreach($tableInputElements as $tr){
-	$tr = $connect->real_escape_string($tr);
-	$sql = 
-		"INSERT INTO ".$pass." (results)
-			VALUES ('$tr')";
-
-	if ($connect->query($sql) === TRUE) {
-		echo "Table $pass created";
-	} else {
-		printf("Error creating table $pass: " . $connect->error);
-	}
-}
-*/
-
-
 ?>
 
