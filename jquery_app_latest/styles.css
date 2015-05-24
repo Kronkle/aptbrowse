@@ -64,16 +64,18 @@
 
 /* Place footer, and Google logo, on bottom-right of page */
 #footer {
-	display:block;
-	width:100px;
+	display: block;
+	width: 100px;
 	margin-left: auto;
 	margin-right: auto;
 }
 
 /* Horizontally center load spinner */
 #spinnerCenter {
-	margin-left: 50%;
-	width: 10px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50px;
 }
 
 /* Font for Sign Up/Sign In dropdowns */
@@ -81,4 +83,11 @@
 	font-family: 'Open Sans', sans-serif;
 	font-weight: 400;
 	text-align: center;
+}
+
+/* Positioning for buttons in dropdown menus in navbar */
+.dropdownNavBtn {
+	display: inline-block;
+	margin-top: 10px;
+	width: 100%;
 }

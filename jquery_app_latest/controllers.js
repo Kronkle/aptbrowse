@@ -7,7 +7,15 @@ var zipSearchController = function () {
 	return this;
 };
 
+zipSearchController.prototype.renderUserOptions = function () {
+	$( "#registerMenu" ).hide();
+    $( "#loginMenu" ).hide();
+    $( "#userOptionsMenu" ).show();
+};
+
 zipSearchController.prototype.registerUser = function ( resultsModel, resultsController, username, password ) {
+
+	var me = this;
 
     // For use with greeting upon registering
     var username = username;
@@ -23,8 +31,7 @@ zipSearchController.prototype.registerUser = function ( resultsModel, resultsCon
     			alert( "Username is already taken" );
     		} else {
     			alert( "Account created!" );
-    			$( "#registerMenu" ).hide();
-    			$( "#loginMenu" ).html( "<li>Welcome, " + username + "</li>" );
+    			me.renderUserOptions();
     		}
     	},
     	error: function () {
@@ -36,6 +43,8 @@ zipSearchController.prototype.registerUser = function ( resultsModel, resultsCon
 
 zipSearchController.prototype.loginUser = function ( resultsModel, resultsController, username, password ) {
 
+	var me = this; 
+
     // For use with greeting upon login
     var username = username;
     
@@ -46,13 +55,30 @@ zipSearchController.prototype.loginUser = function ( resultsModel, resultsContro
     	url: "login.php",
     	data: data,
     	success: function ( data ) {
- 			$( "#registerMenu" ).hide();
- 			$( "#loginMenu" ).html( "<li>Welcome, " + username + "</li>" );
+ 			me.renderUserOptions()
     	},
     	error: function () {
     		alert( "Problem with login request" );
     	}
     });
+};
+
+zipSearchController.prototype.logoutUser = function () {
+	$.ajax({
+    	method: "POST",
+    	url: "logout.php",
+    	data: {},
+    	success: function ( data ) {
+    		alert( "Successfully logged out" );
+    	},
+    	error: function () {
+    		alert( "Problem with logout request" );
+    	}
+    });
+
+    $( "#registerMenu" ).show();
+    $( "#loginMenu" ).show();
+    $( "#userOptionsMenu" ).hide();
 };
 
 zipSearchController.prototype.handleEvent = function ( resultsModel, resultsController ) {

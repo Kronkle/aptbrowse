@@ -1,3 +1,4 @@
+
 /*
  *  Zipcode search workflow:
  *  User search via zipSearchView -> zipSearchController -> apartmentListModel -> apartmentListController -> apartmentListView

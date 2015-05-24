@@ -63,6 +63,7 @@ elseif ( !empty( $POST[ "username" ] ) && !empty( $_POST[ "password" ] ) ) {
 else {
 	// User isn't logged in, allow access to basic features
     $firephp->log( "You aren't logged in yet" );
+    http_response_code( 400 );
 }
 
 ?>

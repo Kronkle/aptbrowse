@@ -98,6 +98,21 @@
 									<br>
 							</div>
 							</li>
+							<li id="userOptionsMenu" class="dropdown" style="display:none">
+								<a id="userOptionsUsername" class="dropdown-toggle" href="#" data-toggle="dropdown">User <strong class="caret"></strong></a>
+								<div class="dropdown-menu" style="padding: 15px; padding-bottom: 0px;">
+									<div style="text-align:center"><span class="glyphicon glyphicon-pencil"></span></div>
+									<br>
+									<p class="signUpInText">Account Options</p>
+										<form method="post" accept-charset="UTF-8">	
+											<div style="text-align:center"><a href="#" class="btn btn-info dropdownNavBtn">Preferences</a></div>
+										</form>
+										<form method="post" accept-charset="UTF-8">	
+											<div style="text-align:center"><a id="logoutBtn" href="#" class="btn btn-info dropdownNavBtn">Logout</a></div>
+										</form>
+									<br>
+							</div>
+							</li>
 		                </ul>
 		            </div>
 		        </div>
@@ -108,7 +123,7 @@
 			<div class="searchContent">
 				<div id="spinner"  style="display: none;">
 					<br>
-					<div id="spinnerCenter" class="dots-loader">Loading...</div>
+					<div id="spinnerCenter" class="plus-loader">Loading...</div>
 				</div>
 				<div class="search">
 					<div class="container">
