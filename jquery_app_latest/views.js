@@ -6,7 +6,7 @@
 var zipSearchView = function ( zipSearchModel, zipSearchController, resultsModel, resultsController ) {
 	$( document ).ready( function () {
 		var apartmentListModel = resultsModel;
-		var searchZip;
+		var currentSearch, currentUser;
 
 	    // Call to loginState.php for user sessions (this will be moved)
 		checkLoginState = function() {
@@ -32,7 +32,7 @@ var zipSearchView = function ( zipSearchModel, zipSearchController, resultsModel
 		$( "#save" ).on( "click", function ( event ) {
 
 			// Check that a search has been run
-			if ( !searchZip ) {
+			if ( !currentSearch ) {
 				alert( "Please run a zip code search first" );
 				return;
 			}
@@ -46,7 +46,7 @@ var zipSearchView = function ( zipSearchModel, zipSearchController, resultsModel
 				url: "save.php",
 				data: {
 					outputTable: data,
-					zipCode: searchZip
+					zipCode: currentSearch
 				},
 				success: function ( data ) {
 					alert( "Entry has been saved in the table" );
@@ -55,6 +55,47 @@ var zipSearchView = function ( zipSearchModel, zipSearchController, resultsModel
 					alert( "User not logged in" );
 				}
 			});
+		});
+
+		// For loading previous search results from database table associated with username
+		$( "#load" ).on( "click", function ( event ) {
+
+			// Check that a user is currently logged in
+			if ( !currentUser ) {
+				alert( "Please login first" );
+			} else {
+				// Retrieve available zip codes associated with user
+				$.ajax({
+					method: "POST",
+					url: "retrieve.php",
+					data: {
+						username: currentUser,
+					},
+					success: function ( data ) {
+						alert( "Retrieve available zip codes for the user here" );
+					},
+					error: function () {
+						alert( "Could not retrieve user search zip codes from database" );
+					}
+				});
+
+				var userResponse = prompt( "Enter zip code here: " );
+
+				// Send array to save.php for transmitting into database
+				$.ajax({
+					method: "POST",
+					url: "load.php",
+					data: {
+						zipCode: userResponse
+					},
+					success: function ( data ) {
+						alert( "Entry has been loaded from the table" );
+					},
+					error: function () {
+						alert( "User not logged in" );
+					}
+				});
+			}
 		});
 
 		// For creating the MySQL "accounts" and "results" dbs in ADMIN mode - for testing
@@ -94,6 +135,7 @@ var zipSearchView = function ( zipSearchModel, zipSearchController, resultsModel
 
 			if ( password == confirmPassword ) {
 				zipSearchController.registerUser( apartmentListModel, resultsController, username, password );
+				currentUser = username;
 		    } else {
 	        	alert( "Two different passwords entered" );   
 		    }
@@ -110,16 +152,22 @@ var zipSearchView = function ( zipSearchModel, zipSearchController, resultsModel
 				alert( "Please fill out all fields" );
 			} else {
 				zipSearchController.loginUser( apartmentListModel, resultsController, username, password );
+				currentUser = username;
 			}
 		});
 
 		// For logging in an existing user when "Sign In" button is clicked
 		$( "#logoutBtn" ).on( "click", function() {
-				zipSearchController.logoutUser();
+			zipSearchController.logoutUser();
+			currentUser = null;
+			$( ".search" ).show();
+			$( ".break" ).show();
+			$( ".ftablebody" ).html( "" );
 		});
 
 		// For refreshing the homepage when "AptBrowse" is clicked
 		$( ".navigationMenu" ).on( "click", "#home", function () {
+			currentSearch = null;
 			$( ".search" ).show();
 			$( ".break" ).show();
 			$( ".ftablebody" ).html( "" );
@@ -130,18 +178,13 @@ var zipSearchView = function ( zipSearchModel, zipSearchController, resultsModel
 		// ---------------------------------------SEARCHBAR---------------------------------------
 		// ***************************************************************************************
 
-
 		// For initial processing of searchbar input
 		$( ".content" ).on( "click", ".zipSearchBtn", function () {
-			searchZip = $("#searchInput").val();
+			currentSearch = $("#searchInput").val();
 			zipSearchController.handleEvent( apartmentListModel, resultsController );
 		});	
 	});		
 	return this;
-};
-
-zipSearchView.prototype.checkLoginState = function () {
-
 };
 
 var apartmentListView = function () {
