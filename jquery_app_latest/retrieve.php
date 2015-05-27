@@ -29,15 +29,15 @@ $firephp->log( "FirePHP Test Output!" );
 
 if ( $_SERVER[ "REQUEST_METHOD" ] == "POST" ) {
 	//Escape special characters in output table html for MySql insertion
-	$pass   = $_POST[ "pass" ];
+	$currentUser   = $_POST[ "username" ];
 }
-
-$firephp->log( "FirePHP Test Output!" );
 
 $servername = "localhost";
 $username = "root";
 $password = "password";
 $db = "results";
+
+$firephp->log($currentUser, 'CurrentUser');
 
 // Create connection
 $connect = new mysqli( $servername, $username, $password, $db );
@@ -46,14 +46,20 @@ if ( $connect->connect_error ) {
     die( "Connection failed: " . $connect->connect_error );
 }
 
-$sql = "SELECT * FROM $pass";
+// Select all tables in database that are associated with the current user (TODO: Narrow this search down to specifically the Results database)
+$sql = "SELECT TABLE_NAME from INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME LIKE $currentUser . '_____' or TABLE_NAME LIKE $currentUser . '_____-____' ";
 $queryResult = $connect->query( $sql );
+
+$firephp->log($queryResult, 'QueryResult');
+
 $htmlOutput = "";
 
-while( $row = mysqli_fetch_array( $queryResult, MYSQLI_NUM ) ){
+
+
+/*while( $row = mysqli_fetch_array( $queryResult, MYSQLI_NUM ) ){
 	// The second element of each row array will contain the HTML
 	$htmlOutput .= $row[1];
-}
+}*/
 
 // ***************************************************************************************
 // -----------------------------------Parse Zip Codes-------------------------------------
