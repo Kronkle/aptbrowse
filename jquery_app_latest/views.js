@@ -73,6 +73,7 @@ var zipSearchView = function ( zipSearchModel, zipSearchController, resultsModel
 					},
 					success: function ( data ) {
 						alert( "Retrieve available zip codes for the user here" );
+						alert( data );
 					},
 					error: function () {
 						alert( "Could not retrieve user search zip codes from database" );

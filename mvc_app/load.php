@@ -1,48 +1,60 @@
 <?php
+/* 
+ *  load.php Functionality:
+ *  1) Start FirePHP logging for testing and debugging
+ *  2) Retrieve search results tables associated with current user
+ *  3) Parse out and return zip codes associated with each table
+ */
 
-//Include the FirePHP class for debugging
-require_once('FirePHPCore/FirePHP.class.php');
+// Begin a session for persistent user login
+session_start();
 
-//Start buffering the output. Not required if output_buffering is set on in php.ini file
+// ***************************************************************************************
+// ---------------------------------------FirePHP-----------------------------------------
+// ***************************************************************************************
+
+require_once( "FirePHPCore/FirePHP.class.php" );
+
+// Start buffering the output - not required if output_buffering is set on in php.ini file
 ob_start();
 
-//get a firePHP variable reference
-$firephp = FirePHP::getInstance(true);
+// Get a firePHP variable reference
+$firephp = FirePHP::getInstance( true );
 
-// declare variables from form and set to empty strings
-$pass = "";
+$firephp->log( "FirePHP Test Output!" );
 
+// ***************************************************************************************
+// -----------------------------------Retrieve User Tables--------------------------------
+// ***************************************************************************************
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ( $_SERVER[ "REQUEST_METHOD" ] == "POST" ) {
 	//Escape special characters in output table html for MySql insertion
-	$pass   = $_POST["pass"];
+	$username   = $_POST[ "username" ];
 }
 
-$firephp->log("FirePHP Test Output!");
+$firephp->log( "FirePHP Test Output!" );
 
-//MySQL processing will go here
 $servername = "localhost";
 $username = "root";
 $password = "password";
-$db = "aptbrowseDB";
+$db = "results";
 
 // Create connection
-$connect = new mysqli($servername, $username, $password, $db);
+$connect = new mysqli( $servername, $username, $password, $db );
 // Check connection
-if ($connect->connect_error) {
-    die("Connection failed: " . $connect->connect_error);
+if ( $connect->connect_error ) {
+    die( "Connection failed: " . $connect->connect_error );
 }
 
-$sql = "SELECT * FROM $pass";
-$queryResult = $connect->query($sql);
-$htmlOutput = "";
+$sql = "show tables from results like '$username_____%%%%%' ";
+$queryResult = $connect->query( $sql );
 
-while($row = mysqli_fetch_array($queryResult, MYSQLI_NUM)){
-	//The second element of each row array will contain the HTML
-	$htmlOutput .= $row[1];
-}
 
-echo $htmlOutput;
+// ***************************************************************************************
+// -----------------------------------Parse Zip Codes-------------------------------------
+// ***************************************************************************************
+
+echo $queryResult;
 
 $connect->close();
 
