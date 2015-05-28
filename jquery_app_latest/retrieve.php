@@ -47,19 +47,18 @@ if ( $connect->connect_error ) {
 }
 
 // Select all tables in database that are associated with the current user (TODO: Narrow this search down to specifically the Results database)
-$sql = "SELECT TABLE_NAME from INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME LIKE $currentUser . '_____' or TABLE_NAME LIKE $currentUser . '_____-____' ";
+$sql = "SELECT TABLE_NAME from INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME LIKE '".$currentUser."_____' or TABLE_NAME LIKE '".$currentUser."_____-____' ";
 $queryResult = $connect->query( $sql );
 
 $firephp->log($queryResult, 'QueryResult');
 
 $htmlOutput = "";
 
-
-
-/*while( $row = mysqli_fetch_array( $queryResult, MYSQLI_NUM ) ){
+while( $row = mysqli_fetch_array( $queryResult, MYSQLI_NUM ) ){
 	// The second element of each row array will contain the HTML
-	$htmlOutput .= $row[1];
-}*/
+	$firephp->log($row[0], 'QueryResult');
+	//$htmlOutput .= $row[1];
+}
 
 // ***************************************************************************************
 // -----------------------------------Parse Zip Codes-------------------------------------

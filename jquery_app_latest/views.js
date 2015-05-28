@@ -72,7 +72,7 @@ var zipSearchView = function ( zipSearchModel, zipSearchController, resultsModel
 						username: currentUser,
 					},
 					success: function ( data ) {
-						alert( "Retrieve available zip codes for the user here" );
+						alert( "Retrieved available zip codes for the user here" );
 						alert( data );
 					},
 					error: function () {
@@ -80,7 +80,7 @@ var zipSearchView = function ( zipSearchModel, zipSearchController, resultsModel
 					}
 				});
 
-				var userResponse = prompt( "Enter zip code here: " );
+				var userResponse = prompt( "Enter zip code here from available zip codes here: " );
 
 				// Send array to save.php for transmitting into database
 				$.ajax({
