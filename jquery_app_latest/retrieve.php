@@ -52,19 +52,19 @@ $queryResult = $connect->query( $sql );
 
 $firephp->log($queryResult, 'QueryResult');
 
-$htmlOutput = "";
+$zipCodes = "";
 
 while( $row = mysqli_fetch_array( $queryResult, MYSQLI_NUM ) ){
 	// The second element of each row array will contain the HTML
 	$firephp->log($row[0], 'QueryResult');
-	//$htmlOutput .= $row[1];
+	$zipCodes .= $row[0];
 }
 
 // ***************************************************************************************
 // -----------------------------------Parse Zip Codes-------------------------------------
 // ***************************************************************************************
 
-echo $htmlOutput;
+echo $zipCodes;
 
 $connect->close();
 

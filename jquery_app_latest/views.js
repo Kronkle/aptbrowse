@@ -59,6 +59,7 @@ var zipSearchView = function ( zipSearchModel, zipSearchController, resultsModel
 
 		// For loading previous search results from database table associated with username
 		$( "#load" ).on( "click", function ( event ) {
+			var zipCodes;
 
 			// Check that a user is currently logged in
 			if ( !currentUser ) {
@@ -74,20 +75,22 @@ var zipSearchView = function ( zipSearchModel, zipSearchController, resultsModel
 					success: function ( data ) {
 						alert( "Retrieved available zip codes for the user here" );
 						alert( data );
+						zipCodes = data;
 					},
 					error: function () {
 						alert( "Could not retrieve user search zip codes from database" );
 					}
 				});
 
-				var userResponse = prompt( "Enter zip code here from available zip codes here: " );
+				var userResponse = prompt( "Enter zip code here from available zip codes here:" + zipCodes );
 
 				// Send array to save.php for transmitting into database
 				$.ajax({
 					method: "POST",
 					url: "load.php",
 					data: {
-						zipCode: userResponse
+						username: currentUser,
+						zipCode: userResponse,
 					},
 					success: function ( data ) {
 						alert( "Entry has been loaded from the table" );
