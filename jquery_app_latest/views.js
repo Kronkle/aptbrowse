@@ -65,6 +65,7 @@ var zipSearchView = function ( zipSearchModel, zipSearchController, resultsModel
 			if ( !currentUser ) {
 				alert( "Please login first" );
 			} else {
+
 				// Retrieve available zip codes associated with user
 				$.ajax({
 					method: "POST",
@@ -74,7 +75,7 @@ var zipSearchView = function ( zipSearchModel, zipSearchController, resultsModel
 					},
 					success: function ( data ) {
 						alert( "Retrieved available zip codes for the user here" );
-						alert( data );
+						alert( typeof data );
 						zipCodes = data;
 					},
 					error: function () {
@@ -82,9 +83,11 @@ var zipSearchView = function ( zipSearchModel, zipSearchController, resultsModel
 					}
 				});
 
+				// Place array of zip codes that user has previously saved into a list and display it
+				alert( typeof zipCodes );
 				var userResponse = prompt( "Enter zip code here from available zip codes here:" + zipCodes );
 
-				// Send array to save.php for transmitting into database
+				/* Send array to save.php for transmitting into database
 				$.ajax({
 					method: "POST",
 					url: "load.php",
@@ -98,7 +101,7 @@ var zipSearchView = function ( zipSearchModel, zipSearchController, resultsModel
 					error: function () {
 						alert( "User not logged in" );
 					}
-				});
+				}); */
 			}
 		});
 

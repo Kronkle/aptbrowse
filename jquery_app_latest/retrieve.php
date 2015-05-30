@@ -52,19 +52,26 @@ $queryResult = $connect->query( $sql );
 
 $firephp->log($queryResult, 'QueryResult');
 
-$zipCodes = "";
-
-while( $row = mysqli_fetch_array( $queryResult, MYSQLI_NUM ) ){
-	// The second element of each row array will contain the HTML
-	$firephp->log($row[0], 'QueryResult');
-	$zipCodes .= $row[0];
-}
-
 // ***************************************************************************************
 // -----------------------------------Parse Zip Codes-------------------------------------
 // ***************************************************************************************
 
-echo $zipCodes;
+$pattern = '/'.$currentUser.'(\d*)/';
+
+//$numRows = mysqli_num_rows( $queryResult );
+
+for ( $counter = 0; $row = mysqli_fetch_array( $queryResult, MYSQLI_NUM ); $counter++ ){
+
+	// Parse out username from table name 
+	preg_match( $pattern, $row[0], $matches );
+
+	//if ( $counter++ != $numRows ) {
+		$zipCode = ' ' . $matches[ 1 ] . ', ';
+	/*}  else {
+		$zipCode = ' ' . $matches[ 1 ];
+	} */
+	echo( $zipCode );
+}
 
 $connect->close();
 
