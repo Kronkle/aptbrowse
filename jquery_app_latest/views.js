@@ -74,34 +74,32 @@ var zipSearchView = function ( zipSearchModel, zipSearchController, resultsModel
 						username: currentUser,
 					},
 					success: function ( data ) {
-						alert( "Retrieved available zip codes for the user here" );
-						alert( typeof data );
-						zipCodes = data;
+
+						// Place array of zip codes that user has previously saved into a list and display it
+						var userResponse = prompt( "Enter a zip code from your searches:" + data );
+
+						// Load proper HTML from selection TODO: zip code validation
+						$.ajax({
+							method: "POST",
+							url: "load.php",
+							data: {
+								username: currentUser,
+								zipCode: userResponse,
+							},
+							success: function ( data ) {
+								alert( "Entry has been loaded from the table" );
+							},
+							error: function () {
+								alert( "User not logged in" );
+							}
+						});
 					},
 					error: function () {
 						alert( "Could not retrieve user search zip codes from database" );
 					}
 				});
 
-				// Place array of zip codes that user has previously saved into a list and display it
-				alert( typeof zipCodes );
-				var userResponse = prompt( "Enter zip code here from available zip codes here:" + zipCodes );
 
-				/* Send array to save.php for transmitting into database
-				$.ajax({
-					method: "POST",
-					url: "load.php",
-					data: {
-						username: currentUser,
-						zipCode: userResponse,
-					},
-					success: function ( data ) {
-						alert( "Entry has been loaded from the table" );
-					},
-					error: function () {
-						alert( "User not logged in" );
-					}
-				}); */
 			}
 		});
 

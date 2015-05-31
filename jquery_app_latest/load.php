@@ -29,8 +29,8 @@ $firephp->log( "FirePHP Test Output!" );
 
 if ( $_SERVER[ "REQUEST_METHOD" ] == "POST" ) {
 	//Escape special characters in output table html for MySql insertion
-	$zipCode   = $_POST[ "zipCode" ];
 	$currentUser   = $_POST[ "username" ];
+	$zipCode   = "$currentUser" . $_POST[ "zipCode" ];
 }
 
 $servername = "localhost";
@@ -42,16 +42,28 @@ $firephp->log($currentUser, 'CurrentUser');
 
 // Create connection
 $connect = new mysqli( $servername, $username, $password, $db );
+
 // Check connection
 if ( $connect->connect_error ) {
     die( "Connection failed: " . $connect->connect_error );
+}
+
+$sql = "SELECT * FROM $zipCode";
+
+$queryResult = $connect->query( $sql );
+$htmlOutput = "";
+
+while ( $row = mysqli_fetch_array( $queryResult, MYSQLI_NUM ) ) {
+
+	// The second element of each row array will contain the HTML
+	$htmlOutput .= $row[1];
 }
 
 // ***************************************************************************************
 // ---------------------------------Parse and Return Table HTML---------------------------
 // ***************************************************************************************
 
-echo $zipCode;
+echo $htmlOutput;
 
 $connect->close();
 
