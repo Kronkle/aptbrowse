@@ -33,7 +33,7 @@
 		<script type="text/javascript" src="starter.js" defer></script>
 		<!-- Google's Maps API Places Library -->
 		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
-		<link rel="stylesheet" href="http://css-spinners.com/css/spinners.css" type="text/css">
+	<link rel="stylesheet" href="http://css-spinners.com/css/spinner/plus.css" type="text/css">
 	</head>
 	<body>
 		<div class="navigationMenu">
